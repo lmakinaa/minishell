@@ -6,12 +6,15 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 12:03:43 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/11 12:27:47 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/11 14:57:49 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "allocation_manager.h"
 
+/*
+* Frees up any memory allocated using the session_malloc() function
+*/
 void	session_destroy(t_memsession **session_ptr)
 {
 	t_memslot	*first_node;

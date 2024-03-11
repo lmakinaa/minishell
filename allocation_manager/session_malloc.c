@@ -1,18 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ultra_malloc.c                                     :+:      :+:    :+:   */
+/*   session_malloc.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:33:17 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/11 12:23:36 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/11 14:56:20 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "allocation_manager.h"
 
-void	*ultra_malloc(t_memsession *session, size_t size)
+/*
+* Allocate memory and store the address in the session struct
+*/
+void	*session_malloc(t_memsession *session, size_t size)
 {
 	t_memslot	*new_slot;
 

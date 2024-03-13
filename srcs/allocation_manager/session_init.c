@@ -6,11 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:51:33 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/11 14:57:11 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/13 21:16:17 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "allocation_manager.h"
+#include "./../../includes/allocation_manager.h"
 
 /*
 * Initialise the allocation session structure

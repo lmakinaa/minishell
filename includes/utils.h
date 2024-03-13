@@ -1,22 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_on_alloc_error.c                              :+:      :+:    :+:   */
+/*   utils.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 11:43:40 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/11 14:55:23 by ijaija           ###   ########.fr       */
+/*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
+/*   Updated: 2024/03/13 21:38:20 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "allocation_manager.h"
+#ifndef UTILS_H
+# define UTILS_H
 
-/*
-* Writes an error message and exit the program
-*/
-void	exit_on_alloc_error(void)
-{
-	write(2, "Error while allocation\n", 23);
-	exit(1);
-}
+int	ft_strcmp(char *str, char *compared_to);
+
+#endif

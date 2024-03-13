@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   session_restart.c                                  :+:      :+:    :+:   */
+/*   session_reset.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:30:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/12 15:35:56 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/13 15:57:44 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 * don't free the session structure that stores the addresses, so that you can
 * still use the structure without re-initialising it
 */
-void	session_restart(t_memsession **session_ptr)
+void	reset_session(t_memsession **session_ptr)
 {
 	t_memslot	*first_node;
 	t_memslot	*tmp;

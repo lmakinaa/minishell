@@ -1,18 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/12 13:53:56 by ijaija           ###   ########.fr       */
+/*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
+/*   Updated: 2024/03/13 21:17:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "./../includes/minishell.h"
 
-int	ft_strcmp(char *str, char *compared_to);
-
-#endif
+int	main(void)
+{
+	while (1)
+		readline("$> ");
+}

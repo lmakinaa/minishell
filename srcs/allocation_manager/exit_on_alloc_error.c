@@ -1,31 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strcmp.c                                        :+:      :+:    :+:   */
+/*   exit_on_alloc_error.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 13:41:11 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/12 13:52:19 by ijaija           ###   ########.fr       */
+/*   Created: 2024/03/11 11:43:40 by ijaija            #+#    #+#             */
+/*   Updated: 2024/03/13 21:16:17 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "./../../includes/allocation_manager.h"
 
 /*
-* Returns -1 on error (if one of them is Null)
-* Returns 0 if they are similar and a positive number if not
+* Writes an error message and exit the program
 */
-int	ft_strcmp(char *str, char *compared_to)
+void	exit_on_alloc_error(void)
 {
-	int	i;
-
-	if (!str || !compared_to)
-		return (-1);
-	i = 0;
-	while (str[i] && compared_to[i] && str[i] == compared_to[i])
-		i++;
-	if (str[i] == compared_to[i])
-		return (0);
-	return (1);
+	write(2, "Error while allocation\n", 23);
+	exit(1);
 }

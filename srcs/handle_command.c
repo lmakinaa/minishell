@@ -1,27 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.h                                            :+:      :+:    :+:   */
+/*   handle_command.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 14:50:34 by ijaija           ###   ########.fr       */
+/*   Created: 2024/03/14 13:30:47 by ijaija            #+#    #+#             */
+/*   Updated: 2024/03/14 14:02:40 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef UTILS_H
-# define UTILS_H
+#include "./../includes/minishell.h"
 
-#include "allocation_manager.h"
-
-typedef struct s_splitted
+void	handle_command(t_memsession *heap_session, char *command)
 {
-	char	**words;
-	int		word_count;
-}		t_splitdata;
+	t_token	*tokens;
 
-int			ft_strcmp(char *str, char *compared_to);
-t_splitdata	*ft_split(t_memsession *session, char *str, char *seps);
-
-#endif
+	tokens = ms_lexer(heap_session, command);
+}

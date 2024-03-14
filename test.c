@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:11:04 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 12:16:20 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/14 14:00:36 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,12 @@ void	f()
 
 int	main()
 {
-	atexit(f);
-	char *tt = readline("dfsd ");
-	free(tt);
-	char *t1 = readline("dfsd ");
-	char *tx = (void *) t1;
-	free(tx);
-	char *t2 = readline("dfsd ");
-	free(t2);
-	return (0);
+	t_token **tt;
+
+	tt = malloc(5 * sizeof(t_token *));
+	tt[0]->type = 5;
+	tt[1]->type = 6;
+	tt[2]->type = 7;
+	tt[3]->type = 8;
+	printf("%d\n%d\n%d\n", tt[0]->type, tt[1]->type, tt[2]->type);
 }

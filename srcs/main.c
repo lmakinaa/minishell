@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/13 22:08:33 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/14 12:03:33 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ int	main(void)
 	session_init(&heap_session);
 	while (1)
 	{
-		command = readline("$> ");
-		ft_tokenize(command);
+		command = readline(PROMPT_TEXT);
+		// ft_tokenize(command);
 	}
 	session_destroy(&heap_session);
 }

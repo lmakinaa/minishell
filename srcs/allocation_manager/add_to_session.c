@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   session_malloc.c                                   :+:      :+:    :+:   */
+/*   add_to_session.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 11:33:17 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 12:22:04 by ijaija           ###   ########.fr       */
+/*   Created: 2024/03/14 12:14:41 by ijaija            #+#    #+#             */
+/*   Updated: 2024/03/14 12:25:18 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/allocation_manager.h"
 
-/*
-* Allocate memory and store the address in the session struct
-*/
-void	*session_malloc(t_memsession *session, size_t size)
+void	add_to_session(t_memsession *session, void *address)
 {
 	t_memslot	*new_slot;
 
+	if (!address)
+		return (session_destroy(&session),
+			exit_on_alloc_error(ADDR_ADD_ERR, 53));
 	new_slot = malloc(sizeof(t_memslot));
 	if (!new_slot)
-		return (session_destroy(&session),
-			exit_on_alloc_error(MALLOC_ERR, 23), NULL);
-	new_slot->addr = malloc(size);
-	if (!new_slot->addr)
-		return (session_destroy(&session),
-			exit_on_alloc_error(MALLOC_ERR, 23), NULL);
+		return (session_destroy(&session), exit_on_alloc_error(MALLOC_ERR, 23));
+	new_slot->addr = address;
 	new_slot->next = NULL;
 	if (!session->first)
 	{
@@ -39,5 +35,4 @@ void	*session_malloc(t_memsession *session, size_t size)
 		session->last = new_slot;
 	}
 	session->count++;
-	return (new_slot->addr);
 }

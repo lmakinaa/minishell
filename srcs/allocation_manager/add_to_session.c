@@ -6,12 +6,16 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:14:41 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 12:25:18 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/14 12:33:49 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/allocation_manager.h"
 
+/*
+* It adds to the session an address returned by a regular malloc
+* and not ours like readline()
+*/
 void	add_to_session(t_memsession *session, void *address)
 {
 	t_memslot	*new_slot;

@@ -1,22 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_on_alloc_error.c                              :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/11 11:43:40 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 12:20:52 by ijaija           ###   ########.fr       */
+/*   Created: 2024/03/14 12:11:04 by ijaija            #+#    #+#             */
+/*   Updated: 2024/03/14 12:16:20 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/allocation_manager.h"
+#include "./includes/minishell.h"
 
-/*
-* Writes an error message and exit the program
-*/
-void	exit_on_alloc_error(char *error, int len)
+void	f()
 {
-	write(2, error, len);
-	exit(1);
+	system("leaks a.out");
+}
+
+int	main()
+{
+	atexit(f);
+	char *tt = readline("dfsd ");
+	free(tt);
+	char *t1 = readline("dfsd ");
+	char *tx = (void *) t1;
+	free(tx);
+	char *t2 = readline("dfsd ");
+	free(t2);
+	return (0);
 }

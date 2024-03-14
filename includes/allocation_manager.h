@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:27:54 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/13 21:31:33 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/14 12:25:47 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,14 @@ typedef struct s_heapslots
 	int					count;
 }			t_memsession;
 
-void	exit_on_alloc_error(void);
+# define MALLOC_ERR "Error while allocation\n"
+# define ADDR_ADD_ERR "Error trying to add a null pointer to session struct\n"
+
+void	exit_on_alloc_error(char *error, int len);
 void	session_init(t_memsession **session_ptr);
 void	*session_malloc(t_memsession *session, size_t size);
 void	session_destroy(t_memsession **session_ptr);
 void	reset_session(t_memsession **session_ptr);
+void	add_to_session(t_memsession *session, void *address);
 
 #endif

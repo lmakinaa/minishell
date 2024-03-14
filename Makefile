@@ -15,7 +15,7 @@ ALLOC_MANAGER_O=$(patsubst %.c, %.o, $(ALLOC_MANAGER_C))
 
 # Utils pack
 UTILS_DIR=$(SRC_DIR)/utils
-UTILS_C=$(UTILS_DIR)/ft_strcmp.c $(UTILS_DIR)/ft_split.c
+UTILS_C=$(UTILS_DIR)/ft_strcmp.c $(UTILS_DIR)/advanced_split.c
 UTILS_O=$(patsubst %.c, %.o, $(UTILS_C))
 
 # Includes

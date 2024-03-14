@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 14:50:34 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/14 14:54:10 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@ typedef struct s_splitted
 }		t_splitdata;
 
 int			ft_strcmp(char *str, char *compared_to);
-t_splitdata	*ft_split(t_memsession *session, char *str, char *seps);
+t_splitdata	*advanced_split(t_memsession *session, char *str, char *seps);
 
 #endif

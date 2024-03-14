@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 14:49:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/14 14:55:45 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,12 @@ void	spliting_process(t_memsession *session,
 	result->words[i] = NULL;
 }
 
-t_splitdata	*ft_split(t_memsession *session, char *str, char *seps)
+/*
+* It returns a data structure that have as members :
+* 	- word_count : the number of slitted strings
+*	- words : the array of strings that has the splitted strings
+*/
+t_splitdata	*advanced_split(t_memsession *session, char *str, char *seps)
 {
 	t_splitdata	*result;
 

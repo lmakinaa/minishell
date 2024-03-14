@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:14:41 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 12:33:49 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/14 12:40:43 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,14 @@
 /*
 * It adds to the session an address returned by a regular malloc
 * and not ours like readline()
+* Note: the function will do nothing if a NULL is passed as a second param
 */
 void	add_to_session(t_memsession *session, void *address)
 {
 	t_memslot	*new_slot;
 
 	if (!address)
-		return (session_destroy(&session),
-			exit_on_alloc_error(ADDR_ADD_ERR, 53));
+		return ;
 	new_slot = malloc(sizeof(t_memslot));
 	if (!new_slot)
 		return (session_destroy(&session), exit_on_alloc_error(MALLOC_ERR, 23));

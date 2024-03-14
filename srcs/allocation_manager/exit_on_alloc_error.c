@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_on_alloc_error.c                              :+:      :+:    :+:   */
+/*   exit_on_error.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -15,7 +15,7 @@
 /*
 * Writes an error message and exit the program
 */
-void	exit_on_alloc_error(char *error, int len)
+void	exit_on_error(char *error, int len)
 {
 	write(2, error, len);
 	exit(1);

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:33:17 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 12:22:04 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/14 12:42:01 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@ void	*session_malloc(t_memsession *session, size_t size)
 	new_slot = malloc(sizeof(t_memslot));
 	if (!new_slot)
 		return (session_destroy(&session),
-			exit_on_alloc_error(MALLOC_ERR, 23), NULL);
+			exit_on_error(MALLOC_ERR, 23), NULL);
 	new_slot->addr = malloc(size);
 	if (!new_slot->addr)
 		return (session_destroy(&session),
-			exit_on_alloc_error(MALLOC_ERR, 23), NULL);
+			exit_on_error(MALLOC_ERR, 23), NULL);
 	new_slot->next = NULL;
 	if (!session->first)
 	{

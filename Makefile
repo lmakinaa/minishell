@@ -9,7 +9,7 @@ SRC_O=$(patsubst %.c, %.o, $(SRC_C))
 
 # Allocation manager pack
 ALLOC_MANAGER_DIR=$(SRC_DIR)/allocation_manager
-ALLOC_MANAGER_C=$(ALLOC_MANAGER_DIR)/exit_on_alloc_error.c $(ALLOC_MANAGER_DIR)/reset_session.c\
+ALLOC_MANAGER_C=$(ALLOC_MANAGER_DIR)/exit_on_error.c $(ALLOC_MANAGER_DIR)/reset_session.c\
 	$(ALLOC_MANAGER_DIR)/session_destroy.c $(ALLOC_MANAGER_DIR)/session_init.c $(ALLOC_MANAGER_DIR)/session_malloc.c
 ALLOC_MANAGER_O=$(patsubst %.c, %.o, $(ALLOC_MANAGER_C))
 

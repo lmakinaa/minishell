@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 14:50:19 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/14 14:59:13 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include "./utils.h"
 
 # define PROMPT_TEXT "\033[0;32m$> \033[0m"
+# define SEPERATORS " \t\n"
 
 // Token types
 

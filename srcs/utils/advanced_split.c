@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split.c                                         :+:      :+:    :+:   */
+/*   advanced_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 14:55:45 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/15 15:44:34 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,8 @@ void	spliting_process(t_memsession *session,
 {
 	int	i;
 
-	i = -1;
-	while (*str && ++i < result->word_count)
+	i = 0;
+	while (*str && i < result->word_count)
 	{
 		if (!sep_check(*str, seps))
 		{
@@ -82,6 +82,7 @@ void	spliting_process(t_memsession *session,
 		}
 		while (*str && sep_check(*str, seps))
 			str++;
+		i++;
 	}
 	result->words[i] = NULL;
 }
@@ -94,13 +95,15 @@ void	spliting_process(t_memsession *session,
 t_splitdata	*advanced_split(t_memsession *session, char *str, char *seps)
 {
 	t_splitdata	*result;
+	t_splitdata	*tmp;
 
 	if (!str || !seps)
 		return (NULL);
 	result = session_malloc(session, sizeof(t_splitdata));
+	tmp = result;
 	result->word_count = ft_count_words(str, seps);
 	result->words = session_malloc(session,
 			(result->word_count + 1) * sizeof(char *));
 	spliting_process(session, result, str, seps);
-	return (result);
+	return (tmp);
 }

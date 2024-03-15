@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 14:59:13 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/15 15:16:24 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,18 +26,34 @@
 
 // Token types
 
-# define T_OPERATOR 1
+# define T_REDIRECTORS 1
 # define T_EXECUTABLE 2
 # define T_BUILTIN 3
 # define T_ARG 4
 # define T_FLAG 5
+# define T_QUOTES 6
+# define T_PIPE 7
+# define T_VAR 8
+# define T_AUTOMATIC_VAR 9
+# define T_OR 10
+# define T_AND 11
 
+/*
+* A struct used for identifying the command tokens. Its members are :
+*	- data : string that hold the token value
+*	- type : an int indicating its type (see tokens types in minishell.h)
+*/
 typedef struct s_mstoken
 {
-	char	*data;
+	char	*value;
 	int		type;
+	int		len;
+	int		order;
+	int		tokens_nbr;
 }			t_token;
 
 void		handle_command(t_memsession *heap_session, char *command);
+t_token		*ms_lexer(t_memsession *session, char *command);
+int			get_token_type(char *str, int order);
 
 #endif

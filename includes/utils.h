@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 14:54:10 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/15 14:46:56 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,11 @@
 
 #include "allocation_manager.h"
 
+/*
+* This is a struct used only for advanced_split(), it have 2 members :
+*	- words : array of splitted strings
+*	- word_count : amount of strings splitted
+*/
 typedef struct s_splitted
 {
 	char	**words;
@@ -23,5 +28,7 @@ typedef struct s_splitted
 
 int			ft_strcmp(char *str, char *compared_to);
 t_splitdata	*advanced_split(t_memsession *session, char *str, char *seps);
+int			ft_strlen(char *str);
+char		*ft_strchr(char *s, int c);
 
 #endif

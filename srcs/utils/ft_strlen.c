@@ -1,27 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_command.c                                   :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 13:30:47 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/15 15:55:08 by ijaija           ###   ########.fr       */
+/*   Created: 2024/03/15 14:12:27 by ijaija            #+#    #+#             */
+/*   Updated: 2024/03/15 14:14:31 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/minishell.h"
+#include "./../../includes/minishell.h"
 
-// this to view the list of tokens :
-// int i = -1;
-// while (++i < tokens->tokens_nbr)
-// {
-// 	printf("\t[%d] : \n%s\n%d\n%d\n%d\n", tokens[i].order, tokens[i].value, tokens[i].len,
-// 		tokens[i].type, tokens[i].tokens_nbr);
-// }
-void	handle_command(t_memsession *heap_session, char *command)
+/*
+* It returns -1 if passed a NULL pointer
+*/
+int	ft_strlen(char *str)
 {
-	t_token	*tokens;
+	int	i;
 
-	tokens = ms_lexer(heap_session, command);
+	if (!str)
+		return (-1);
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
 }

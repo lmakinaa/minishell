@@ -27,7 +27,7 @@ MINISHELL_H=$(INCLUDES)/minishell.h
 all: $(NAME)
 
 $(NAME): $(SRC_O) $(ALLOC_MANAGER_O) $(UTILS_O) $(SRC_DIR)/main.c
-	$(CC) $(CFLAGS) $^ -lreadline -o $@
+	$(CC) $(CFLAGS) $^ -I/Users/ijaija/.brew/opt/readline/include -lreadline -L/Users/ijaija/.brew/opt/readline/lib/ -o $@
 
 $(SRC_DIR)/%.o : $(SRC_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
 	$(CC) $(CFLAGS) -c $< -o $@
@@ -43,5 +43,7 @@ clean:
 
 fclean: clean
 	rm -f $(NAME)
+
+re: fclean all
 
 .PHONY: clean fclean

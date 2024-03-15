@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_command.c                                   :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 13:30:47 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/15 15:55:08 by ijaija           ###   ########.fr       */
+/*   Created: 2024/03/15 14:45:49 by ijaija            #+#    #+#             */
+/*   Updated: 2024/03/15 14:46:08 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/minishell.h"
+#include "./../../includes/utils.h"
 
-// this to view the list of tokens :
-// int i = -1;
-// while (++i < tokens->tokens_nbr)
-// {
-// 	printf("\t[%d] : \n%s\n%d\n%d\n%d\n", tokens[i].order, tokens[i].value, tokens[i].len,
-// 		tokens[i].type, tokens[i].tokens_nbr);
-// }
-void	handle_command(t_memsession *heap_session, char *command)
+char	*ft_strchr(char *s, int c)
 {
-	t_token	*tokens;
+	int		i;
+	char	character;
+	char	*str;
 
-	tokens = ms_lexer(heap_session, command);
+	i = 0;
+	str = (char *) s;
+	character = (char) c;
+	while (str[i])
+	{
+		if (str[i] == character)
+			return (&str[i]);
+		i++;
+	}
+	if (str[i] == character)
+		return (&str[i]);
+	return (NULL);
 }

@@ -6,11 +6,13 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/15 22:49:19 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/16 15:03:52 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/minishell.h"
+
+//int argc, char **argv, char **env
 
 int	main(void)
 {

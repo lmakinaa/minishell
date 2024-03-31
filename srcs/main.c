@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/16 15:03:52 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/03/31 21:53:31 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,4 +32,5 @@ int	main(void)
 	}
 	rl_clear_history();
 	session_destroy(&heap_session);
+	return (0);
 }

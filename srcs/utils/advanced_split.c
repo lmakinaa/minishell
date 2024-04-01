@@ -6,13 +6,13 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/01 00:53:54 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/01 18:46:53 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-static int	sep_check(char c, char *seps)
+int	sep_check(char c, char *seps)
 {
 	int	i;
 
@@ -21,26 +21,6 @@ static int	sep_check(char c, char *seps)
 		if (seps[i] == c)
 			return (1);
 	return (0);
-}
-
-static int	ft_count_words(char *str, char *seps)
-{
-	int	res;
-	int	i;
-
-	res = 0;
-	i = 0;
-	while (str[i])
-	{
-		if (!sep_check(str[i], seps))
-		{
-			res++;
-			while (str[i] && !sep_check(str[i], seps))
-				i++;
-		}
-		i++;
-	}
-	return (res);
 }
 
 static char	*custom_strdup(t_memsession *session, char *s, char *seps)

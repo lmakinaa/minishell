@@ -6,13 +6,60 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 23:40:45 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/01 23:48:43 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/01 23:54:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/utils.h"
 
-static int	ft_isin(const char *s, char c)
+char	*ft_substr(char *s, unsigned int start, size_t len)
+{
+	size_t	slen;
+	char	*res;
+	size_t	i;
+
+	if (!s)
+		return (NULL);
+	i = 0;
+	slen = ft_strlen(s);
+	if (start >= slen)
+		return (ft_strdup(""));
+	if (len >= slen)
+		len = slen;
+	if (len >= (slen - start))
+		len = slen - start;
+	res = malloc((len + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	while (i < len)
+	{
+		res[i] = s[start];
+		start++;
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
+}
+
+char	*ft_strdup(char *s1)
+{
+	char	*res;
+	int		i;
+
+	i = 0;
+	res = malloc((ft_strlen(s1) + 1) * sizeof(char));
+	if (!res)
+		return (NULL);
+	while (s1[i])
+	{
+		res[i] = s1[i];
+		i++;
+	}
+	res[i] = s1[i];
+	return (res);
+}
+
+static int	ft_isin(char *s, char c)
 {
 	while (*s && *s != c)
 		s++;
@@ -21,7 +68,7 @@ static int	ft_isin(const char *s, char c)
 	return (0);
 }
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_strtrim(char *s1, char *set)
 {
 	size_t	fchar;
 	size_t	lchar;

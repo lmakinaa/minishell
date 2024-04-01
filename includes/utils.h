@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/01 23:49:03 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/01 23:54:49 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int			ft_strlen(char *str);
 char		*ft_strchr(char *s, int c);
 int			sep_check(char c, char *seps);
 int			ft_count_words(char *str, char *seps);
-char		*ft_strtrim(char const *s1, char const *set);
+char		*ft_strtrim(char *s1, char *set);
+char		*ft_strdup(char *s1);
+char		*ft_substr(char *s, unsigned int start, size_t len);
 
 #endif

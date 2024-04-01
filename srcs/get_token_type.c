@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:16:54 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/15 14:49:47 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/01 21:12:57 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ int	get_token_type(char *str, int order)
 	if (!ft_strcmp(str, ">") || !ft_strcmp(str, "<")
 		|| !ft_strcmp(str, ">>") || !ft_strcmp(str, "<<"))
 		return (T_REDIRECTORS);
-	if (!ft_strcmp(str, "'") || !ft_strcmp(str, "\""))
-		return (T_QUOTES);
+	if (str[0] == '\'')
+		return (T_S_QUOTES);
+	if (str[0] == '"')
+		return (T_D_QUOTES);
 	if (!ft_strcmp(str, "|"))
 		return (T_PIPE);
 	if (!ft_strcmp(str, "||"))

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/31 21:58:32 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/01 21:11:35 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,13 @@
 # define T_BUILTIN 3
 # define T_ARG 4
 # define T_FLAG 5
-# define T_QUOTES 6
+# define T_S_QUOTES 6
 # define T_PIPE 7
 # define T_VAR 8
 # define T_AUTOMATIC_VAR 9
 # define T_OR 10
 # define T_AND 11
+# define T_D_QUOTES 12
 
 /*
 * A struct used for identifying the command tokens. Its members are :

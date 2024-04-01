@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 21:57:04 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/01 21:13:34 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/01 21:15:48 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ static char	*fetch_type(int	type)
 		return ("Argument");
 	else if (type == T_FLAG)
 		return ("Flag");
-	else if (type == T_S_QUOTES || type == T_D_QUOTES)
-		return ("Quoted argument");
+	else if (type == T_S_QUOTES)
+		return ("Singly quoted argument");
+	else if (type == T_D_QUOTES)
+		return ("Doubly quoted argument");
 	else if (type == T_PIPE)
 		return ("Pipe");
 	else if (type == T_VAR)

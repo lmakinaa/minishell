@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/15 15:44:34 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/01 00:53:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,20 @@ static char	*custom_strdup(t_memsession *session, char *s, char *seps)
 void	spliting_process(t_memsession *session,
 	t_splitdata *result, char *str, char *seps)
 {
-	int	i;
+	int		i;
+	char	tmp;
 
 	i = 0;
 	while (*str && i < result->word_count)
 	{
-		if (!sep_check(*str, seps))
+		if (*str == '\'' || *str == '"')
+		{
+			tmp = *str;
+			result->words[i] = custom_strdup(session, str, "");
+			while (*str && *str != tmp)
+				str++;
+		}
+		else if (!sep_check(*str, seps))
 		{
 			result->words[i] = custom_strdup(session, str, seps);
 			while (*str && !sep_check(*str, seps))

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/01 18:46:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/01 21:01:26 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,22 +46,47 @@ static char	*custom_strdup(t_memsession *session, char *s, char *seps)
 	return (resaddr);
 }
 
+static char	*quotes_strdup(t_memsession *session, char **str, char sep)
+{
+	int		i;
+	int		j;
+	char	*s;
+	char	*res;
+	char	*resaddr;
+
+	s = *str;
+	i = 1;
+	while (s[i] && s[i] != sep)
+		i++;
+	if (s[i] == sep)
+		i++;
+	res = session_malloc(session, (i + 1) * sizeof(char));
+	resaddr = res;
+	*(res++) = sep;
+	j = 1;
+	while (j < i && s[j] != sep)
+	{
+		*res = s[j];
+		res++;
+		j++;
+	}
+	if (s[j] == sep)
+		*(res++) = s[j];
+	*res = '\0';
+	*str += i;
+	return (resaddr);
+}
+
 void	spliting_process(t_memsession *session,
 	t_splitdata *result, char *str, char *seps)
 {
 	int		i;
-	char	tmp;
 
 	i = 0;
 	while (*str && i < result->word_count)
 	{
 		if (*str == '\'' || *str == '"')
-		{
-			tmp = *str;
-			result->words[i] = custom_strdup(session, str, "");
-			while (*str && *str != tmp)
-				str++;
-		}
+			result->words[i] = quotes_strdup(session, &str, *str);
 		else if (!sep_check(*str, seps))
 		{
 			result->words[i] = custom_strdup(session, str, seps);

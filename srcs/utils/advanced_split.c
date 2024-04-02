@@ -6,22 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/01 21:01:26 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/02 00:33:49 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
-
-int	sep_check(char c, char *seps)
-{
-	int	i;
-
-	i = -1;
-	while (seps[++i])
-		if (seps[i] == c)
-			return (1);
-	return (0);
-}
 
 static char	*custom_strdup(t_memsession *session, char *s, char *seps)
 {
@@ -63,13 +52,9 @@ static char	*quotes_strdup(t_memsession *session, char **str, char sep)
 	res = session_malloc(session, (i + 1) * sizeof(char));
 	resaddr = res;
 	*(res++) = sep;
-	j = 1;
-	while (j < i && s[j] != sep)
-	{
-		*res = s[j];
-		res++;
-		j++;
-	}
+	j = 0;
+	while (++j < i && s[j] != sep)
+		*(res++) = s[j];
 	if (s[j] == sep)
 		*(res++) = s[j];
 	*res = '\0';
@@ -87,6 +72,10 @@ void	spliting_process(t_memsession *session,
 	{
 		if (*str == '\'' || *str == '"')
 			result->words[i] = quotes_strdup(session, &str, *str);
+		else if (*str == ')')
+			exit_on_error("Syntax error: related to paranthesis", 36);
+		else if (*str == '(')
+			result->words[i] = parenthesis_strdup(session, &str, *str);
 		else if (!sep_check(*str, seps))
 		{
 			result->words[i] = custom_strdup(session, str, seps);

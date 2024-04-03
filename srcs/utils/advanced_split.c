@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/02 00:33:49 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/02 22:31:38 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,8 +74,6 @@ void	spliting_process(t_memsession *session,
 			result->words[i] = quotes_strdup(session, &str, *str);
 		else if (*str == ')')
 			exit_on_error("Syntax error: related to paranthesis", 36);
-		else if (*str == '(')
-			result->words[i] = parenthesis_strdup(session, &str, *str);
 		else if (!sep_check(*str, seps))
 		{
 			result->words[i] = custom_strdup(session, str, seps);
@@ -104,6 +102,7 @@ t_splitdata	*advanced_split(t_memsession *session, char *str, char *seps)
 	result = session_malloc(session, sizeof(t_splitdata));
 	tmp = result;
 	result->word_count = ft_count_words(str, seps);
+	printf("%d\n", result->word_count);
 	result->words = session_malloc(session,
 			(result->word_count + 1) * sizeof(char *));
 	spliting_process(session, result, str, seps);

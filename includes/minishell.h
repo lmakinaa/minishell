@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/01 23:48:52 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/02 22:33:24 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_mstoken
 	int		tokens_nbr;
 }			t_token;
 
-void		handle_command(t_memsession *heap_session, char *command);
+void		handle_prompt(t_memsession *heap_session, char *command);
 t_token		*ms_lexer(t_memsession *session, char *command);
 int			get_token_type(char *str, int order);
 void		print_tokens(t_token *tokens);

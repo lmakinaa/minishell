@@ -1,21 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_command.c                                   :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/14 13:30:47 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/31 22:07:18 by ijaija           ###   ########.fr       */
+/*   Created: 2024/04/02 22:13:28 by ijaija            #+#    #+#             */
+/*   Updated: 2024/04/02 22:19:11 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/minishell.h"
+#include "./../../includes/minishell.h"
 
-void	handle_command(t_memsession *heap_session, char *command)
+/*
+* Returns -1 on error (if one of them is Null)
+* Returns 0 if they are similar and a positive number if not
+*/
+int	ft_strncmp(char *str, char *compared_to, int n)
 {
-	t_token	*tokens; // array of tokens
+	int	i;
 
-	tokens = ms_lexer(heap_session, command);
-	print_tokens(tokens);
+	if (!str || !compared_to)
+		return (-1);
+	i = 0;
+	while (str[i] && compared_to[i] && str[i] == compared_to[i] && i < n)
+		i++;
+	if (i == n)
+		return (0);
+	return (1);
 }

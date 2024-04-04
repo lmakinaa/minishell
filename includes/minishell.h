@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/04 20:17:31 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/04 21:09:58 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,12 @@ typedef struct s_mstoken
 void		handle_prompt(t_memsession *heap_session, char *command);
 t_token		*ms_lexer(t_memsession *session, char *command);
 void		print_tokens(t_token *tokens);
+
+//	utilities
+
+int			what_ops(char *str);
+int			is_builtin(char *str);
+int			get_token_type(char *str, int is_op);
+int			is_redirector(t_token tok);
 
 #endif

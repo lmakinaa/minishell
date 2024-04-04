@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:27:54 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 12:42:01 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/04 01:04:04 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ typedef struct s_heapslots
 
 void	exit_on_error(char *error, int len);
 void	session_init(t_memsession **session_ptr);
-void	*session_malloc(t_memsession *session, size_t size);
+void	*session_malloc(t_memsession *session, size_t size, int erase);
 void	session_destroy(t_memsession **session_ptr);
 void	reset_session(t_memsession **session_ptr);
 void	add_to_session(t_memsession *session, void *address);

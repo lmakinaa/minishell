@@ -2,6 +2,8 @@
 	"files.associations": {
 		"minishell.h": "c",
 		"utils.h": "c",
-		"locale": "c"
+		"locale": "c",
+		"allocation_manager.h": "c",
+		"sstream": "c"
 	}
 }

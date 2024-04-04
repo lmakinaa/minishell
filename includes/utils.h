@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/02 22:19:50 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/04 01:45:23 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,5 +36,9 @@ char		*ft_strtrim(char *s1, char *set);
 char		*ft_strdup(char *s1);
 char		*ft_substr(char *s, unsigned int start, size_t len);
 int			ft_strncmp(char *str, char *compared_to, int n);
+int			new_sep_check(char *c, char *seps);
+int			new_is_ops(char *c);
+int			skip_inside_parenthesis(char **s);
+int			ft_strncpy(char *dst, char *src, int n);
 
 #endif

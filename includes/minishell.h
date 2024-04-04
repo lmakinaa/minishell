@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/02 22:33:24 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/04 20:17:31 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,36 +26,43 @@
 
 // Token types
 
-# define T_REDIRECTORS 1
-# define T_EXECUTABLE 2
+# define T_UNKNOWN -1
+# define T_APPEND_REDIRECTOR 1
+# define T_PARENTHESIS_COMMAND 2
 # define T_BUILTIN 3
-# define T_ARG 4
-# define T_FLAG 5
-# define T_S_QUOTES 6
+# define T_WORD 4
 # define T_PIPE 7
 # define T_VAR 8
 # define T_AUTOMATIC_VAR 9
 # define T_OR 10
 # define T_AND 11
-# define T_D_QUOTES 12
+# define T_HERDOC 13
+# define T_INPUT_REDIRECTOR 14
+# define T_OUTPUT_REDIRECTOR 15
 
 /*
 * A struct used for identifying the command tokens. Its members are :
-*	- data : string that hold the token value
+*	- value : string that hold the token value
+*	- operator : 0 if its not an operator and 1 if it is
 *	- type : an int indicating its type (see tokens types in minishell.h)
+*	- len
+*	- order
+*	- tokens_nbr
+*	- commad : 1 if it is a part of a command
 */
 typedef struct s_mstoken
 {
 	char	*value;
+	int		is_operator;
 	int		type;
 	int		len;
 	int		order;
 	int		tokens_nbr;
+	int		command;
 }			t_token;
 
 void		handle_prompt(t_memsession *heap_session, char *command);
 t_token		*ms_lexer(t_memsession *session, char *command);
-int			get_token_type(char *str, int order);
 void		print_tokens(t_token *tokens);
 
 #endif

@@ -43,5 +43,6 @@ void	handle_prompt(t_memsession *heap_session, char *prompt)
 	if (check_if_parenthesis_closed(prompt))
 		return ;
 	tokens = ms_lexer(heap_session, prompt);
+	print_tokens(tokens);
 	// handle_commands();
 }

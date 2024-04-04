@@ -4,7 +4,7 @@ NAME=minishell
 
 # Minishell src files pack
 SRC_DIR=./srcs
-SRC_C=$(SRC_DIR)/handle_prompt.c $(SRC_DIR)/ms_lexer.c $(SRC_DIR)/get_token_type.c $(SRC_DIR)/print_tokens.c
+SRC_C=$(SRC_DIR)/handle_prompt.c $(SRC_DIR)/ms_lexer.c $(SRC_DIR)/print_tokens.c
 SRC_O=$(patsubst %.c, %.o, $(SRC_C))
 
 # Allocation manager pack

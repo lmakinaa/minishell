@@ -4,6 +4,9 @@
 		"utils.h": "c",
 		"locale": "c",
 		"allocation_manager.h": "c",
-		"sstream": "c"
+		"sstream": "c",
+		"stdio.h": "c",
+		"readline.h": "c",
+		"history.h": "c"
 	}
 }

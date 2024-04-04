@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 21:57:04 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/01 21:15:48 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/04 20:18:28 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,14 @@
 
 static char	*fetch_type(int	type)
 {
-	if (type == T_REDIRECTORS)
-		return ("Redirectors");
-	else if (type == T_EXECUTABLE)
-		return ("Executable");
+	if (type == T_APPEND_REDIRECTOR)
+		return ("Append Redirector");
+	else if (type == T_PARENTHESIS_COMMAND)
+		return ("Parenthesis command");
 	else if (type == T_BUILTIN)
 		return ("Builtin");
-	else if (type == T_ARG)
-		return ("Argument");
-	else if (type == T_FLAG)
-		return ("Flag");
-	else if (type == T_S_QUOTES)
-		return ("Singly quoted argument");
-	else if (type == T_D_QUOTES)
-		return ("Doubly quoted argument");
+	else if (type == T_WORD)
+		return ("Word");
 	else if (type == T_PIPE)
 		return ("Pipe");
 	else if (type == T_VAR)
@@ -38,6 +32,12 @@ static char	*fetch_type(int	type)
 		return ("Or");
 	else if (type == T_AND)
 		return ("And");
+	else if (type == T_HERDOC)
+		return ("Heredoc");
+	else if (type == T_INPUT_REDIRECTOR)
+		return ("Input Redirector");
+	else if (type == T_OUTPUT_REDIRECTOR)
+		return ("Output Redirector");
 	else
 		return ("Unknown");
 }
@@ -55,10 +55,11 @@ void	print_tokens(t_token *tokens)
 		printf("tokens_nbr––>%d\n\n––––––––\n\n", tokens[0].tokens_nbr);
 	while (++i < tokens->tokens_nbr)
 	{
-		printf("order––>[%d]\nvalue––>%s\nlen––>%d\ntype––>%s\n\n––––––––\n\n",
-			tokens[i].order,
+		printf("value––>[%s]\norder––>%d\nlen––>%d\ncommand––>%d\ntype––>%s\n\n––––––––\n\n",
 			tokens[i].value,
+			tokens[i].order,
 			tokens[i].len,
+			tokens[i].command,
 			fetch_type(tokens[i].type));
 	}
 }

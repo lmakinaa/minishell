@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:04:32 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/04 21:09:09 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 17:31:47 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,19 +32,15 @@ t_token	*tokenize_part_1(t_memsession *session, t_splitdata *splited_cmd)
 		tokens[i].len = ft_strlen(splited_cmd->words[i]);
 		tokens[i].type = get_token_type(splited_cmd->words[i], tokens[i].is_operator);
 		tokens[i].command = 1;
+		tokens[i].right = NULL;
+		tokens[i].left = NULL;
 	}
-	return (tokens);
-}
-
-void	tokenize_part_2(t_token *res)
-{
-	int	i;
-
 	i = -1;
-	while (++i < res[0].tokens_nbr)
-		if (res[i].is_operator && !is_redirector(res[i])
-			&& res[i].type != T_PARENTHESIS_COMMAND)
-			res[i].command = 0;
+	while (++i < tokens[0].tokens_nbr)
+		if (tokens[i].is_operator && !is_redirector(tokens[i])
+			&& tokens[i].type != T_PARENTHESIS_COMMAND)
+			tokens[i].command = 0;
+	return (tokens);
 }
 
 t_token	*ms_lexer(t_memsession *session, char *command)
@@ -56,6 +52,5 @@ t_token	*ms_lexer(t_memsession *session, char *command)
 	if (!splited_cmd->word_count)
 		return (NULL);
 	res = tokenize_part_1(session, splited_cmd);
-	tokenize_part_2(res);
 	return (res);
 }

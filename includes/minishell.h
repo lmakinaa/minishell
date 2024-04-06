@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 17:29:21 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 18:42:45 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 # include <readline/history.h>
 # include "./allocation_manager.h"
 # include "./utils.h"
-# include "./tree_control.h"
 
 # define PROMPT_TEXT "\033[0;32m$> \033[0m"
 # define SEPERATORS " \t\n"
@@ -60,13 +59,18 @@ typedef struct s_mstoken
 	int					order;
 	int					tokens_nbr;
 	int					command;
-	struct s_mstoken	*left;
-	struct s_mstoken	*right;
 }			t_token;
 
+typedef struct s_tree_node
+{
+	struct s_mstoken	*token;
+	struct s_tree_node	*left;
+	struct s_tree_node	*right;
+}		t_tnode;
+
 void		handle_prompt(t_memsession *heap_session, char *command);
-t_token		*ms_lexer(t_memsession *session, char *command);
-void		print_tokens(t_token *tokens);
+t_token		**ms_lexer(t_memsession *session, char *command);
+void		print_tokens(t_token **tokens);
 
 //	utilities
 
@@ -74,5 +78,12 @@ int			what_ops(char *str);
 int			is_builtin(char *str);
 int			get_token_type(char *str, int is_op);
 int			is_redirector(t_token tok);
+int			get_precedence(t_token token);
+
+//	tree control
+
+t_tnode		*create_node(t_memsession *session, t_token *token);
+t_tnode		*build_tree(t_memsession *session, t_token **tokens, int min_precedence);
+void		print_ast(t_tnode* node, int depth);
 
 #endif

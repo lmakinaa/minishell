@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/04 01:45:23 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 18:32:46 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ int			ft_strcmp(char *str, char *compared_to);
 t_splitdata	*advanced_split(t_memsession *session, char *str, char *seps);
 int			ft_strlen(char *str);
 char		*ft_strchr(char *s, int c);
-int			sep_check(char c, char *seps);
 int			ft_count_words(char *str, char *seps);
 char		*ft_strtrim(char *s1, char *set);
 char		*ft_strdup(char *s1);

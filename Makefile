@@ -19,6 +19,11 @@ UTILS_C=$(UTILS_DIR)/ft_strcmp.c $(UTILS_DIR)/advanced_split.c $(UTILS_DIR)/ft_s
 	$(UTILS_DIR)/ft_strtrim.c $(UTILS_DIR)/ft_strncmp.c $(UTILS_DIR)/ft_strncpy.c
 UTILS_O=$(patsubst %.c, %.o, $(UTILS_C))
 
+# tree control pack
+TREE_CONTROL_DIR=$(SRC_DIR)/tree_control
+TREE_CONTROL_C=$(TREE_CONTROL_DIR)/create_node.c $(TREE_CONTROL_DIR)/build_tree.c $(TREE_CONTROL_DIR)/print_tree.c
+TREE_CONTROL_O=$(patsubst %.c, %.o, $(TREE_CONTROL_C))
+
 # Includes
 INCLUDES=./includes
 UTILS_H=$(INCLUDES)/utils.h
@@ -27,7 +32,7 @@ MINISHELL_H=$(INCLUDES)/minishell.h
 
 all: $(NAME)
 
-$(NAME): $(SRC_O) $(ALLOC_MANAGER_O) $(UTILS_O) $(SRC_DIR)/main.c
+$(NAME): $(SRC_O) $(ALLOC_MANAGER_O) $(UTILS_O) $(TREE_CONTROL_O) $(SRC_DIR)/main.c
 	$(CC) $(CFLAGS) $^ -I/Users/ijaija/.brew/opt/readline/include -lreadline -L/Users/ijaija/.brew/opt/readline/lib/ -o $@
 
 $(SRC_DIR)/%.o : $(SRC_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
@@ -39,8 +44,11 @@ $(ALLOC_MANAGER_DIR)/%.o : $(ALLOC_MANAGER_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAG
 $(UTILS_DIR)/%.o : $(UTILS_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+$(TREE_CONTROL_DIR)/%.o : $(TREE_CONTROL_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
+	$(CC) $(CFLAGS) -c $< -o $@
+
 clean:
-	rm -f $(UTILS_O) $(ALLOC_MANAGER_O) $(SRC_O)
+	rm -f $(UTILS_O) $(ALLOC_MANAGER_O) $(SRC_O) $(TREE_CONTROL_O)
 
 fclean: clean
 	rm -f $(NAME)

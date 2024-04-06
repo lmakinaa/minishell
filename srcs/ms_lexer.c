@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:04:32 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 18:32:04 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 21:28:04 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_token	**tokenize_part_1(t_memsession *session, t_splitdata *splited_cmd)
 	t_token	**tokens;
 
 	tokens = session_malloc(session,
-		splited_cmd->word_count * sizeof(t_token *), 0);
+		(splited_cmd->word_count + 1) * sizeof(t_token *), 0);
 	i = -1;
 	while (++i < splited_cmd->word_count)
 	{
@@ -34,6 +34,7 @@ t_token	**tokenize_part_1(t_memsession *session, t_splitdata *splited_cmd)
 		tokens[i]->type = get_token_type(splited_cmd->words[i], tokens[i]->is_operator);
 		tokens[i]->command = 1;
 	}
+	tokens[i] = NULL;
 	i = -1;
 	while (++i < tokens[0]->tokens_nbr)
 		if (tokens[i]->is_operator && !is_redirector(*(tokens[i]))

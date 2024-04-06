@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 17:33:37 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 18:53:36 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 21:30:59 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,16 @@
 // should be fixed
 t_tnode	*build_tree(t_memsession *session, t_token **tokens, int min_precedence)
 {
+	if (tokens == NULL || *tokens == NULL)
+        return NULL;
     t_tnode	*left = create_node(session, *tokens);
-    (*tokens)++;
+    tokens++;
     
-    while (get_precedence(**tokens) >= min_precedence)
+    while (*tokens && get_precedence(*tokens) >= min_precedence)
     {
         t_token *op = *tokens;
-        (*tokens)++;
-        t_tnode *right = build_tree(session, tokens, get_precedence(**tokens) + 1);
+        tokens++;
+        t_tnode *right = build_tree(session, tokens, get_precedence(*tokens) + 1);
         t_tnode	*new_node = create_node(session, op);
         new_node->left = left;
         new_node->right = right;

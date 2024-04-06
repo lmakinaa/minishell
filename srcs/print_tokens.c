@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 21:57:04 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/04 20:18:28 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 18:34:10 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,20 +46,20 @@ static char	*fetch_type(int	type)
 * Print all the tokens (the elements of -t_token *tokens-)
 * It is not protected! use it only for testing.
 */
-void	print_tokens(t_token *tokens)
+void	print_tokens(t_token **tokens)
 {
 	int i;
 
 	i = -1;
 	if (tokens)
-		printf("tokens_nbr––>%d\n\n––––––––\n\n", tokens[0].tokens_nbr);
-	while (++i < tokens->tokens_nbr)
+		printf("tokens_nbr––>%d\n\n––––––––\n\n", tokens[0]->tokens_nbr);
+	while (++i < tokens[0]->tokens_nbr)
 	{
 		printf("value––>[%s]\norder––>%d\nlen––>%d\ncommand––>%d\ntype––>%s\n\n––––––––\n\n",
-			tokens[i].value,
-			tokens[i].order,
-			tokens[i].len,
-			tokens[i].command,
-			fetch_type(tokens[i].type));
+			tokens[i]->value,
+			tokens[i]->order,
+			tokens[i]->len,
+			tokens[i]->command,
+			fetch_type(tokens[i]->type));
 	}
 }

@@ -6,11 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:51:33 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/14 12:42:01 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 17:23:17 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/allocation_manager.h"
+#include "./../../includes/minishell.h"
 
 /*
 * Initialise the allocation session structure

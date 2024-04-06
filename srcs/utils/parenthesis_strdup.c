@@ -6,11 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 00:30:21 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/04 01:03:45 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 17:23:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/utils.h"
+#include "./../../includes/minishell.h"
 
 int	check_if_parenthesis_closed(char *s)
 {

@@ -6,11 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:11 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/13 21:17:27 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 17:23:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/utils.h"
+#include "./../../includes/minishell.h"
 
 /*
 * Returns -1 on error (if one of them is Null)

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/allocation_manager.h"
+#include "./../../includes/minishell.h"
 
 /*
 * Writes an error message and exit the program

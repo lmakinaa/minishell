@@ -6,11 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 23:40:45 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/01 23:54:54 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 17:23:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/utils.h"
+#include "./../../includes/minishell.h"
 
 char	*ft_substr(char *s, unsigned int start, size_t len)
 {

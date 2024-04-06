@@ -6,11 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:45:49 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/15 14:46:08 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 17:23:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/utils.h"
+#include "./../../includes/minishell.h"
 
 char	*ft_strchr(char *s, int c)
 {

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/04 21:09:58 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 17:29:21 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <readline/history.h>
 # include "./allocation_manager.h"
 # include "./utils.h"
+# include "./tree_control.h"
 
 # define PROMPT_TEXT "\033[0;32m$> \033[0m"
 # define SEPERATORS " \t\n"
@@ -52,13 +53,15 @@
 */
 typedef struct s_mstoken
 {
-	char	*value;
-	int		is_operator;
-	int		type;
-	int		len;
-	int		order;
-	int		tokens_nbr;
-	int		command;
+	char				*value;
+	int					is_operator;
+	int					type;
+	int					len;
+	int					order;
+	int					tokens_nbr;
+	int					command;
+	struct s_mstoken	*left;
+	struct s_mstoken	*right;
 }			t_token;
 
 void		handle_prompt(t_memsession *heap_session, char *command);

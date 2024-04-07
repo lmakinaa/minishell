@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:04:32 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 21:28:04 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/07 00:31:00 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ t_token	**tokenize_part_1(t_memsession *session, t_splitdata *splited_cmd)
 	i = -1;
 	while (++i < tokens[0]->tokens_nbr)
 		if (tokens[i]->is_operator && !is_redirector(*(tokens[i]))
-			&& tokens[i]->type != T_PARENTHESIS_COMMAND)
+			&& tokens[i]->type != T_PARENTHESIS_COMMAND && tokens[i]->type != T_WORD)
 			tokens[i]->command = 0;
 	return (tokens);
 }
@@ -52,5 +52,6 @@ t_token	**ms_lexer(t_memsession *session, char *command)
 	if (!splited_cmd->word_count)
 		return (NULL);
 	res = tokenize_part_1(session, splited_cmd);
+	// checks_for_t9abi()
 	return (res);
 }

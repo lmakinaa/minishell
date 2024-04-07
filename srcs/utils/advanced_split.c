@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/04 02:00:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/07 00:29:57 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,9 @@ void	parenthesis_strdup(t_memsession *session, char **s, char **r)
 		}
 		open--;
 	}
-	*(res++) = *(*s++);
+	*(res++) = **s;
 	*res = '\0';
+	(*s)++;
 }
 
 char	*operators_strdup(t_memsession *session, char **str)

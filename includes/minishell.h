@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 21:59:40 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 22:42:46 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,13 @@ typedef struct s_mstoken
 	int					command;
 }			t_token;
 
+/*
+* if op is not null, command will be, and the vice versa
+*/
 typedef struct s_tree_node
 {
-	struct s_mstoken	*token;
+	struct s_mstoken	*operator;
+	struct s_mstoken	**command;
 	struct s_tree_node	*left;
 	struct s_tree_node	*right;
 }		t_tnode;
@@ -82,7 +86,8 @@ int			get_precedence(t_token *token);
 
 //	tree control
 
-t_tnode		*create_node(t_memsession *session, t_token *token);
+t_tnode		*create_node(t_memsession *session, int op,
+				t_token *token, t_token ***tokens);
 t_tnode		*build_tree(t_memsession *session, t_token **tokens, int min_precedence);
 void		print_tree(t_tnode *node, int space);
 

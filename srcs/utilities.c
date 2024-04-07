@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 21:08:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 21:32:58 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/06 23:06:14 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,12 +44,12 @@ int	is_builtin(char *str)
 
 int	get_token_type(char *str, int is_op)
 {
+	if (str[0] == '"' || str[0] == '\'')
+		return (T_WORD);
 	if (str[0] == '(')
 		return (T_PARENTHESIS_COMMAND);
 	if (is_op)
 		return (what_ops(str));
-	if (str[0] == '"' || str[0] == '\'')
-		return (T_WORD);
 	return (T_UNKNOWN);
 }
 

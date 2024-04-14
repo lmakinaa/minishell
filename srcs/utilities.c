@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 21:08:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 23:06:14 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/14 18:17:22 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,9 @@ int	is_redirector(t_token tok)
 
 int	get_precedence(t_token *token)
 {
-	if (token->is_operator)
-	{
-		if (token->type == T_PIPE)
-			return (1);
-		else if (token->type == T_AND)
-			return (3);
-		else if (token->type == T_OR)
-			return (2);
-		else if (token->type == T_PARENTHESIS_COMMAND)
-			return (4);
-	}
-	return (0);
+	if (token->type == T_AND)
+		return (0);
+	else if (token->type == T_OR)
+		return (0);
+	return (1);
 }

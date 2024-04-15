@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 18:32:46 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/15 15:57:48 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,13 +31,11 @@ t_splitdata	*advanced_split(t_memsession *session, char *str, char *seps);
 int			ft_strlen(char *str);
 char		*ft_strchr(char *s, int c);
 int			ft_count_words(char *str, char *seps);
-char		*ft_strtrim(char *s1, char *set);
-char		*ft_strdup(char *s1);
-char		*ft_substr(char *s, unsigned int start, size_t len);
 int			ft_strncmp(char *str, char *compared_to, int n);
 int			new_sep_check(char *c, char *seps);
 int			new_is_ops(char *c);
 int			skip_inside_parenthesis(char **s);
 int			ft_strncpy(char *dst, char *src, int n);
+char		*shave_parenthesis(t_memsession *session, char *s);
 
 #endif

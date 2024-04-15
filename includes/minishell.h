@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/14 18:15:59 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/15 16:29:40 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_tree_node
 
 void		handle_prompt(t_memsession *heap_session, char *command);
 t_token		**ms_lexer(t_memsession *session, char *command);
+t_token		**tokenize_part_1(t_memsession *session, t_splitdata *splited_cmd);
 void		print_tokens(t_token **tokens);
 
 //	utilities
@@ -90,5 +91,6 @@ t_tnode		*create_node(t_memsession *session, int op,
 				t_token *token, t_token ***tokens);
 t_tnode		*build_tree(t_memsession *session, t_token ***tokens, int min_precedence);
 void		print_tree(t_tnode *node, int space);
+t_tnode		*nested_tree(t_memsession *session, t_token ***tokens);
 
 #endif

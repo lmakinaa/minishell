@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 18:03:17 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/14 21:36:02 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/15 15:56:47 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,7 @@ t_tnode	*create_node(t_memsession *session, int op,
 		res->command = NULL;
 	}
 	else if (token->type == T_PARENTHESIS_COMMAND)
-	{
-		// build_tree()
-	}
+		return (nested_tree(session, tokens));
 	else
 	{
 		res->operator = NULL;

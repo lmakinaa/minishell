@@ -1,33 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   utilities_2.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/03/15 14:45:49 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/16 15:45:14 by ijaija           ###   ########.fr       */
+/*   Created: 2024/04/16 15:43:23 by ijaija            #+#    #+#             */
+/*   Updated: 2024/04/16 15:44:14 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/minishell.h"
+#include "./../includes/minishell.h"
 
-char	*ft_strchr(char *s, int c)
+int	new_sep_check(char *c, char *seps)
 {
-	int		i;
-	char	character;
-	char	*str;
+	int	i;
 
-	i = 0;
-	str = (char *) s;
-	character = (char) c;
-	while (str[i])
-	{
-		if (str[i] == character)
-			return (&str[i]);
-		i++;
-	}
-	if (str[i] == character)
-		return (&str[i]);
-	return (NULL);
+	i = -1;
+	while (seps[++i])
+		if (seps[i] == *c || new_is_ops(c))
+			return (1);
+	return (0);
+}
+
+void	void_return(void)
+{
+	return ;
 }

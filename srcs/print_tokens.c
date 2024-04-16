@@ -6,13 +6,13 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 21:57:04 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 18:34:10 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/16 15:38:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/minishell.h"
 
-static char	*fetch_type(int	type)
+static char	*fetch_type(int type)
 {
 	if (type == T_APPEND_REDIRECTOR)
 		return ("Append Redirector");

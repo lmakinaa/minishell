@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 17:33:37 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/14 21:18:38 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/16 15:42:21 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,31 +21,32 @@ int	is_binop(t_token *token)
 	return (0);
 }
 
-t_tnode	*build_tree(t_memsession *session, t_token ***tokens, int min_precedence)
+t_tnode	*build_tree(t_memsession *session, t_token ***tokens,
+	int min_precedence)
 {
-	t_tnode *right;
+	t_tnode	*right;
 	t_tnode	*left;
-	t_token *op;
+	t_token	*op;
 	t_tnode	*new_node;
 
 	if (*tokens == NULL || **tokens == NULL)
-        return NULL;
+		return (NULL);
 	left = create_node(session, 0, **tokens, tokens);
-    while (is_binop(**tokens) && get_precedence(**tokens) >= min_precedence)
-    {
-        op = **tokens;
-        (*tokens)++;
+	while (is_binop(**tokens) && get_precedence(**tokens) >= min_precedence)
+	{
+		op = **tokens;
+		(*tokens)++;
 		if (!(*tokens))
 			exit_on_error("Syntax error\n", 13);
-        right = build_tree(session, tokens, get_precedence(op) + 1);
+		right = build_tree(session, tokens, get_precedence(op) + 1);
 		if (!right)
 			return (left);
-        new_node = create_node(session, 1, op, tokens);
-        new_node->left = left;
-        new_node->right = right;
-        left = new_node;
+		new_node = create_node(session, 1, op, tokens);
+		new_node->left = left;
+		new_node->right = right;
+		left = new_node;
 		if (!left)
 			return (NULL);
-    }
-    return (left);
+	}
+	return (left);
 }

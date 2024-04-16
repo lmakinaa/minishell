@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 12:04:32 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/07 00:31:00 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/16 15:38:07 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,29 +18,30 @@
 t_token	**tokenize_part_1(t_memsession *session, t_splitdata *splited_cmd)
 {
 	int		i;
-	t_token	**tokens;
+	t_token	**toks;
 
-	tokens = session_malloc(session,
-		(splited_cmd->word_count + 1) * sizeof(t_token *), 0);
+	toks = session_malloc(session,
+			(splited_cmd->word_count + 1) * sizeof(t_token *), 0);
 	i = -1;
 	while (++i < splited_cmd->word_count)
 	{
-		tokens[i] = session_malloc(session, sizeof(t_token), 0);
-		tokens[i]->tokens_nbr = splited_cmd->word_count;
-		tokens[i]->order = i;
-		tokens[i]->value = splited_cmd->words[i];
-		tokens[i]->is_operator = new_is_ops(splited_cmd->words[i]);
-		tokens[i]->len = ft_strlen(splited_cmd->words[i]);
-		tokens[i]->type = get_token_type(splited_cmd->words[i], tokens[i]->is_operator);
-		tokens[i]->command = 1;
+		toks[i] = session_malloc(session, sizeof(t_token), 0);
+		toks[i]->tokens_nbr = splited_cmd->word_count;
+		toks[i]->order = i;
+		toks[i]->value = splited_cmd->words[i];
+		toks[i]->is_operator = new_is_ops(splited_cmd->words[i]);
+		toks[i]->len = ft_strlen(splited_cmd->words[i]);
+		toks[i]->type = get_token_type(splited_cmd->words[i],
+				toks[i]->is_operator);
+		toks[i]->command = 1;
 	}
-	tokens[i] = NULL;
+	toks[i] = NULL;
 	i = -1;
-	while (++i < tokens[0]->tokens_nbr)
-		if (tokens[i]->is_operator && !is_redirector(*(tokens[i]))
-			&& tokens[i]->type != T_PARENTHESIS_COMMAND && tokens[i]->type != T_WORD)
-			tokens[i]->command = 0;
-	return (tokens);
+	while (++i < toks[0]->tokens_nbr)
+		if (toks[i]->type != T_WORD && !is_redirector(*(toks[i]))
+			&& toks[i]->type != T_PARENTHESIS_COMMAND && toks[i]->is_operator)
+			toks[i]->command = 0;
+	return (toks);
 }
 
 t_token	**ms_lexer(t_memsession *session, char *command)
@@ -52,6 +53,6 @@ t_token	**ms_lexer(t_memsession *session, char *command)
 	if (!splited_cmd->word_count)
 		return (NULL);
 	res = tokenize_part_1(session, splited_cmd);
-	// checks_for_t9abi()
+	// syntax_analyze_1()
 	return (res);
 }

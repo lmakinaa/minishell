@@ -6,14 +6,14 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/16 15:11:05 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/16 15:33:02 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef UTILS_H
 # define UTILS_H
 
-#include "allocation_manager.h"
+# include "allocation_manager.h"
 
 /*
 * This is a struct used only for advanced_split(), it have 2 members :

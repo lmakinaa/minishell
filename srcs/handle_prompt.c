@@ -38,13 +38,12 @@ int	check_if_parenthesis_closed(char *s)
 
 void	handle_prompt(t_memsession *heap_session, char *prompt)
 {
-	t_token	**tokens; // array of tokens
+	t_token	**tokens;
 	t_tnode	*root;
 
 	if (check_if_parenthesis_closed(prompt))
 		return ;
 	tokens = ms_lexer(heap_session, prompt);
-	// syntax_analyze_1()
 	root = build_tree(heap_session, &tokens, 0);
 	print_tree(root, 0);
 	// expander()

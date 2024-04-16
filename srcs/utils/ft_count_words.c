@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:17:46 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/04 20:18:42 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/16 15:44:57 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,6 @@ int	new_is_ops(char *c)
 		|| *c == '<' || *c == '"' || *c == '\'' || *c == '(' || *c == ')')
 		return (1);
 	return (0);
-}
-
-int	new_sep_check(char *c, char *seps)
-{
-	int	i;
-
-	i = -1;
-	while (seps[++i])
-		if (seps[i] == *c || new_is_ops(c))
-			return (1);
-	return (0);
-}
-
-void	void_return(void)
-{
-	return ;
 }
 
 void	count_operators(char **s, int *res)
@@ -97,12 +81,11 @@ int	ft_count_words(char *str, char *seps)
 		if (*str && !new_sep_check(str, seps))
 		{
 			res++;
-			while (*str && !new_sep_check(str, 	seps))
+			while (*str && !new_sep_check(str, seps))
 				str++;
 		}
 		if (*str && !new_is_ops(str))
 			str++;
 	}
-	// printf("%d\n", res);
 	return (res);
 }

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/15 16:29:40 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/16 15:44:25 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,12 +84,14 @@ int			is_builtin(char *str);
 int			get_token_type(char *str, int is_op);
 int			is_redirector(t_token tok);
 int			get_precedence(t_token *token);
+void		void_return(void);
 
 //	tree control
 
 t_tnode		*create_node(t_memsession *session, int op,
 				t_token *token, t_token ***tokens);
-t_tnode		*build_tree(t_memsession *session, t_token ***tokens, int min_precedence);
+t_tnode		*build_tree(t_memsession *session, t_token ***tokens,
+				int min_precedence);
 void		print_tree(t_tnode *node, int space);
 t_tnode		*nested_tree(t_memsession *session, t_token ***tokens);
 

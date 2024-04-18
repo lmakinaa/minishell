@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/16 15:44:25 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/18 15:41:19 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,20 +43,14 @@
 /*
 * A struct used for identifying the command tokens. Its members are :
 *	- value : string that hold the token value
-*	- operator : 0 if its not an operator and 1 if it is
 *	- type : an int indicating its type (see tokens types in minishell.h)
-*	- len
-*	- order
 *	- tokens_nbr
 *	- commad : 1 if it is a part of a command
 */
 typedef struct s_mstoken
 {
 	char				*value;
-	int					is_operator;
 	int					type;
-	int					len;
-	int					order;
 	int					tokens_nbr;
 	int					command;
 }			t_token;
@@ -74,14 +68,14 @@ typedef struct s_tree_node
 
 void		handle_prompt(t_memsession *heap_session, char *command);
 t_token		**ms_lexer(t_memsession *session, char *command);
-t_token		**tokenize_part_1(t_memsession *session, t_splitdata *splited_cmd);
+t_token		**tokenization(t_memsession *session, t_splitdata *splited_cmd);
 void		print_tokens(t_token **tokens);
 
 //	utilities
 
 int			what_ops(char *str);
 int			is_builtin(char *str);
-int			get_token_type(char *str, int is_op);
+int			get_token_type(char *str);
 int			is_redirector(t_token tok);
 int			get_precedence(t_token *token);
 void		void_return(void);

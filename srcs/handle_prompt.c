@@ -45,6 +45,7 @@ void	handle_prompt(t_memsession *heap_session, char *prompt)
 		return ;
 	tokens = ms_lexer(heap_session, prompt);
 	root = build_tree(heap_session, &tokens, 0);
+	print_tokens(tokens);
 	print_tree(root, 0);
 	// expander()
 	// here-doc()

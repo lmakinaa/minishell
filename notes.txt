@@ -1,3 +1,0 @@
-Main steps of parsing are :
-
-input tokenization/lexer ––> input parsing ––> Word expansion

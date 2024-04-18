@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 21:57:04 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/16 15:38:39 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/18 15:41:08 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,10 +55,8 @@ void	print_tokens(t_token **tokens)
 		printf("tokens_nbr––>%d\n\n––––––––\n\n", tokens[0]->tokens_nbr);
 	while (++i < tokens[0]->tokens_nbr)
 	{
-		printf("value––>[%s]\norder––>%d\nlen––>%d\ncommand––>%d\ntype––>%s\n\n––––––––\n\n",
+		printf("value––>[%s]\ncommand––>%d\ntype––>%s\n\n––––––––\n\n",
 			tokens[i]->value,
-			tokens[i]->order,
-			tokens[i]->len,
 			tokens[i]->command,
 			fetch_type(tokens[i]->type));
 	}

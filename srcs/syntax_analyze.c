@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 23:18:37 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 23:51:37 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	heredoc_handle(t_memsession *session, t_token *tok)
 /*
 * it focuses on redirections
 */
-int	tokenize_redirectors(t_memsession *session, t_token **cmd)
+int	tokenize_part2(t_memsession *session, t_token **cmd)
 {
 	int	i;
 
@@ -74,6 +74,62 @@ int	tokenize_redirectors(t_memsession *session, t_token **cmd)
 	return (0);
 }
 
+int	tokenize_part3(t_token **cmd)
+{
+	int	i;
+	int	found;
+
+	i = -1;
+	found = 0;
+	while (cmd[++i])
+	{
+		if (cmd[i]->type == T_UNKNOWN && !found)
+		{
+			if (is_builtin(cmd[i]->value))
+				cmd[i]->type = T_BUILTIN;
+			else
+				cmd[i]->type = T_EXECUTABLE;
+			found = 1;
+		}
+		else if (found && cmd[i]->type == T_UNKNOWN)
+			cmd[i]->type = T_ARG;
+	}
+	return (0);
+}
+
+int	tokenize_part3(t_token **cmd)
+{
+	int	i;
+	int	found;
+
+	i = -1;
+	found = 0;
+	while (cmd[++i])
+	{
+		if (cmd[i]->type == T_UNKNOWN && !found)
+		{
+			if (is_builtin(cmd[i]->value))
+				cmd[i]->type = T_BUILTIN;
+			else
+				cmd[i]->type = T_EXECUTABLE;
+			found = 1;
+		}
+		else if (found && cmd[i]->type == T_UNKNOWN)
+			cmd[i]->type = T_ARG;
+	}
+	return (0);
+}
+
+/*
+* Expand Vars and whats inside quotes and remove quotes
+*/
+int	expander(t_token **cmd)
+{
+	int	i;
+
+	return (0);
+}
+
 int	more_parse(t_memsession *session, t_tnode *root)
 {
 	if (!root)
@@ -85,9 +141,12 @@ int	more_parse(t_memsession *session, t_tnode *root)
 		return (-1);
 	if (root->command)
 	{
-		if (tokenize_redirectors(session, root->command) == -1)
+		if (tokenize_part2(session, root->command) == -1)
 			return (-1);
-		
+		if (expander(root->command) == -1)
+			return (-1);
+		if (tokenize_part3(root->command) == -1)
+			return (-1);
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 18:40:50 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 23:21:15 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 23:46:43 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ char	*put_type(int type)
 			return "INPUT_FILE";
 		case T_STD_INPUT:
 			return "T_STD_INPUT";
+		case T_ARG:
+			return "T_ARG";
 		default:
 			return "UNKNOWN";
 	}
@@ -63,7 +65,7 @@ void	print_node_value(t_tnode *node)
 	else if (node->command)
 	{
 		while (node->command[++i])
-			printf("[%s]|%s\t", put_type(node->command[i]->type), node->command[i]->value);
+			printf("[%s]:%s\t", put_type(node->command[i]->type), node->command[i]->value);
 		printf("\n");
 	}
 }

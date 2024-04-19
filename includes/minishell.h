@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 23:17:52 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 23:42:42 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@
 # define T_UNKNOWN -1
 # define T_APPEND_REDIR 1
 # define T_PARENTHESIS_COMMAND 2
-# define T_BUILTIN 3
 # define T_WORD 4
 # define T_PIPE 7
 # define T_VAR 8
@@ -43,9 +42,13 @@
 # define T_OUT_REDIR 15
 
 
+# define T_BUILTIN 3
+# define T_EXECUTABLE 5
 # define T_OUTPUT_FILE 16
 # define T_INPUT_FILE 17
 # define T_STD_INPUT 18
+# define T_STD_INPUT 18
+# define T_ARG 19
 
 // These 2 structs are for the initial parsing part
 

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 22:12:28 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 23:17:52 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 
 # define T_OUTPUT_FILE 16
 # define T_INPUT_FILE 17
-# define T_EOL 18
+# define T_STD_INPUT 18
 
 // These 2 structs are for the initial parsing part
 

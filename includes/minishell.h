@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/18 15:41:19 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 12:46:18 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,7 @@ int			get_token_type(char *str);
 int			is_redirector(t_token tok);
 int			get_precedence(t_token *token);
 void		void_return(void);
+t_token		**advanced_split(t_memsession *session, char *str, char *seps);
 
 //	tree control
 

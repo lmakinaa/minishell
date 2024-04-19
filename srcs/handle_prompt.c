@@ -43,7 +43,7 @@ void	handle_prompt(t_memsession *heap_session, char *prompt)
 
 	if (check_if_parenthesis_closed(prompt))
 		return ;
-	tokens = ms_lexer(heap_session, prompt);
+	tokens = advanced_split(heap_session, prompt, SEPERATORS);
 	root = build_tree(heap_session, &tokens, 0);
 	//print_tokens(tokens);
 	print_tree(root, 0);

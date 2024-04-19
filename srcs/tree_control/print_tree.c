@@ -6,11 +6,52 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 18:40:50 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 22:52:55 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 22:07:31 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
+
+char	*put_type(int type)
+{
+	switch (type)
+	{
+		case T_UNKNOWN:
+			return "UNKNOWN";
+		case T_APPEND_REDIR:
+			return "APPEND_REDIR";
+		case T_PARENTHESIS_COMMAND:
+			return "PARENTHESIS_COMMAND";
+		case T_BUILTIN:
+			return "BUILTIN";
+		case T_WORD:
+			return "WORD";
+		case T_PIPE:
+			return "PIPE";
+		case T_VAR:
+			return "VAR";
+		case T_AUTOMATIC_VAR:
+			return "AUTOMATIC_VAR";
+		case T_OR:
+			return "OR";
+		case T_AND:
+			return "AND";
+		case T_HERDOC:
+			return "HERDOC";
+		case T_INPUT_REDIRECTOR:
+			return "INPUT_REDIRECTOR";
+		case T_OUT_REDIR:
+			return "OUT_REDIR";
+		case T_OUTPUT_FILE:
+			return "OUTPUT_FILE";
+		case T_INPUT_FILE:
+			return "INPUT_FILE";
+		case T_EOL:
+			return "EOL";
+		default:
+			return "UNKNOWN";
+	}
+}
 
 void	print_node_value(t_tnode *node)
 {
@@ -22,7 +63,7 @@ void	print_node_value(t_tnode *node)
 	else if (node->command)
 	{
 		while (node->command[++i])
-			printf("%s ", node->command[i]->value);
+			printf("[%s]|%s ", put_type(node->command[i]->type), node->command[i]->value);
 		printf("\n");
 	}
 }
@@ -43,6 +84,7 @@ void print_tree(t_tnode *node, int space)
     for (i = 10; i < space; i++) {
         printf(" ");
     }
+	
 	print_node_value(node);
 
     print_tree(node->left, space);

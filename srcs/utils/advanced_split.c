@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 12:46:27 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 22:18:56 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,8 @@ t_token	**advanced_split(t_memsession *session, char *str, char *seps)
 	result = session_malloc(session, sizeof(t_splitdata), 0);
 	tmp = result;
 	result->word_count = ft_count_words(str, seps);
+	if (result->word_count == 0)
+		return (NULL);
 	result->words = session_malloc(session,
 			(result->word_count + 1) * sizeof(char *), 0);
 	spliting_process(session, result, str, seps);

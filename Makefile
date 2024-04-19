@@ -10,13 +10,13 @@ SRC_O=$(patsubst %.c, %.o, $(SRC_C))
 # Allocation manager pack
 ALLOC_MANAGER_DIR=$(SRC_DIR)/allocation_manager
 ALLOC_MANAGER_C=$(ALLOC_MANAGER_DIR)/exit_on_error.c $(ALLOC_MANAGER_DIR)/reset_session.c $(ALLOC_MANAGER_DIR)/add_to_session.c\
-	$(ALLOC_MANAGER_DIR)/session_destroy.c $(ALLOC_MANAGER_DIR)/session_init.c $(ALLOC_MANAGER_DIR)/session_malloc.c
+	$(ALLOC_MANAGER_DIR)/session_destroy.c $(ALLOC_MANAGER_DIR)/session_init.c $(ALLOC_MANAGER_DIR)/session_malloc.c $(ALLOC_MANAGER_DIR)/del_from_session.c
 ALLOC_MANAGER_O=$(patsubst %.c, %.o, $(ALLOC_MANAGER_C))
 
 # Utils pack
 UTILS_DIR=$(SRC_DIR)/utils
 UTILS_C=$(UTILS_DIR)/ft_strcmp.c $(UTILS_DIR)/advanced_split.c $(UTILS_DIR)/ft_strlen.c $(UTILS_DIR)/ft_strchr.c $(UTILS_DIR)/ft_count_words.c\
-	$(UTILS_DIR)/ft_strncmp.c $(UTILS_DIR)/ft_strncpy.c $(UTILS_DIR)/shave_parenthesis.c $(UTILS_DIR)/strdup_versions.c
+	$(UTILS_DIR)/ft_strncmp.c $(UTILS_DIR)/ft_strncpy.c $(UTILS_DIR)/shave_parenthesis.c $(UTILS_DIR)/strdup_versions.c $(UTILS_DIR)/gnl.c
 UTILS_O=$(patsubst %.c, %.o, $(UTILS_C))
 
 # tree control pack

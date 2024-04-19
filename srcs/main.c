@@ -6,19 +6,24 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 13:25:45 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 22:15:23 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/minishell.h"
 
-//int argc, char **argv, char **env
+void	f()
+{
+	system("leaks minishell");
+}
 
 int	main(void)
 {
 	t_memsession	*heap_session;
 	char			*command;
 
+	//atexit(f);
+	//int i = -1;
 	session_init(&heap_session);
 	while (1)
 	{

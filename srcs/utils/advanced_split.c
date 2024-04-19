@@ -6,11 +6,39 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/16 15:10:12 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 12:46:27 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
+
+/*
+* In this part we identifie the operators specefically 
+*/
+t_token	**tokenization(t_memsession *session, t_splitdata *splited_cmd)
+{
+	int		i;
+	t_token	**toks;
+
+	toks = session_malloc(session,
+			(splited_cmd->word_count + 1) * sizeof(t_token *), 0);
+	i = -1;
+	while (++i < splited_cmd->word_count)
+	{
+		toks[i] = session_malloc(session, sizeof(t_token), 0);
+		toks[i]->tokens_nbr = splited_cmd->word_count;
+		toks[i]->value = splited_cmd->words[i];
+		toks[i]->type = get_token_type(splited_cmd->words[i]);
+		toks[i]->command = 1;
+	}
+	toks[i] = NULL;
+	i = -1;
+	while (++i < toks[0]->tokens_nbr)
+		if (toks[i]->type != T_WORD && !is_redirector(*(toks[i]))
+			&& toks[i]->type != T_PARENTHESIS_COMMAND && new_is_ops(toks[i]->value))
+			toks[i]->command = 0;
+	return (toks);
+}
 
 void	spliting_process(t_memsession *session,
 	t_splitdata *result, char *str, char *seps)
@@ -39,10 +67,11 @@ void	spliting_process(t_memsession *session,
 * 	- word_count : the number of slitted strings
 *	- words : the array of strings that has the splitted strings
 */
-t_splitdata	*advanced_split(t_memsession *session, char *str, char *seps)
+t_token	**advanced_split(t_memsession *session, char *str, char *seps)
 {
 	t_splitdata	*result;
 	t_splitdata	*tmp;
+	t_token		**tokens;
 
 	if (!str || !seps)
 		return (NULL);
@@ -52,5 +81,6 @@ t_splitdata	*advanced_split(t_memsession *session, char *str, char *seps)
 	result->words = session_malloc(session,
 			(result->word_count + 1) * sizeof(char *), 0);
 	spliting_process(session, result, str, seps);
-	return (tmp);
+	tokens = tokenization(session, tmp);
+	return (tokens);
 }

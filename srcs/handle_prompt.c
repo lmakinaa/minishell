@@ -19,7 +19,7 @@ void	handle_prompt(t_memsession *heap_session, char *prompt)
 
 	if (are_parenthesis_closed(prompt) || are_quotes_closed(prompt))
 		return ;
-	tokens = advanced_split(heap_session, prompt, SEPERATORS);
+	tokens = advanced_split(heap_session, prompt, SEPERATORS); // todo: handle quotes properly
 	root = build_tree(heap_session, &tokens, 0);
 	if (more_parse(heap_session, root) == -1)
 		return ;

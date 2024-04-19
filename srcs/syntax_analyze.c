@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 22:13:21 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 23:18:37 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int	heredoc_handle(t_memsession *session, t_token *tok)
 		line = get_next_line(session, fd);
 	}
 	tok->value = file;
+	tok->type = T_STD_INPUT;
 	//printf("file->%s", file);
 	return (0);
 }
@@ -44,7 +45,7 @@ int	heredoc_handle(t_memsession *session, t_token *tok)
 /*
 * it focuses on redirections
 */
-int	tokenize_recdirectors(t_token **cmd)
+int	tokenize_redirectors(t_memsession *session, t_token **cmd)
 {
 	int	i;
 
@@ -67,7 +68,7 @@ int	tokenize_recdirectors(t_token **cmd)
 		{
 			if (!cmd[i + 1] || !is_word(cmd[i + 1]))
 				return (syntax_error("near <<", 7), -1);
-			cmd[i + 1]->type = T_EOL;
+			heredoc_handle(session, cmd[i + 1]);
 		}
 	}
 	return (0);
@@ -84,7 +85,7 @@ int	more_parse(t_memsession *session, t_tnode *root)
 		return (-1);
 	if (root->command)
 	{
-		if (tokenize_recdirectors(root->command) == -1)
+		if (tokenize_redirectors(session, root->command) == -1)
 			return (-1);
 		
 	}

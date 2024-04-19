@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:12:22 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/16 15:45:59 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 17:45:27 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,8 +57,8 @@ char	*operators_strdup(t_memsession *session, char **str)
 		ft_strncpy(res, *str, 1);
 		(*str)++;
 	}
-	else if (**str == '\'' || **str == '"')
-		res = quotes_strdup(session, str, **str);
+	//else if (**str == '\'' || **str == '"')
+	//	res = quotes_strdup(session, str, **str);
 	else if (**str == '(')
 		parenthesis_strdup(session, str, &res);
 	return (res);

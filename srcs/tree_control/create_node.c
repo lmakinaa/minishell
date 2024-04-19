@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 18:03:17 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/15 15:56:47 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 15:54:38 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_tnode	*create_node(t_memsession *session, int op,
 		res->command = compose_command(session, tokens);
 	}
 	res->left = NULL;
+	res->parsed_cmd = NULL;
 	res->right = NULL;
 	return (res);
 }

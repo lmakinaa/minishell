@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 12:46:18 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 17:46:51 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 // Token types
 
 # define T_UNKNOWN -1
-# define T_APPEND_REDIRECTOR 1
+# define T_APPEND_REDIR 1
 # define T_PARENTHESIS_COMMAND 2
 # define T_BUILTIN 3
 # define T_WORD 4
@@ -38,15 +38,11 @@
 # define T_AND 11
 # define T_HERDOC 13
 # define T_INPUT_REDIRECTOR 14
-# define T_OUTPUT_REDIRECTOR 15
+# define T_OUT_REDIR 15
+# define T_OUTPUT_FILE 15
 
-/*
-* A struct used for identifying the command tokens. Its members are :
-*	- value : string that hold the token value
-*	- type : an int indicating its type (see tokens types in minishell.h)
-*	- tokens_nbr
-*	- commad : 1 if it is a part of a command
-*/
+// These 2 structs are for the initial parsing part
+
 typedef struct s_mstoken
 {
 	char				*value;
@@ -55,21 +51,33 @@ typedef struct s_mstoken
 	int					command;
 }			t_token;
 
-/*
-* if op is not null, command will be, and the vice versa
-*/
 typedef struct s_tree_node
 {
 	struct s_mstoken	*operator;
 	struct s_mstoken	**command;
+	struct s_mscommand	*parsed_cmd;
 	struct s_tree_node	*left;
 	struct s_tree_node	*right;
 }		t_tnode;
 
+// The final parsing part struct
+
+typedef struct s_mscommand
+{
+	char				*exec;
+	char				*builtin;
+	char				**output_files; // after parsing the redirectors in order
+	int					output_redir_type; // is it replace (>) or append (>>), don't mind if output_files == NULL
+	char				**args;
+	char				*std_input;	// the here-doc entry (<<)
+	char				*input_file; // after parsing the input redir (<)
+	int					elements_count; // the number of command elements
+}			t_command;
+
 void		handle_prompt(t_memsession *heap_session, char *command);
-t_token		**ms_lexer(t_memsession *session, char *command);
 t_token		**tokenization(t_memsession *session, t_splitdata *splited_cmd);
 void		print_tokens(t_token **tokens);
+t_token		**advanced_split(t_memsession *session, char *str, char *seps);
 
 //	utilities
 
@@ -79,7 +87,10 @@ int			get_token_type(char *str);
 int			is_redirector(t_token tok);
 int			get_precedence(t_token *token);
 void		void_return(void);
-t_token		**advanced_split(t_memsession *session, char *str, char *seps);
+int			is_word(t_token	*tok);
+void		syntax_error(char *error, int len);
+int			are_quotes_closed(char *s);
+int			are_parenthesis_closed(char *s);
 
 //	tree control
 

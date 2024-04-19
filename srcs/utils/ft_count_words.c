@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:17:46 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/16 15:44:57 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 18:07:50 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	skip_inside_parenthesis(char **s)
 int	new_is_ops(char *c)
 {
 	if ((*c == '&' && *(c + 1) == '&') || *c == '|' || *c == '>'
-		|| *c == '<' || *c == '"' || *c == '\'' || *c == '(' || *c == ')')
+		|| *c == '<' || *c == '(' || *c == ')')
 		return (1);
 	return (0);
 }
@@ -44,7 +44,7 @@ int	new_is_ops(char *c)
 void	count_operators(char **s, int *res)
 {
 	char	*str;
-	char	tmp;
+	//char	tmp;
 
 	str = *s;
 	if (!ft_strncmp(str, "&&", 2) || !ft_strncmp(str, "||", 2)
@@ -58,14 +58,14 @@ void	count_operators(char **s, int *res)
 		(*res)++;
 		(*s)++;
 	}
-	else if (*str == '\'' || *str == '"')
-	{
-		(*res)++;
-		tmp = *str;
-		while (++(*s) && **s && **s != tmp)
-			;
-		(*s)++;
-	}
+	//else if (*str == '\'' || *str == '"')
+	//{
+	//	(*res)++;
+	//	tmp = *str;
+	//	while (++(*s) && **s && **s != tmp)
+	//		;
+	//	(*s)++;
+	//}
 	else if (*str == '(' || *str == ')')
 		return ((*res)++, skip_inside_parenthesis(s), void_return());
 }

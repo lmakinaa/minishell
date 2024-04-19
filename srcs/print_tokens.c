@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/31 21:57:04 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/18 15:41:08 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 16:48:36 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static char	*fetch_type(int type)
 {
-	if (type == T_APPEND_REDIRECTOR)
+	if (type == T_APPEND_REDIR)
 		return ("Append Redirector");
 	else if (type == T_PARENTHESIS_COMMAND)
 		return ("Parenthesis command");
@@ -36,7 +36,7 @@ static char	*fetch_type(int type)
 		return ("Heredoc");
 	else if (type == T_INPUT_REDIRECTOR)
 		return ("Input Redirector");
-	else if (type == T_OUTPUT_REDIRECTOR)
+	else if (type == T_OUT_REDIR)
 		return ("Output Redirector");
 	else
 		return ("Unknown");

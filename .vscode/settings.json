@@ -25,6 +25,8 @@
 		"tuple": "c",
 		"type_traits": "c",
 		"vector": "c",
-		"__locale": "c"
+		"__locale": "c",
+		"unordered_map": "c",
+		"ios": "c"
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 17:46:51 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/19 22:12:28 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <limits.h>
 # include <stdio.h> // to remove
 # include <readline/readline.h>
 # include <readline/history.h>
@@ -23,6 +24,7 @@
 
 # define PROMPT_TEXT "\033[0;32m$> \033[0m"
 # define SEPERATORS " \t\n"
+# define BUFFER_SIZE 10
 
 // Token types
 
@@ -39,7 +41,11 @@
 # define T_HERDOC 13
 # define T_INPUT_REDIRECTOR 14
 # define T_OUT_REDIR 15
-# define T_OUTPUT_FILE 15
+
+
+# define T_OUTPUT_FILE 16
+# define T_INPUT_FILE 17
+# define T_EOL 18
 
 // These 2 structs are for the initial parsing part
 
@@ -100,5 +106,6 @@ t_tnode		*build_tree(t_memsession *session, t_token ***tokens,
 				int min_precedence);
 void		print_tree(t_tnode *node, int space);
 t_tnode		*nested_tree(t_memsession *session, t_token ***tokens);
+int			more_parse(t_memsession *session, t_tnode *root);
 
 #endif

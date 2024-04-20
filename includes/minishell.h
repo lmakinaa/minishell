@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/20 20:05:27 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/20 22:52:55 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,14 +81,15 @@ typedef struct s_mscommand
 	char				**args;
 	char				*std_input;	// the here-doc entry (<<)
 	char				*input_file; // after parsing the input redir (<)
+	t_lenv				*env;
 	int					elements_count; // the number of command elements
 }			t_command;
 
-void		handle_prompt(t_memsession *heap_session, char *command);
+void		handle_prompt(t_memsession *heap_session, t_lenv *env, char *command);
 t_token		**tokenization(t_memsession *session, t_splitdata *splited_cmd);
 void		print_tokens(t_token **tokens);
 t_token		**advanced_split(t_memsession *session, char *str, char *seps);
-int			expander(t_memsession *session, t_token **cmd);
+int			expander(t_memsession *session, t_lenv *env, t_token **cmd);
 
 //	utilities
 
@@ -112,6 +113,6 @@ t_tnode		*build_tree(t_memsession *session, t_token ***tokens,
 				int min_precedence);
 void		print_tree(t_tnode *node, int space);
 t_tnode		*nested_tree(t_memsession *session, t_token ***tokens);
-int			more_parse(t_memsession *session, t_tnode *root);
+int			more_parse(t_memsession *session, t_lenv *env, t_tnode *root);
 
 #endif

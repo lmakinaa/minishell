@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:23:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/20 20:13:35 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/20 22:40:06 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,22 @@ void remove_env(t_memsession *session, t_lenv *envs, char *name)
 		}
 		f_env = f_env->next;
 	}
+}
+
+char	*get_env(t_lenv *env, char *name)
+{
+	t_env	*f_env;
+	
+	if (!env->head)
+		return (NULL);
+	f_env = env->head;
+	while (f_env)
+	{
+		if (!ft_strcmp(f_env->name, name))
+			return (f_env->value);
+		f_env = f_env->next;
+	}
+	return (NULL);
 }
 
 // to remove

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:17:46 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 22:17:25 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/20 12:52:47 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ int	new_is_ops(char *c)
 void	count_operators(char **s, int *res)
 {
 	char	*str;
-	//char	tmp;
 
 	str = *s;
 	if (!ft_strncmp(str, "&&", 2) || !ft_strncmp(str, "||", 2)
@@ -58,14 +57,6 @@ void	count_operators(char **s, int *res)
 		(*res)++;
 		(*s)++;
 	}
-	//else if (*str == '\'' || *str == '"')
-	//{
-	//	(*res)++;
-	//	tmp = *str;
-	//	while (++(*s) && **s && **s != tmp)
-	//		;
-	//	(*s)++;
-	//}
 	else if (*str == '(' || *str == ')')
 		return ((*res)++, skip_inside_parenthesis(s), void_return());
 }
@@ -73,19 +64,28 @@ void	count_operators(char **s, int *res)
 int	ft_count_words(char *str, char *seps)
 {
 	int		res;
+	char	tmp;
 
 	res = 0;
 	while (*str)
 	{
 		count_operators(&str, &res);
-		if (*str && !new_sep_check(str, seps))
+		if (*str && !new_sep_check(str, seps) && ++res)
 		{
-			res++;
 			while (*str && !new_sep_check(str, seps))
-				str++;
+				if (*str == '"' || *str == '\'')
+				{
+					tmp = *(str++);
+					while (*(str) && *str != tmp)
+						str++;
+					str++;
+				}
+				else
+					str++;
 		}
 		if (*str && !new_is_ops(str))
 			str++;
 	}
+	printf("%d\n", res);
 	return (res);
 }

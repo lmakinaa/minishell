@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/20 16:05:06 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/20 20:05:27 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 # include <readline/history.h>
 # include "./allocation_manager.h"
 # include "./utils.h"
+# include "./env_control.h"
 
 # define PROMPT_TEXT "\033[0;32m$> \033[0m"
 # define SEPERATORS " \t\n"
@@ -101,6 +102,7 @@ int			is_word(t_token	*tok);
 void		syntax_error(char *error, int len);
 int			are_quotes_closed(char *s);
 int			are_parenthesis_closed(char *s);
+char		*z_strdup(t_memsession *session, char **str, char *seps);
 
 //	tree control
 

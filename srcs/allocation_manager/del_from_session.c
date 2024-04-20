@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 19:32:40 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 19:55:16 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/20 19:59:42 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,11 @@ static void	del_from_session_part2(t_memsession *session, void *addr)
 			free(first_node->next->addr);
 			free(first_node->next);
 			first_node->next = tmp;
+			session->count--;
+			return ;
 		}
 		first_node = first_node->next;
 	}
-	session->count--;
 }
 
 /*

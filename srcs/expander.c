@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/20 16:16:46 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/20 20:10:47 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ int	var_expansion(t_memsession *session, t_token *token)
 	while (*(str++))
 	{
 		if (*(str++) == '$')
+		{
 			if (*str == '$')
 				return (syntax_error("(special vars not supported)", 28), -1);
 			else
@@ -68,6 +69,7 @@ int	var_expansion(t_memsession *session, t_token *token)
 				printf("%s\n", var);
 				//str[i - 1];
 			}
+		}
 	}
 	return (0);
 }

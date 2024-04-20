@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:12:22 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 17:45:27 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/20 13:10:21 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,38 +57,28 @@ char	*operators_strdup(t_memsession *session, char **str)
 		ft_strncpy(res, *str, 1);
 		(*str)++;
 	}
-	//else if (**str == '\'' || **str == '"')
-	//	res = quotes_strdup(session, str, **str);
 	else if (**str == '(')
 		parenthesis_strdup(session, str, &res);
 	return (res);
 }
 
-char	*quotes_strdup(t_memsession *session, char **str, char sep)
+static	int	custom_strlen(char *s, char *seps)
 {
 	int		i;
-	int		j;
-	char	*s;
-	char	*res;
-	char	*resaddr;
-
-	s = *str;
-	i = 1;
-	while (s[i] && s[i] != sep)
-		i++;
-	if (s[i] == sep)
-		i++;
-	res = session_malloc(session, (i + 1) * sizeof(char), 0);
-	resaddr = res;
-	*(res++) = sep;
-	j = 0;
-	while (++j < i && s[j] != sep)
-		*(res++) = s[j];
-	if (s[j] == sep)
-		*(res++) = s[j];
-	*res = '\0';
-	*str += i;
-	return (resaddr);
+	char	tmp;
+	
+	i = 0;
+	while (s[i] && !new_sep_check(&s[i], seps))
+		if (s[i] == '"' || s[i] == '\'')
+		{
+			tmp = s[i++];
+			while (s[i] && s[i] != tmp)
+				i++;
+			i++;
+		}
+		else
+			i++;
+	return (i);
 }
 
 char	*custom_strdup(t_memsession *session, char *s, char *seps)
@@ -98,13 +88,11 @@ char	*custom_strdup(t_memsession *session, char *s, char *seps)
 	char	*res;
 	char	*resaddr;
 
-	i = 0;
-	j = 0;
-	while (s[i] && !new_sep_check(&s[i], seps))
-		i++;
+	i = custom_strlen(s, seps);
 	res = session_malloc(session, (i + 1) * sizeof(char), 0);
 	resaddr = res;
-	while (j < i && !new_sep_check(&s[j], seps))
+	j = 0;
+	while (j < i)
 	{
 		*res = s[j];
 		res++;

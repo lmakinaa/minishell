@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/20 16:05:46 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/20 22:00:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,20 +96,20 @@ int	tokenize_part3(t_token **cmd)
 	return (0);
 }
 
-int	more_parse(t_memsession *session, t_tnode *root)
+int	more_parse(t_memsession *session, t_lenv *env, t_tnode *root)
 {
 	if (!root)
 		return (0);
 
-	if (more_parse(session, root->left) == -1)
+	if (more_parse(session, env, root->left) == -1)
 		return (-1);
-	if (more_parse(session, root->right) == -1)
+	if (more_parse(session, env, root->right) == -1)
 		return (-1);
 	if (root->command)
 	{
 		if (tokenize_part2(session, root->command) == -1)
 			return (-1);
-		if (expander(session, root->command) == -1)
+		if (expander(session, env, root->command) == -1)
 			return (-1);
 		if (tokenize_part3(root->command) == -1)
 			return (-1);

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/20 20:10:47 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/20 22:19:50 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ char	*z_strdup(t_memsession *session, char **str, char *seps)
 	return (resaddr);
 }
 
-int	var_expansion(t_memsession *session, t_token *token)
+int	var_expansion(t_memsession *session, t_lenv *env, t_token *token)
 {
 	int		i;
 	char	*str;
@@ -57,7 +57,7 @@ int	var_expansion(t_memsession *session, t_token *token)
 	
 	str = token->value;
 	i = -1;
-	while (*(str++))
+	while (*str)
 	{
 		if (*(str++) == '$')
 		{
@@ -65,11 +65,11 @@ int	var_expansion(t_memsession *session, t_token *token)
 				return (syntax_error("(special vars not supported)", 28), -1);
 			else
 			{
-				var = getenv(z_strdup(session, &str, "$'\""));
-				printf("%s\n", var);
-				//str[i - 1];
+				var = get_env(env, z_strdup(session, &str, "$'\""));
+				str--;
 			}
 		}
+		str++;
 	}
 	return (0);
 }
@@ -77,7 +77,7 @@ int	var_expansion(t_memsession *session, t_token *token)
 /*
 * Expand Vars and whats inside quotes and remove quotes
 */
-int	expander(t_memsession *session, t_token **cmd)
+int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 {
 	int	i;
 
@@ -86,7 +86,7 @@ int	expander(t_memsession *session, t_token **cmd)
 	{
 		if (cmd[i]->type == T_UNKNOWN)
 		{
-			if (var_expansion(session, cmd[i]) == -1)
+			if (var_expansion(session, env, cmd[i]) == -1)
 				return (-1);
 		}
 	}

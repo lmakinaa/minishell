@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/21 19:09:30 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/21 21:44:31 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ char	*z_strdup(t_memsession *session, char **str, char *seps)
 
 char	*var_expansion(t_memsession *session, t_lenv *env, char *str)
 {
-	char	*var;
 	char	*new_value;
 
 	new_value = ft_strdup(session, "", 0);
@@ -67,22 +66,17 @@ char	*var_expansion(t_memsession *session, t_lenv *env, char *str)
 			new_value = ft_strjoin(session, new_value, z_strdup(session, &str, "'"));
 			str++;
 		}
-		else
+		if (*str != '$')
 		{
-			if (*str != '$')
-				new_value = ft_charjoin(session, new_value, *str);
-			if (*str == '$')
-			{
-				if (*(str + 1) && *(str + 1) != '$' && str++)
-				{
-					var = get_env(env, z_strdup(session, &str, "$'\""));
-					new_value = ft_strjoin(session, new_value, var);
-				}
-				else
-					new_value = ft_charjoin(session, new_value, *(str++));
-			}
+			new_value = ft_joinchar(session, new_value, *str);
+			str++;
+		}
+		if (*str == '$')
+		{
+			if (*(str + 1) && *(str + 1) != '$' && str++)
+				new_value = ft_strjoin(session, new_value, get_env(env, z_strdup(session, &str, "$'\"")));
 			else
-				str++;
+				new_value = ft_joinchar(session, new_value, *(str++));
 		}
 	}
 	return (new_value);
@@ -93,16 +87,18 @@ char	*var_expansion(t_memsession *session, t_lenv *env, char *str)
 */
 int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 {
-	int	i;
+	int		i;
+	char	*tmp;
 
 	i = -1;
 	while (cmd[++i])
 	{
 		if (cmd[i]->type == T_UNKNOWN)
 		{
-			
-			printf("%s\n", var_expansion(session, env, cmd[i]->value));
-			//printf("%s\n", var_expansion(session, env, cmd[i]->value));
+			tmp = cmd[i]->value;
+			cmd[i]->value = var_expansion(session, env, tmp);
+			del_from_session(session, tmp);
+			printf("%s\n", cmd[i]->value);
 		}
 	}
 	return (0);

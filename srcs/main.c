@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/20 22:18:08 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/21 13:40:09 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,7 @@ int	main(int argc, char **argv, char **envp)
 	t_lenv			*env;
 	char			*command;
 
-	(void) argc;
-	(void) argv;
-	session_init(&main_session);
-	session_init(&env_session);
-	env = envs_init(env_session, envp);
+	env = ft_initialise(&main_session, &env_session, argc, argv, envp);
 	//envs_display(env);
 	while (1)
 	{
@@ -41,7 +37,6 @@ int	main(int argc, char **argv, char **envp)
 		reset_session(&main_session);
 	}
 	rl_clear_history();
-	session_destroy(&main_session);
-	session_destroy(&env_session);
+	end_sessions(&main_session, &env_session);
 	return (0);
 }

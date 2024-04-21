@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:52:57 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 18:05:25 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/21 13:40:09 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,4 +57,23 @@ int	are_quotes_closed(char *s)
 		}
 	}
 	return (0);
+}
+
+t_lenv	*ft_initialise(t_memsession **session1, t_memsession **session2,
+	int argc, char **argv, char **envp)
+{
+	t_lenv			*env;
+
+	(void) argv;
+	(void) argc;
+	session_init(session1);
+	session_init(session2);
+	env = envs_init(*session2, envp);
+	return (env);
+}
+
+void	end_sessions(t_memsession **s1, t_memsession **s2)
+{
+	session_destroy(s1);
+	session_destroy(s2);
 }

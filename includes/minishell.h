@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/20 22:52:55 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/21 13:40:09 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,9 @@ void		syntax_error(char *error, int len);
 int			are_quotes_closed(char *s);
 int			are_parenthesis_closed(char *s);
 char		*z_strdup(t_memsession *session, char **str, char *seps);
+t_lenv		*ft_initialise(t_memsession **session1, t_memsession **session2,
+				int argc, char **argv, char **envp);
+void		end_sessions(t_memsession **s1, t_memsession **s2);
 
 //	tree control
 

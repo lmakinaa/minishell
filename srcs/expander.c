@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/21 21:44:31 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/21 22:37:41 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char	*z_strdup(t_memsession *session, char **str, char *seps)
 	s = *str;
 	while (s[++i] && !is_sep(s[i], seps))
 		;
-	res = session_malloc(session, (i + 1) * sizeof(char), 0);
+	res = session_malloc(session, (i + 1) * sizeof(char), 1);
 	resaddr = res;
 	j = 0;
 	while (j < i)
@@ -49,11 +49,6 @@ char	*z_strdup(t_memsession *session, char **str, char *seps)
 	return (resaddr);
 }
 
-//void	var_replace(t_memsession *session, t_token *token, t_lenv *env, char **str_ptr)
-//{
-	
-//}
-
 char	*var_expansion(t_memsession *session, t_lenv *env, char *str)
 {
 	char	*new_value;
@@ -66,12 +61,12 @@ char	*var_expansion(t_memsession *session, t_lenv *env, char *str)
 			new_value = ft_strjoin(session, new_value, z_strdup(session, &str, "'"));
 			str++;
 		}
-		if (*str != '$')
+		if (*str && *str != '$')
 		{
 			new_value = ft_joinchar(session, new_value, *str);
 			str++;
 		}
-		if (*str == '$')
+		if (*str && *str == '$')
 		{
 			if (*(str + 1) && *(str + 1) != '$' && str++)
 				new_value = ft_strjoin(session, new_value, get_env(env, z_strdup(session, &str, "$'\"")));

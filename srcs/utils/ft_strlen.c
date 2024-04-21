@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:12:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/03/15 14:14:31 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/21 22:33:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	ft_strlen(char *str)
 	int	i;
 
 	if (!str)
-		return (-1);
+		return (0);
 	i = 0;
 	while (str[i])
 		i++;

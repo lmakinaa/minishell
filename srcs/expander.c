@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/21 16:02:09 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/21 19:09:30 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,34 +54,38 @@ char	*z_strdup(t_memsession *session, char **str, char *seps)
 	
 //}
 
-int	var_expansion(t_memsession *session, t_lenv *env, t_token *token)
+char	*var_expansion(t_memsession *session, t_lenv *env, char *str)
 {
-	char	*str;
 	char	*var;
 	char	*new_value;
-	
-	str = token->value;
+
 	new_value = ft_strdup(session, "", 0);
 	while (*str)
 	{
-		if (*str != '$')
-			new_value = ft_charjoin(session, new_value, *str);
-		if (*str == '$')
+		if (*str == '\'' && str++)
 		{
-			if (*(str + 1) && *(str + 1) != '$')
-			{
-				str++;
-				var = get_env(env, z_strdup(session, &str, "$'\""));
-				new_value = ft_strjoin(session, new_value, var);
-			}
-			else
-				new_value = ft_charjoin(session, new_value, *(str++));
+			new_value = ft_strjoin(session, new_value, z_strdup(session, &str, "'"));
+			str++;
 		}
 		else
-			str++;
+		{
+			if (*str != '$')
+				new_value = ft_charjoin(session, new_value, *str);
+			if (*str == '$')
+			{
+				if (*(str + 1) && *(str + 1) != '$' && str++)
+				{
+					var = get_env(env, z_strdup(session, &str, "$'\""));
+					new_value = ft_strjoin(session, new_value, var);
+				}
+				else
+					new_value = ft_charjoin(session, new_value, *(str++));
+			}
+			else
+				str++;
+		}
 	}
-	printf("|%s|\n", new_value);
-	return (0);
+	return (new_value);
 }
 
 /*
@@ -96,8 +100,9 @@ int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 	{
 		if (cmd[i]->type == T_UNKNOWN)
 		{
-			if (var_expansion(session, env, cmd[i]) == -1)
-				return (-1);
+			
+			printf("%s\n", var_expansion(session, env, cmd[i]->value));
+			//printf("%s\n", var_expansion(session, env, cmd[i]->value));
 		}
 	}
 	return (0);

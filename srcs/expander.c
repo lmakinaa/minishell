@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/20 22:19:50 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/21 16:02:09 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,28 +49,38 @@ char	*z_strdup(t_memsession *session, char **str, char *seps)
 	return (resaddr);
 }
 
+//void	var_replace(t_memsession *session, t_token *token, t_lenv *env, char **str_ptr)
+//{
+	
+//}
+
 int	var_expansion(t_memsession *session, t_lenv *env, t_token *token)
 {
-	int		i;
 	char	*str;
 	char	*var;
+	char	*new_value;
 	
 	str = token->value;
-	i = -1;
+	new_value = ft_strdup(session, "", 0);
 	while (*str)
 	{
-		if (*(str++) == '$')
+		if (*str != '$')
+			new_value = ft_charjoin(session, new_value, *str);
+		if (*str == '$')
 		{
-			if (*str == '$')
-				return (syntax_error("(special vars not supported)", 28), -1);
-			else
+			if (*(str + 1) && *(str + 1) != '$')
 			{
+				str++;
 				var = get_env(env, z_strdup(session, &str, "$'\""));
-				str--;
+				new_value = ft_strjoin(session, new_value, var);
 			}
+			else
+				new_value = ft_charjoin(session, new_value, *(str++));
 		}
-		str++;
+		else
+			str++;
 	}
+	printf("|%s|\n", new_value);
 	return (0);
 }
 

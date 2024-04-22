@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:28:10 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/21 22:53:36 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/22 13:40:59 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,6 @@ char	*ft_joinchar(t_memsession *session, char *s1, char c)
 	size_t	i;
 	size_t	j;
 
-	if (c == '"')
-		return (s1);
 	size = ft_strlen(s1) + 1;
 	res = session_malloc(session, (size + 1) * sizeof(char), 0);
 	i = 0;

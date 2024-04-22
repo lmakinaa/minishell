@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/21 15:47:09 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/22 13:51:10 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ char		*z_strdup(t_memsession *session, char **str, char *seps);
 t_lenv		*ft_initialise(t_memsession **session1, t_memsession **session2,
 				int argc, char **argv, char **envp);
 void		end_sessions(t_memsession **s1, t_memsession **s2);
+int			is_sep(char c, char *seps);
 
 //	tree control
 

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:52:57 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/21 13:40:09 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/22 13:50:22 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,4 +76,15 @@ void	end_sessions(t_memsession **s1, t_memsession **s2)
 {
 	session_destroy(s1);
 	session_destroy(s2);
+}
+
+int	is_sep(char c, char *seps)
+{
+	int	i;
+
+	i = -1;
+	while (seps[++i])
+		if (seps[i] == c)
+			return (1);
+	return (0);
 }

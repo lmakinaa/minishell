@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/23 20:04:07 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/23 21:36:29 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,21 @@ int	tokenize_part3(t_token **cmd)
 	return (0);
 }
 
+void print_command_elements(t_command *command)
+{
+	printf("Command: %s\n", command->cmd);
+	printf("Arguments:\n");
+	for (int i = 0; command->args[i] != NULL; i++)
+		printf("%s\n", command->args[i]);
+	printf("Output Files:\n");
+	if (command->output_files != NULL)
+		for (int i = 0; command->output_files[i] != NULL; i++)
+			printf("%s\n", command->output_files[i]);
+	printf("Output Redirection Type: %d\n", command->output_redir_type);
+	printf("Input File: %s\n", command->input_file);
+	printf("Standard Input: %s\n", command->std_input);
+}
+
 int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 {
 	t_command	*command;
@@ -109,10 +124,11 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 			return (-1);
 		if (tokenize_part3(root->command) == -1)
 			return (-1);
-		command = parse_cmd(session, env, root->command);
-		//if (execute_command(session, env, command) == -1)
-		//	return (-1);
 		//if (expander(session, env, root->command) == -1)
+		//	return (-1);
+		command = parse_cmd(session, env, root->command);
+		print_command_elements(command);
+		//if (execute_command(session, env, command) == -1)
 		//	return (-1);
 	}
 	return (0);

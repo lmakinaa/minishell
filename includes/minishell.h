@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/23 18:59:16 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/23 20:11:49 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,6 @@
 # define T_EXECUTABLE 5
 # define T_OUTPUT_FILE 16
 # define T_INPUT_FILE 17
-# define T_STD_INPUT 18
 # define T_STD_INPUT 18
 # define T_ARG 19
 

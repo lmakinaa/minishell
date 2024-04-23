@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/23 21:32:37 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/23 22:06:35 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,8 +99,6 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 		if (cmd[i]->type == T_CMD)
 		{
 			res->cmd = cmd[i]->value;
-			//if (!get_exec(res->cmd))
-			//	return (syntax_error(""))
 			res->args = append_arg(session, res->args, cmd[i]->value, 1);
 		}
 		else if (cmd[i]->type == T_ARG)

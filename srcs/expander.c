@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/22 13:52:57 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/23 17:48:31 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,20 +58,20 @@ char	*expand_word(t_memsession *session, t_lenv *env, char *str)
 	return (res);
 }
 
-char	*expand_wildcard(t_memsession *session, char *str)
-{
-	char	*res;
-	char	*tmp;
+//char	*expand_wildcard(t_memsession *session, char *str)
+//{
+//	char	*res;
+//	char	*tmp;
 
-	tmp = str;
-	res = ft_strdup(session, "", 0);
-	while (*str)
-	{
-		if (*str == '*');
-	}
-	del_from_session(session, tmp);
-	return (res);
-}
+//	tmp = str;
+//	res = ft_strdup(session, "", 0);
+//	while (*str)
+//	{
+//		if (*str == '*');
+//	}
+//	del_from_session(session, tmp);
+//	return (res);
+//}
 
 /*
 * Expand Vars and whats inside quotes and remove quotes
@@ -86,7 +86,7 @@ int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 		if (cmd[i]->type == T_UNKNOWN)
 		{
 			cmd[i]->value = expand_word(session, env, cmd[i]->value);
-			cmd[i]->value = expand_wildcard(session, cmd[i]->value);
+			//cmd[i]->value = expand_wildcard(session, cmd[i]->value);
 		}
 	}
 	return (0);

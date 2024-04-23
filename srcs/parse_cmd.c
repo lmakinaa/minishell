@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/23 18:54:50 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/23 18:57:45 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ char *get_exec(char *value)
 	char *res;
 
 	if (*value == '\0')
-		return NULL;
+		return (NULL);
 	while (*value)
 	{
 		if (*value == '/')
@@ -25,13 +25,13 @@ char *get_exec(char *value)
 			value++;
 			res = get_exec(value);
 			if (res == NULL)
-				return value;
+				return (value);
 			else
-				return res;
+				return (res);
 		}
 		value++;
 	}
-	return value;
+	return (value);
 }
 
 char	**append_arg(t_memsession *session, char **args, char *value, int cmd)
@@ -59,7 +59,7 @@ char	**append_arg(t_memsession *session, char **args, char *value, int cmd)
 	return (res);
 }
 
-t_command *parse_cmd(t_memsession *session, t_lenv *env t_token **cmd)
+t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 {
 	t_command	*res;
 	int			i;
@@ -79,4 +79,5 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env t_token **cmd)
 		else if (cmd[i]->type == T_ARG)
 			res->args = append_arg(session, res->args, cmd[i]->value, 0);
 	}
+	parse_cmd_2(session, res, cmd);
 }

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/23 19:00:00 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/23 20:05:07 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 {
 	t_command	*res;
 	int			i;
-	int			j;
 
 	res = session_malloc(session, sizeof(t_command), 0);
 	res->env = env;

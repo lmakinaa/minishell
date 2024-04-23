@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/23 18:58:58 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/23 19:00:00 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ char	**append_arg(t_memsession *session, char **args, char *value, int cmd)
 		res[j] = args[j];
 	res[j++] = get_exec(value);
 	res[j] = NULL;
+	del_from_session(session, args);
 	return (res);
 }
 

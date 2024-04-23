@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/22 15:41:55 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/23 18:32:40 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@
 
 
 # define T_BUILTIN 3
+# define T_CMD 20
 # define T_EXECUTABLE 5
 # define T_OUTPUT_FILE 16
 # define T_INPUT_FILE 17
@@ -76,11 +77,10 @@ typedef struct s_tree_node
 
 typedef struct s_mscommand
 {
-	char				*exec;
-	char				*builtin;
+	char				*cmd;
+	char				**args;
 	char				**output_files; // after parsing the redirectors in order
 	int					output_redir_type; // is it replace (>) or append (>>), don't mind if output_files == NULL
-	char				**args;
 	char				*std_input;	// the here-doc entry (<<)
 	char				*input_file; // after parsing the input redir (<)
 	t_lenv				*env;
@@ -119,6 +119,6 @@ t_tnode		*build_tree(t_memsession *session, t_token ***tokens,
 				int min_precedence);
 void		print_tree(t_tnode *node, int space);
 t_tnode		*nested_tree(t_memsession *session, t_token ***tokens);
-int			more_parse(t_memsession *session, t_lenv *env, t_tnode *root);
+int			execute_tree(t_memsession *session, t_lenv *env, t_tnode *root);
 
 #endif

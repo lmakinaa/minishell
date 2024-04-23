@@ -28,6 +28,8 @@
 		"__locale": "c",
 		"unordered_map": "c",
 		"ios": "c",
-		"typeinfo": "c"
+		"typeinfo": "c",
+		"types.h": "c",
+		"unistd.h": "c"
 	}
 }

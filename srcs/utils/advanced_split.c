@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/20 12:56:52 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/24 11:08:18 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,9 @@ void	spliting_process(t_memsession *session,
 			while (*str && !new_sep_check(str, seps))
 				if (*str == '"' || *str == '\'')
 				{
-					tmp = *(str++);
-					while (*(str) && *str != tmp)
-						str++;
-					str++;
+					tmp = *str;
+					while (*(++str) && *str != tmp)
+						;
 				}
 				else
 					str++;

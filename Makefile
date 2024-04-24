@@ -5,7 +5,7 @@ NAME=minishell
 # Minishell src files pack
 SRC_DIR=./srcs
 SRC_C=$(SRC_DIR)/handle_prompt.c $(SRC_DIR)/print_tokens.c $(SRC_DIR)/utilities.c $(SRC_DIR)/utilities_2.c $(SRC_DIR)/utilities_3.c\
-	$(SRC_DIR)/syntax_analyze.c $(SRC_DIR)/expander.c $(SRC_DIR)/env_control.c $(SRC_DIR)/parse_cmd.c
+	$(SRC_DIR)/syntax_analyze.c $(SRC_DIR)/expander.c $(SRC_DIR)/env_control.c $(SRC_DIR)/parse_cmd.c $(SRC_DIR)/handle_wildcard.c
 SRC_O=$(patsubst %.c, %.o, $(SRC_C))
 
 # Allocation manager pack

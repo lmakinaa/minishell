@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/23 20:11:49 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/24 17:02:01 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@
 # define BUFFER_SIZE 10
 
 // Token types
-
+// todo: change this shit into enum
 # define T_UNKNOWN -1
 # define T_APPEND_REDIR 1
 # define T_PARENTHESIS_COMMAND 2
@@ -43,8 +43,6 @@
 # define T_HERDOC 13
 # define T_INPUT_REDIRECTOR 14
 # define T_OUT_REDIR 15
-
-
 # define T_BUILTIN 3
 # define T_CMD 20
 # define T_EXECUTABLE 5
@@ -109,6 +107,7 @@ t_lenv		*ft_initialise(t_memsession **session1, t_memsession **session2,
 				int argc, char **argv, char **envp);
 void		end_sessions(t_memsession **s1, t_memsession **s2);
 int			is_sep(char c, char *seps);
+char		*expand_2(t_memsession *session, char *str);
 
 //	tree control
 

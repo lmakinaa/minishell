@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/24 19:20:38 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/24 19:53:13 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ t_token	**handle_heredoc(t_memsession *session, t_token **toks, int i)
 				file = ft_joinchar(session, file, '\n');
 			}
 			write(fds[1], file, ft_strlen(file));
-			(close(fds[1]), toks[i]->value[0] = fds[0]);
-			toks[i]->type = T_STD_INPUT;
+			toks[i + 1]->value[0] = fds[0];
+			toks[i + 1]->type = T_STD_INPUT;
 		}
 	return (toks);
 }

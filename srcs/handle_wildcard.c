@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:15:11 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/24 17:01:31 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/24 17:16:20 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ int	pattern_check(char *str, char *pattern)
 	int	j;
 	int	p_len;
 
+	if (str[0] == '.' && pattern[0] != '.')
+		return (0);
 	j = 0;
 	p_len = ft_strlen(pattern);
 	if (!pattern_check_2(str, pattern, ft_strlen(str), &j))
@@ -70,9 +72,9 @@ char	*expand_wildcard(t_memsession *session, char *str)
 	entry = readdir(dir);
 	while (entry)
 	{
-		if (pattern_check(str, entry->d_name))
+		if (pattern_check(entry->d_name, str))
 		{
-			res = ft_strjoin(session, res, entry->name);
+			res = ft_strjoin(session, res, entry->d_name);
 			res = ft_joinchar(session, res, ' ');
 		}
 		entry = readdir(dir);

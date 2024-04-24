@@ -6,11 +6,40 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/24 11:08:18 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/24 19:20:38 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
+
+t_token	**handle_heredoc(t_memsession *session, t_token **toks, int i)
+{
+	int		fds[2];
+	char	*line;
+	char	*file;
+	
+	file = ft_strdup(session, "", 0);
+	while (toks[++i])
+		if (toks[i]->type == T_HERDOC)
+		{
+			if (!toks[i + 1] || !is_word(toks[i + 1]))
+				return (syntax_error("near <<", 7), NULL);
+			(pipe(fds) == -1) && (exit_on_error("pipe() failed\n", 14), 0);
+			while (1)
+			{
+				line = readline("# ");
+				add_to_session(session, line);
+				if (!ft_strcmp(line, toks[i + 1]->value))
+					break;
+				file = ft_strjoin(session, file, line);
+				file = ft_joinchar(session, file, '\n');
+			}
+			write(fds[1], file, ft_strlen(file));
+			(close(fds[1]), toks[i]->value[0] = fds[0]);
+			toks[i]->type = T_STD_INPUT;
+		}
+	return (toks);
+}
 
 /*
 * In this part we identifie the operators specefically 
@@ -27,8 +56,8 @@ t_token	**tokenization(t_memsession *session, t_splitdata *splited_cmd)
 	{
 		toks[i] = session_malloc(session, sizeof(t_token), 0);
 		toks[i]->tokens_nbr = splited_cmd->word_count;
-		toks[i]->value = splited_cmd->words[i];
 		toks[i]->type = get_token_type(splited_cmd->words[i]);
+		toks[i]->value = splited_cmd->words[i];
 		toks[i]->command = 1;
 	}
 	toks[i] = NULL;
@@ -37,7 +66,7 @@ t_token	**tokenization(t_memsession *session, t_splitdata *splited_cmd)
 		if (toks[i]->type != T_WORD && !is_redirector(*(toks[i]))
 			&& toks[i]->type != T_PARENTHESIS_COMMAND && new_is_ops(toks[i]->value))
 			toks[i]->command = 0;
-	return (toks);
+	return (handle_heredoc(session, toks, -1));
 }
 
 void	spliting_process(t_memsession *session,

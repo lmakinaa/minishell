@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/23 22:06:35 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/24 19:06:32 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,13 +63,13 @@ void	parse_cmd_2(t_memsession *session, t_command *res, t_token **cmd)
 	int 	out_type;
 	char	**out_files;
 	char	*input_file;
-	char	*std_input;
+	int		std_input;
 	
 	i = -1;
 	out_type = -1;
 	input_file = NULL;
 	out_files = NULL;
-	std_input = NULL;
+	std_input = -1;
 	while (cmd[++i])
 		if (cmd[i]->type == T_OUT_REDIR || cmd[i]->type == T_APPEND_REDIR)
 			out_type = cmd[i]->type;
@@ -78,7 +78,7 @@ void	parse_cmd_2(t_memsession *session, t_command *res, t_token **cmd)
 		else if (cmd[i]->type == T_INPUT_FILE)
 			input_file = cmd[i]->value;
 		else if (cmd[i]->type == T_STD_INPUT)
-			std_input = cmd[i]->value;
+			std_input = cmd[i]->value[0];
 	res->input_file = input_file;
 	res->output_redir_type = out_type;
 	res->output_files = out_files;

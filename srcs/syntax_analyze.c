@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/24 11:53:29 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/24 19:19:09 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	heredoc_handle(t_memsession *session, t_token *tok)
 /*
 * it focuses on redirections
 */
-int	tokenize_part2(t_memsession *session, t_token **cmd)
+int	tokenize_part2(t_token **cmd)
 {
 	int	i;
 
@@ -62,12 +62,6 @@ int	tokenize_part2(t_memsession *session, t_token **cmd)
 			if (!cmd[i + 1] || !is_word(cmd[i + 1]))
 				return (syntax_error("near <", 6), -1);
 			cmd[i + 1]->type = T_INPUT_FILE;
-		}
-		else if (cmd[i]->type == T_HERDOC)
-		{
-			if (!cmd[i + 1] || !is_word(cmd[i + 1]))
-				return (syntax_error("near <<", 7), -1);
-			heredoc_handle(session, cmd[i + 1]);
 		}
 	}
 	return (0);
@@ -95,6 +89,9 @@ int	tokenize_part3(t_token **cmd)
 
 void print_command_elements(t_command *command)
 {
+	char	buff[50];
+	int     bytes_read;
+
 	printf("Command: %s\n", command->cmd);
 	printf("Arguments:\n");
 	for (int i = 0; command->args[i] != NULL; i++)
@@ -105,7 +102,13 @@ void print_command_elements(t_command *command)
 			printf("%s\n", command->output_files[i]);
 	printf("Output Redirection Type: %d\n", command->output_redir_type);
 	printf("Input File: %s\n", command->input_file);
-	printf("Standard Input: %s\n", command->std_input);
+	printf("Standard Input:\n");
+	while ((bytes_read = read(command->std_input, buff, 49)) > 0)
+    {
+        buff[bytes_read] = '\0'; // Null-terminate the string
+        printf("%s", buff);
+    }
+	close(command->std_input);
 }
 
 int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
@@ -120,16 +123,14 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 		return (-1);
 	if (root->command)
 	{
-		if (tokenize_part2(session, root->command) == -1)
+		if (tokenize_part2(root->command) == -1)
 			return (-1);
 		if (expander(session, env, root->command) == -1)
 			return (-1);
 		if (tokenize_part3(root->command) == -1)
 			return (-1);
 		command = parse_cmd(session, env, root->command);
-		//print_command_elements(command);
-		//if (execute_command(session, env, command) == -1)
-		//	return (-1);
+		print_command_elements(command);
 	}
 	return (0);
 }

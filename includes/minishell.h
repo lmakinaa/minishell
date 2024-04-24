@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/24 17:02:01 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/24 19:02:18 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ typedef struct s_mscommand
 	char				**output_files; // after parsing the redirectors in order
 	int					output_redir_type; // is it replace (>) or append (>>), don't mind if output_files == NULL
 	char				*input_file; // after parsing the input redir (<)
-	char				*std_input;	// the here-doc entry (<<)
+	int					std_input;	// the here-doc entry (<<)
 }			t_command;
 
 void		handle_prompt(t_memsession *heap_session, t_lenv *env, char *command);

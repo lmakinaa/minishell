@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/24 16:41:48 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/24 17:03:20 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,7 @@ char	*var_expansion(t_memsession *session, t_lenv *env, char **str)
 	while (**str && **str != '"')
 	{
 		if (**str && **str != '$')
-		{
 			new_value = ft_joinchar(session, new_value, *((*str)++));
-		}
 		else if (**str && **str == '$')
 		{
 			if (*((*str) + 1) && *((*str) + 1) != '$' && (*str)++)

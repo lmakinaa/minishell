@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:15:11 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/25 01:06:35 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/25 22:35:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,13 @@ char	*expand_wildcard(t_memsession *session, char *str)
 	DIR				*dir;
 	struct dirent	*entry;
 	char			*res;
+	char			*tmp;
 	
 	dir = opendir(".");
 	if (!dir)
 		return (exit_on_error("opendir failed\n", 15), NULL);
 	res = ft_strdup(session, "", 0);
+	tmp = res;
 	entry = readdir(dir);
 	while (entry)
 	{
@@ -80,30 +82,55 @@ char	*expand_wildcard(t_memsession *session, char *str)
 		entry = readdir(dir);
 	}
 	closedir(dir);
+	if (res == tmp)
+		return (NULL);
+	return (res);
+}
+
+char	*no_quotes(t_memsession *session, char *str)
+{
+	char	*res;
+
+	res = ft_strdup(session, "", 0);
+	while (*str)
+	{
+		if (*str == '\'' || *str == '"')
+			str++;
+		else
+			res = ft_joinchar(session, res, *(str++));
+	}
 	return (res);
 }
 
 char	*expand_2(t_memsession *session, char *str)
 {
 	char	*res;
-	char	tmp[2];
+	char	*s;
+	char	*tmp;
 
 	res = ft_strdup(session, "", 0);
 	while (*str)
 	{
-		if (*str == '\'' || *str == '"')
+		if (*str && (*str == '\'' || *str == '"'))
 		{
-			tmp[0] = *(str++);
-			tmp[1] = '\0';
-			res = ft_strjoin(session, res, z_strdup(session, &str, tmp));
-			str++;
+			res = ft_joinchar(session, res, *(str++));
+			if (*str && *str == '\'')
+				res = ft_strjoin(session, res, z_strdup(session, &str, "'"));
+			else if (*str && *str == '"')
+				res = ft_strjoin(session, res, z_strdup(session, &str, "\""));
 		}
-		else if (*str == '*' && str++)
+		else if (*str && *str == '*' && str++)
 			res = ft_joinchar(session, res, 127);
-		else
+		else if (*str)
 			res = ft_joinchar(session, res, *(str++));
 	}
-	if (ft_strchr(res, 127))
-		return (expand_wildcard(session, res));
+	tmp = res;
+	s = no_quotes(session, res);
+	if (ft_strchr(s, 127))
+	{
+		res = expand_wildcard(session, s);
+		if (!res)
+			return (tmp);
+	}
 	return (res);
 }

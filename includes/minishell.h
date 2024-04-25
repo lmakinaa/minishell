@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/25 01:45:59 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/25 22:33:42 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void		handle_prompt(t_memsession *heap_session, t_lenv *env, char *command);
 t_token		**tokenization(t_memsession *session, t_splitdata *splited_cmd);
 void		print_tokens(t_token **tokens);
 t_token		**advanced_split(t_memsession *session, char *str, char *seps);
-t_token		**expander(t_memsession *session, t_lenv *env, t_token **cmd);
+int			expander(t_memsession *session, t_lenv *env, t_token **cmd);
 t_command 	*parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd);
 
 //	utilities

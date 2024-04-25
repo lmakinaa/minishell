@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/25 02:08:24 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/25 22:33:32 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ t_token	**split_append_again(t_memsession *session, t_token **cmds,
 /*
 * Expand Vars and whats inside quotes and remove quotes
 */
-t_token	**expander(t_memsession *session, t_lenv *env, t_token **cmd)
+int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 {
 	int		i;
 	t_token	**res;
@@ -109,10 +109,7 @@ t_token	**expander(t_memsession *session, t_lenv *env, t_token **cmd)
 			//printf("-->%s\n", cmd[i]->value);
 			//print_tokens(res);
 		}
-		if (!res)
-			res = split_append_again(session, res, 0, cmd[i]);
-		else
-			res = split_append_again(session, res, res[0]->tokens_nbr, cmd[i]);
+
 	}
-	return (res);
+	return (0);
 }

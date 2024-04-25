@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/24 19:53:01 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/25 01:56:49 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,8 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 	{
 		if (tokenize_part2(root->command) == -1)
 			return (-1);
-		if (expander(session, env, root->command) == -1)
+		root->command = expander(session, env, root->command);
+		if (!root->command)
 			return (-1);
 		if (tokenize_part3(root->command) == -1)
 			return (-1);

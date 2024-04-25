@@ -20,7 +20,6 @@ void	handle_prompt(t_memsession *heap_session, t_lenv *env, char *prompt)
 	if (are_parenthesis_closed(prompt) || are_quotes_closed(prompt))
 		return ;
 	tokens = advanced_split(heap_session, prompt, SEPERATORS);
-	//print_tokens(tokens);
 	root = build_tree(heap_session, &tokens, 0);
 	if (execute_tree(heap_session, env, root) == -1)
 		return ;

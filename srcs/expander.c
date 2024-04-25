@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/25 02:00:38 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/25 02:08:24 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,8 @@ t_token	**split_append_again(t_memsession *session, t_token **cmds,
 	int		j;
 
 	toks = advanced_split(session, cmd->value, " \t\n");
+	if (!toks)
+		return (cmds);
 	res = session_malloc(session,
 		(size + toks[0]->tokens_nbr + 1) * sizeof(t_token *), 0);
 	i = -1;
@@ -98,7 +100,6 @@ t_token	**expander(t_memsession *session, t_lenv *env, t_token **cmd)
 
 	i = -1;
 	res = NULL;
-	printf("adfsgdd%s\n", get_env(env, "tt"));
 	while (cmd[++i])
 	{
 		if (cmd[i]->type == T_UNKNOWN)

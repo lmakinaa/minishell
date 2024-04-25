@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/25 22:35:05 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/25 22:38:10 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,6 @@ int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 			cmd[i]->value = expand_1(session, env, cmd[i]->value);
 			cmd[i]->value = expand_2(session, cmd[i]->value);
 		}
-
 	}
 	return (0);
 }

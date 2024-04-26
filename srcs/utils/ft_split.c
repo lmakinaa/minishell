@@ -6,13 +6,13 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:09:35 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 13:21:14 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 16:28:25 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-static int	ft_countword(char *str, char *seps)
+int	ft_countword(char *str, char *seps)
 {
 	char	tmp;
 	int		count;

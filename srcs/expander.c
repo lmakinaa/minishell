@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 14:29:50 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 16:30:33 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,11 +97,15 @@ int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 	i = -1;
 	while (cmd[++i])
 	{
-		if (cmd[i]->type == T_UNKNOWN)
+		if (cmd[i]->type == T_UNKNOWN || cmd[i]->type == T_INPUT_FILE
+			|| cmd[i]->type == T_OUTPUT_FILE)
 		{
 			cmd[i]->value = expand_1(session, env, cmd[i]->value);
 			cmd[i]->value = expand_2(session, cmd[i]->value);
 		}
+		if (cmd[i]->type == T_INPUT_FILE || cmd[i]->type == T_OUTPUT_FILE)
+			if (ft_countword(cmd[i]->value, SEPERATORS) > 1)
+				return (syntax_error("ambiguous redirect", 18), -1);
 	}
 	return (0);
 }

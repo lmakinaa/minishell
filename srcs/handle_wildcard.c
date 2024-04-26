@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:15:11 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 13:35:47 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 14:41:41 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,13 +64,11 @@ char	*expand_wildcard(t_memsession *session, char *str)
 	DIR				*dir;
 	struct dirent	*entry;
 	char			*res;
-	char			*tmp;
 	
 	dir = opendir(".");
 	if (!dir)
 		return (exit_on_error("opendir failed\n", 15), NULL);
 	res = ft_strdup(session, "", 0);
-	tmp = res;
 	entry = readdir(dir);
 	while (entry)
 	{
@@ -82,7 +80,7 @@ char	*expand_wildcard(t_memsession *session, char *str)
 		entry = readdir(dir);
 	}
 	closedir(dir);
-	if (!*res)
+	if (!res[0])
 		return (NULL);
 	return (res);
 }
@@ -108,7 +106,6 @@ char	*expand_2(t_memsession *session, char *str)
 {
 	char	*res;
 	char	*s;
-	char	*tmp;
 
 	res = ft_strdup(session, "", 0);
 	while (*str)
@@ -121,18 +118,15 @@ char	*expand_2(t_memsession *session, char *str)
 			else if (*str && *str == '"')
 				res = ft_strjoin(session, res, z_strdup(session, &str, "\""));
 		}
-		else if (*str && *str == '*' && str++)
-			res = ft_joinchar(session, res, '*');
 		else if (*str)
 			res = ft_joinchar(session, res, *(str++));
 	}
-	tmp = res;
 	s = no_quotes(session, res);
 	if (ft_strchr(s, 127))
 	{
-		res = expand_wildcard(session, s);
-		if (!res)
-			return (tmp);
+		s = expand_wildcard(session, s);
+		if (!s)
+			return (res);
 	}
-	return (res);
+	return (s);
 }

@@ -6,39 +6,54 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 16:34:45 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 17:31:32 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-t_token	**handle_heredoc(t_memsession *session, t_token **toks, int i)
+int	check_syntax(t_token *tok, int t, t_token *next)
 {
-	int		fds[2];
-	char	*line;
-	char	*file;
-	
-	file = ft_strdup(session, "", 0);
+	if (t == T_AND || t == T_OR || t == T_PIPE)
+	{
+		if (!next || next->type != T_PARENTHESIS_COMMAND
+			|| next->type != T_UNKNOWN || !is_redirector(*next))
+			return (throw_error("near | or || or &&", 18, 1), -1);
+	}
+	else if (is_redirector(*tok))
+	{
+		if (!next || next->type != T_UNKNOWN)
+			return (throw_error("near > or < or >>", 17, 1), -1);
+	}
+	else if (t == T_PARENTHESIS_COMMAND)
+	{
+		if (next && (next->type != T_AND ||
+			next->type != T_OR || next->type != T_PIPE))
+			return (throw_error("near )", 6, 1), -1);
+	}
+	else if (t != T_AND || t != T_OR || t != T_PIPE)
+	{
+		if (next && next->type == T_PARENTHESIS_COMMAND)
+			return (throw_error("near (", 6, 1), -1);
+	}
+	return (0);
+}
+
+int	more_tokenization(t_memsession *session, t_token **toks, int i)
+{
+	int	res;
+
+	res = 0;
+	(void) session;
 	while (toks[++i])
-		if (toks[i]->type == T_HERDOC)
-		{
-			if (!toks[i + 1] || !is_word(toks[i + 1]))
-				return (throw_error("near <<", 7, 1), NULL);
-			(pipe(fds) == -1) && (exit_on_error("pipe() failed\n", 14), 0);
-			while (1)
-			{
-				line = readline("# ");
-				add_to_session(session, line);
-				if (!ft_strcmp(line, toks[i + 1]->value))
-					break;
-				file = ft_strjoin(session, file, line);
-				file = ft_joinchar(session, file, '\n');
-			}
-			write(fds[1], file, ft_strlen(file));
-			toks[i + 1]->value[0] = fds[0];
-			toks[i + 1]->type = T_STD_INPUT;
-		}
-	return (toks);
+	{
+		//if (toks[i]->type == T_HERDOC)
+		//	res = handle_heredoc(session, toks[i]);
+		res = check_syntax(toks[i], toks[i]->type, toks[i + 1]);
+		if (res == -1)
+			return (-1);
+	}
+	return (res);
 }
 
 /*
@@ -66,7 +81,9 @@ t_token	**tokenization(t_memsession *session, t_splitdata *splited_cmd)
 		if (toks[i]->type != T_WORD && !is_redirector(*(toks[i]))
 			&& toks[i]->type != T_PARENTHESIS_COMMAND && new_is_ops(toks[i]->value))
 			toks[i]->command = 0;
-	return (handle_heredoc(session, toks, -1));
+	if (more_tokenization(session, toks, -1) == -1)
+		return (NULL);
+	return (toks);
 }
 
 void	spliting_process(t_memsession *session,

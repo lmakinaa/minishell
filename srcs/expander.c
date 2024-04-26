@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 16:34:17 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 20:46:37 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,35 @@ char	*var_expansion(t_memsession *session, t_lenv *env, char **str)
 	return (new_value);
 }
 
+char	*expand_2(t_memsession *session, char *str)
+{
+	char	*res;
+	char	*s;
+
+	res = ft_strdup(session, "", 0);
+	while (*str)
+	{
+		if (*str && (*str == '\'' || *str == '"'))
+		{
+			res = ft_joinchar(session, res, *(str++));
+			if (*str && *str == '\'')
+				res = ft_strjoin(session, res, z_strdup(session, &str, "'"));
+			else if (*str && *str == '"')
+				res = ft_strjoin(session, res, z_strdup(session, &str, "\""));
+		}
+		else if (*str)
+			res = ft_joinchar(session, res, *(str++));
+	}
+	s = no_quotes(session, res);
+	if (ft_strchr(s, 127))
+	{
+		s = expand_wildcard(session, s);
+		if (!s)
+			return (res);
+	}
+	return (s);
+}
+
 char	*expand_1(t_memsession *session, t_lenv *env, char *str)
 {
 	char	*res;
@@ -59,32 +88,6 @@ char	*expand_1(t_memsession *session, t_lenv *env, char *str)
 		else if (*str)
 			res = ft_strjoin(session, res, var_expansion(session, env, &str));
 	return (del_from_session(session, tmp), res);
-}
-
-t_token	**split_append_again(t_memsession *session, t_token **cmds,
-	int size, t_token *cmd)
-{
-	t_token	**toks;
-	t_token	**res;
-	int		i;
-	int		j;
-
-	toks = advanced_split(session, cmd->value, " \t\n");
-	if (!toks)
-		return (cmds);
-	res = session_malloc(session,
-		(size + toks[0]->tokens_nbr + 1) * sizeof(t_token *), 0);
-	i = -1;
-	while (++i < size)
-		res[i] = cmds[i];
-	j = -1;
-	while (++j < toks[0]->tokens_nbr)
-		res[i + j] = toks[j];
-	res[i + j] = NULL;
-	del_from_session(session, cmds);
-	del_from_session(session, toks);
-	del_from_session(session, cmd);
-	return (res);
 }
 
 /*

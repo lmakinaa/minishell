@@ -7,7 +7,7 @@ SRC_DIR=./srcs
 SRC_C=$(SRC_DIR)/handle_prompt.c $(SRC_DIR)/print_tokens.c $(SRC_DIR)/utilities.c $(SRC_DIR)/utilities_2.c $(SRC_DIR)/utilities_3.c\
 	$(SRC_DIR)/execute_tree.c $(SRC_DIR)/expander.c $(SRC_DIR)/env_control.c $(SRC_DIR)/parse_cmd.c $(SRC_DIR)/handle_wildcard.c\
 	$(SRC_DIR)/advanced_split.c $(SRC_DIR)/shave_parenthesis.c $(SRC_DIR)/handle_heredoc.c \
-	$(SRC_DIR)/build_tree.c $(SRC_DIR)/print_tree.c
+	$(SRC_DIR)/build_tree.c $(SRC_DIR)/print_tree.c $(SRC_DIR)/utilities_4.c
 SRC_O=$(patsubst %.c, %.o, $(SRC_C))
 
 # Allocation manager pack

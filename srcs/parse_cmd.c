@@ -6,27 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 14:44:34 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 20:47:46 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/minishell.h"
-
-char *get_exec(char *value)
-{
-	char *res;
-
-	res = value;
-	while (*value)
-	{
-		if (*value == '/')
-			res = value + 1;
-		value++;
-	}
-	if (!*res)
-		return (NULL);
-	return (res);
-}
 
 char	**append_arg(t_memsession *session, char **args, char *value, int cmd)
 {

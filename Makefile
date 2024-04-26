@@ -1,15 +1,20 @@
 CC=cc
 CFLAGS=-Wextra -Werror -Wall
 NAME=minishell
-
-# Minishell src files pack
 SRC_DIR=./srcs
+
+# Parse files pack
 PARSE_DIR=$(SRC_DIR)/parse
 PARSE_C=$(PARSE_DIR)/handle_prompt.c $(PARSE_DIR)/print_tokens.c $(PARSE_DIR)/utilities.c $(PARSE_DIR)/utilities_2.c $(PARSE_DIR)/utilities_3.c\
-	$(PARSE_DIR)/execute_tree.c $(PARSE_DIR)/expander.c $(PARSE_DIR)/env_control.c $(PARSE_DIR)/parse_cmd.c $(PARSE_DIR)/handle_wildcard.c\
+	$(PARSE_DIR)/expander.c $(PARSE_DIR)/env_control.c $(PARSE_DIR)/parse_cmd.c $(PARSE_DIR)/handle_wildcard.c\
 	$(PARSE_DIR)/advanced_split.c $(PARSE_DIR)/shave_parenthesis.c $(PARSE_DIR)/handle_heredoc.c \
 	$(PARSE_DIR)/build_tree.c $(PARSE_DIR)/print_tree.c $(PARSE_DIR)/utilities_4.c
 PARSE_O=$(patsubst %.c, %.o, $(PARSE_C))
+
+# Execution pack
+EXEC_DIR=$(SRC_DIR)/execution
+EXEC_C=$(EXEC_DIR)/execute_tree.c
+EXEC_O=$(patsubst %.c, %.o, $(EXEC_C))
 
 # Allocation manager pack
 ALLOC_MANAGER_DIR=$(SRC_DIR)/allocation_manager
@@ -33,10 +38,13 @@ MINISHELL_H=$(INCLUDES)/minishell.h
 
 all: $(NAME)
 
-$(NAME): $(PARSE_O) $(ALLOC_MANAGER_O) $(UTILS_O) $(TREE_CONTROL_O) $(SRC_DIR)/main.c
+$(NAME): $(PARSE_O) $(ALLOC_MANAGER_O) $(UTILS_O) $(TREE_CONTROL_O) $(EXEC_O) $(SRC_DIR)/main.c
 	$(CC) $(CFLAGS) $^ -I/Users/ijaija/.brew/opt/readline/include -lreadline -L/Users/ijaija/.brew/opt/readline/lib/ -o $@
 
 $(PARSE_DIR)/%.o : $(PARSE_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+$(EXEC_DIR)/%.o : $(EXEC_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
 	$(CC) $(CFLAGS) -c $< -o $@
 
 $(ALLOC_MANAGER_DIR)/%.o : $(ALLOC_MANAGER_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
@@ -49,7 +57,7 @@ $(TREE_CONTROL_DIR)/%.o : $(TREE_CONTROL_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER
 	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(UTILS_O) $(ALLOC_MANAGER_O) $(PARSE_O) $(TREE_CONTROL_O)
+	rm -f $(UTILS_O) $(ALLOC_MANAGER_O) $(PARSE_O) $(EXEC_O) $(TREE_CONTROL_O)
 
 fclean: clean
 	rm -f $(NAME)

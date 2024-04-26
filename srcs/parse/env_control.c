@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:23:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 20:54:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 21:07:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_lenv	*envs_init(t_memsession *session, char **envp)
 	res = session_malloc(session, sizeof(t_lenv), 0);
 	res->head = NULL;
 	res->tail = NULL;
+	res->exit_status = 0;
 	i = -1;
 	while (envp[++i])
 	{

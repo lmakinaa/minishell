@@ -14,6 +14,7 @@ typedef struct	s_env_var{
 typedef struct	s_list{
 	t_env	*head;
 	t_env	*tail;
+	int		exit_status;
 }				t_lenv;
 
 t_lenv	*envs_init(t_memsession *session, char **envp);

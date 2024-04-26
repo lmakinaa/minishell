@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 22:31:25 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 22:41:43 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,10 +61,10 @@ char	*expand_2(t_memsession *session, char *str)
 	if (ft_strchr(s, 127))
 	{
 		s = expand_wildcard(session, s);
-		if (!s)
-			return (res);
+		if (s)
+			return (s);
 	}
-	return (s);
+	return (res);
 }
 
 char	*expand_1(t_memsession *session, t_lenv *env, char *str)

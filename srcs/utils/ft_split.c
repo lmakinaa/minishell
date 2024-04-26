@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:09:35 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/25 21:51:34 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 13:21:14 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,6 @@ t_splitdata	*ft_split(t_memsession *session, char *s, char *seps)
 
 	if (!s)
 		return (NULL);
-	printf("s\n");
 	size = ft_countword(s, seps);
 	data = session_malloc(session, sizeof(t_splitdata), 0);
 	data->word_count = size;

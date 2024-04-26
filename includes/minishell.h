@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 21:05:06 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 22:16:01 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,7 @@ char		*no_quotes(t_memsession *session, char *str);
 int			tokenize_part2(t_token **cmd);
 void 		print_command_elements(t_command *command);
 char		*expand_wildcard(t_memsession *session, char *str);
+char		*get_exit_status(t_memsession *session, t_lenv *env);
 
 //	tree control
 t_tnode		*create_node(t_memsession *session, int op,

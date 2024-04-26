@@ -6,30 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 22:11:34 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 22:15:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
-
-char	*get_exit_status(t_memsession *session, t_lenv *env)
-{
-	char	*res;
-	int		code;
-	int		i;
-	
-	res = session_malloc(session, 4 * sizeof(char), 0);
-	code = env->exit_status;
-	i = 0;
-	while (code / 10)
-	{
-		res[i++] = (code % 10) + '0';
-		code /= 10;
-	}
-	res[i] = code + '0';
-	res[i+1] = '\0';
-	return (res);
-}
 
 char	*var_expansion(t_memsession *session, t_lenv *env, char **str)
 {

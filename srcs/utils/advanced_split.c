@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/25 22:06:07 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 16:34:45 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ t_token	**handle_heredoc(t_memsession *session, t_token **toks, int i)
 		if (toks[i]->type == T_HERDOC)
 		{
 			if (!toks[i + 1] || !is_word(toks[i + 1]))
-				return (syntax_error("near <<", 7), NULL);
+				return (throw_error("near <<", 7, 1), NULL);
 			(pipe(fds) == -1) && (exit_on_error("pipe() failed\n", 14), 0);
 			while (1)
 			{

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 22:46:55 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 22:56:16 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,18 +45,16 @@ char	*expand_2(t_memsession *session, char *str)
 
 	res = ft_strdup(session, "", 0);
 	while (*str)
-	{
 		if (*str && (*str == '\'' || *str == '"'))
 		{
-			res = ft_joinchar(session, res, *(str++));
-			if (*str && *str == '\'')
+			res = ft_joinchar(session, res, *str);
+			if (*str && *str == '\'' && str++)
 				res = ft_strjoin(session, res, z_strdup(session, &str, "'"));
-			else if (*str && *str == '"')
+			else if (*str && *str == '"' && str++)
 				res = ft_strjoin(session, res, z_strdup(session, &str, "\""));
 		}
 		else if (*str)
 			res = ft_joinchar(session, res, *(str++));
-	}
 	s = no_quotes(session, res, 1);
 	if (ft_strchr(s, 127))
 	{

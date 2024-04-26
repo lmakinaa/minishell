@@ -6,11 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 00:30:21 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 16:54:24 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 20:30:11 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/minishell.h"
+#include "./../includes/minishell.h"
 
 /*
 * t9ra3 string mn l a9was

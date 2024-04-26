@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/02 00:30:21 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/19 12:45:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 16:54:24 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ t_tnode	*nested_tree(t_memsession *session, t_token ***tokens)
 	t_tnode	*root;
 
 	nested_command = shave_parenthesis(session, (**tokens)->value);
+	if (!nested_command[0])
+		return (throw_error("related to parenthesis", 22, 1), NULL);
 	nested_tokens = advanced_split(session, nested_command, SEPERATORS);
 	root = build_tree(session, &nested_tokens, 0);
 	(*tokens)++;

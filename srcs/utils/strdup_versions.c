@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:12:22 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/25 22:02:42 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 22:30:49 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,32 @@ char	*z_strdup(t_memsession *session, char **str, char *seps)
 	i = -1;
 	s = *str;
 	while (s[++i] && !is_sep(s[i], seps))
+		;
+	res = session_malloc(session, (i + 1) * sizeof(char), 1);
+	resaddr = res;
+	j = 0;
+	while (j < i)
+	{
+		*res = s[j];
+		res++;
+		j++;
+	}
+	*res = '\0';
+	(*str) += j;
+	return (resaddr);
+}
+
+char	*var_name_strdup(t_memsession *session, char **str)
+{
+	int		i;
+	int		j;
+	char	*res;
+	char	*s;
+	char	*resaddr;
+	
+	i = -1;
+	s = *str;
+	while (s[++i] && ft_isalnum(s[i]))
 		;
 	res = session_malloc(session, (i + 1) * sizeof(char), 1);
 	resaddr = res;

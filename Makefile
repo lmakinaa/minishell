@@ -18,7 +18,7 @@ ALLOC_MANAGER_O=$(patsubst %.c, %.o, $(ALLOC_MANAGER_C))
 UTILS_DIR=$(SRC_DIR)/utils
 UTILS_C=$(UTILS_DIR)/ft_strcmp.c $(UTILS_DIR)/advanced_split.c $(UTILS_DIR)/ft_strlen.c $(UTILS_DIR)/ft_strchr.c $(UTILS_DIR)/ft_count_words.c\
 	$(UTILS_DIR)/ft_strncmp.c $(UTILS_DIR)/ft_strncpy.c $(UTILS_DIR)/shave_parenthesis.c $(UTILS_DIR)/strdup_versions.c $(UTILS_DIR)/gnl.c\
-	$(UTILS_DIR)/ft_strdup.c $(UTILS_DIR)/ft_strjoin.c $(UTILS_DIR)/ft_split.c
+	$(UTILS_DIR)/ft_strdup.c $(UTILS_DIR)/ft_strjoin.c $(UTILS_DIR)/ft_split.c $(UTILS_DIR)/handle_heredoc.c
 UTILS_O=$(patsubst %.c, %.o, $(UTILS_C))
 
 # tree control pack

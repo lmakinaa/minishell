@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 16:33:40 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 17:37:59 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdio.h> // if printf not used remove it
 # include <readline/readline.h>
 # include <readline/history.h>
+# include <fcntl.h>
 # include <sys/types.h>
 # include <dirent.h>
 # include "./allocation_manager.h"
@@ -108,6 +109,7 @@ t_lenv		*ft_initialise(t_memsession **session1, t_memsession **session2,
 void		end_sessions(t_memsession **s1, t_memsession **s2);
 int			is_sep(char c, char *seps);
 char		*expand_2(t_memsession *session, char *str);
+int			handle_heredoc(t_memsession *session, t_token *tok);
 
 //	tree control
 

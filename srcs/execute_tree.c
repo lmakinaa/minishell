@@ -6,40 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 16:33:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 20:26:42 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/minishell.h"
-
-/*
-* tok have the EOL word and returns -1 if fails
-*/
-int	heredoc_handle(t_memsession *session, t_token *tok)
-{
-	char	*file;
-	char	*line;
-	char	*eol;
-	int		fd;
-
-	fd = 0;
-	eol = custom_strjoin(session, tok->value, "\n");
-	file = NULL;
-	write(1, "# ", 2);
-	line = get_next_line(session, fd);
-	while (line)
-	{
-		if (!ft_strcmp(line, eol))
-			break ;
-		file = custom_strjoin(session, file, line);
-		del_from_session(session, line);
-		write(1, "# ", 2);
-		line = get_next_line(session, fd);
-	}
-	tok->value = file;
-	tok->type = T_STD_INPUT;
-	return (0);
-}
 
 /*
 * it focuses on redirections

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 17:31:32 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 17:58:30 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,19 @@ int	check_syntax(t_token *tok, int t, t_token *next)
 {
 	if (t == T_AND || t == T_OR || t == T_PIPE)
 	{
-		if (!next || next->type != T_PARENTHESIS_COMMAND
-			|| next->type != T_UNKNOWN || !is_redirector(*next))
+		if (!next || (next->type != T_PARENTHESIS_COMMAND
+			&& next->type != T_UNKNOWN && !is_redirector(*next)))
 			return (throw_error("near | or || or &&", 18, 1), -1);
 	}
-	else if (is_redirector(*tok))
+	else if (is_redirector(*tok) && t != T_HERDOC)
 	{
 		if (!next || next->type != T_UNKNOWN)
 			return (throw_error("near > or < or >>", 17, 1), -1);
 	}
 	else if (t == T_PARENTHESIS_COMMAND)
 	{
-		if (next && (next->type != T_AND ||
-			next->type != T_OR || next->type != T_PIPE))
+		if (next && (next->type != T_AND &&
+			next->type != T_OR && next->type != T_PIPE))
 			return (throw_error("near )", 6, 1), -1);
 	}
 	else if (t != T_AND || t != T_OR || t != T_PIPE)
@@ -44,11 +44,14 @@ int	more_tokenization(t_memsession *session, t_token **toks, int i)
 	int	res;
 
 	res = 0;
-	(void) session;
 	while (toks[++i])
 	{
-		//if (toks[i]->type == T_HERDOC)
-		//	res = handle_heredoc(session, toks[i]);
+		if (toks[i]->type == T_HERDOC)
+		{
+			if (!toks[i + 1] || toks[i + 1]->type != T_UNKNOWN)
+				return (-1);
+			res = handle_heredoc(session, toks[i + 1]);
+		}
 		res = check_syntax(toks[i], toks[i]->type, toks[i + 1]);
 		if (res == -1)
 			return (-1);

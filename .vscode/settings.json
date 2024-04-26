@@ -31,6 +31,7 @@
 		"typeinfo": "c",
 		"types.h": "c",
 		"unistd.h": "c",
-		"dirent.h": "c"
+		"dirent.h": "c",
+		"env_control.h": "c"
 	}
 }

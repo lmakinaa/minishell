@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 14:44:25 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 14:44:34 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 	res->args = NULL;
 	i = -1;
 	while (cmd[++i])
-	{
 		if (cmd[i]->type == T_UNKNOWN)
 		{
 			d = ft_split(session, cmd[i]->value, SEPERATORS);
@@ -107,7 +106,6 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 			while (*words)
 				res->args = append_arg(session, res->args, *(words++), 0);
 		}
-	}
 	parse_cmd_2(session, res, cmd);
 	return (res);
 }

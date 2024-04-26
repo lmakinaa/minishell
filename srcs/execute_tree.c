@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/25 22:33:57 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 13:17:10 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,18 +70,17 @@ int	tokenize_part2(t_token **cmd)
 int	tokenize_part3(t_token **cmd)
 {
 	int	i;
-	int	found;
 
 	i = -1;
-	found = 0;
 	while (cmd[++i])
 	{
-		if (cmd[i]->type == T_UNKNOWN && !found)
-		{
-			cmd[i]->type = T_CMD;
-			found = 1;
-		}
-		else if (found && cmd[i]->type == T_UNKNOWN)
+		//if (cmd[i]->type == T_UNKNOWN && !found)
+		//{
+		//	cmd[i]->type = T_CMD;
+		//	found = 1;
+		//}
+		//else 
+		if (cmd[i]->type == T_UNKNOWN)
 			cmd[i]->type = T_ARG;
 	}
 	return (0);
@@ -92,7 +91,7 @@ void print_command_elements(t_command *command)
 	char	buff[50];
 	int     bytes_read;
 
-	printf("Command: %s\n", command->cmd);
+	//printf("Command: %s\n", command->cmd);
 	printf("Arguments:\n");
 	for (int i = 0; command->args[i] != NULL; i++)
 		printf("%s\n", command->args[i]);

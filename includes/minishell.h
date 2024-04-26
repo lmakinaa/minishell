@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/25 22:33:42 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 13:16:46 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ typedef struct s_tree_node
 
 typedef struct s_mscommand
 {
-	char				*cmd;
+	//char				*cmd;
 	char				**args;
 	t_lenv				*env;
 	char				**output_files; // after parsing the redirectors in order

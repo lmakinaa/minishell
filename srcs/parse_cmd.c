@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 13:20:26 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 13:23:49 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ char	**append_arg(t_memsession *session, char **args, char *value, int cmd)
 	if (!args)
 	{
 		res = session_malloc(session, 2 * sizeof(char *), 0);
-		res[0] = get_exec(value);
+		res[0] = value;
 		res[1] = NULL;
 		return (res);
 	}
@@ -49,7 +49,7 @@ char	**append_arg(t_memsession *session, char **args, char *value, int cmd)
 	while (++j < i)
 		res[j] = args[j];
 	if (cmd)
-		res[j++] = get_exec(value);
+		res[j++] = value;
 	else
 		res[j++] = value;
 	res[j] = NULL;
@@ -110,8 +110,8 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 			d = ft_split(session, cmd[i]->value, SEPERATORS);
 			words = d->words;
 			j = -1;
-			while (words[++j])
-				res->args = append_arg(session, res->args, words[j], 0);
+			while (*words)
+				res->args = append_arg(session, res->args, *(words++), 0);
 		}
 	}
 	parse_cmd_2(session, res, cmd);

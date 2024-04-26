@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 13:17:10 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 13:29:20 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,8 @@ void print_command_elements(t_command *command)
 	int     bytes_read;
 
 	//printf("Command: %s\n", command->cmd);
+	if (!command->args)
+		return (puts("There is no args"), void_return());
 	printf("Arguments:\n");
 	for (int i = 0; command->args[i] != NULL; i++)
 		printf("%s\n", command->args[i]);

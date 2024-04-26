@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:15:11 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/25 22:35:54 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 13:35:47 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ char	*expand_wildcard(t_memsession *session, char *str)
 		entry = readdir(dir);
 	}
 	closedir(dir);
-	if (res == tmp)
+	if (!*res)
 		return (NULL);
 	return (res);
 }
@@ -96,6 +96,8 @@ char	*no_quotes(t_memsession *session, char *str)
 	{
 		if (*str == '\'' || *str == '"')
 			str++;
+		else if (*str == '*' && str++)
+			res = ft_joinchar(session, res, 127);
 		else
 			res = ft_joinchar(session, res, *(str++));
 	}
@@ -120,7 +122,7 @@ char	*expand_2(t_memsession *session, char *str)
 				res = ft_strjoin(session, res, z_strdup(session, &str, "\""));
 		}
 		else if (*str && *str == '*' && str++)
-			res = ft_joinchar(session, res, 127);
+			res = ft_joinchar(session, res, '*');
 		else if (*str)
 			res = ft_joinchar(session, res, *(str++));
 	}

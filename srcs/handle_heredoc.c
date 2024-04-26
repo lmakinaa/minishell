@@ -6,11 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:32:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 17:42:26 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 20:30:08 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../../includes/minishell.h"
+#include "./../includes/minishell.h"
 
 static int	free_line(char *ptr)
 {

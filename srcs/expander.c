@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 13:26:15 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 14:29:50 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ char	*expand_1(t_memsession *session, t_lenv *env, char *str)
 	tmp = str;
 	res = ft_strdup(session, "", 0);
 	while (*str)
-	{
 		if (*str == '\'')
 		{
 			res = ft_joinchar(session, res, *(str++));
@@ -59,9 +58,7 @@ char	*expand_1(t_memsession *session, t_lenv *env, char *str)
 		}
 		else if (*str)
 			res = ft_strjoin(session, res, var_expansion(session, env, &str));
-	}
-	del_from_session(session, tmp);
-	return (res);
+	return (del_from_session(session, tmp), res);
 }
 
 t_token	**split_append_again(t_memsession *session, t_token **cmds,
@@ -96,10 +93,8 @@ t_token	**split_append_again(t_memsession *session, t_token **cmds,
 int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 {
 	int		i;
-	t_token	**res;
 
 	i = -1;
-	res = NULL;
 	while (cmd[++i])
 	{
 		if (cmd[i]->type == T_UNKNOWN)

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 13:29:20 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 14:44:15 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,16 +73,8 @@ int	tokenize_part3(t_token **cmd)
 
 	i = -1;
 	while (cmd[++i])
-	{
-		//if (cmd[i]->type == T_UNKNOWN && !found)
-		//{
-		//	cmd[i]->type = T_CMD;
-		//	found = 1;
-		//}
-		//else 
 		if (cmd[i]->type == T_UNKNOWN)
 			cmd[i]->type = T_ARG;
-	}
 	return (0);
 }
 
@@ -92,20 +84,23 @@ void print_command_elements(t_command *command)
 	int     bytes_read;
 
 	//printf("Command: %s\n", command->cmd);
-	if (!command->args)
-		return (puts("There is no args"), void_return());
-	printf("Arguments:\n");
-	for (int i = 0; command->args[i] != NULL; i++)
-		printf("%s\n", command->args[i]);
+		printf("Arguments:\n");
+	if (command->args)
+	{
+		for (int i = 0; command->args[i] != NULL; i++)
+			printf("%s\n", command->args[i]);
+	}
 	printf("Output Files:\n");
 	if (command->output_files != NULL)
+	{
 		for (int i = 0; command->output_files[i] != NULL; i++)
 			printf("%s\n", command->output_files[i]);
+	}
 	printf("Output Redirection Type: %d\n", command->output_redir_type);
 	printf("Input File: %s\n", command->input_file);
+	printf("Standard Input:\n");
 	if (command->std_input == -1)
 		return ;
-	printf("Standard Input:\n%d\n", command->std_input);
 	buff[0] = '\0';
 	while ((bytes_read = read(command->std_input, buff, 49)) > 0)
     {
@@ -130,8 +125,6 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 		if (tokenize_part2(root->command) == -1)
 			return (-1);
 		expander(session, env, root->command);
-		if (tokenize_part3(root->command) == -1)
-			return (-1);
 		command = parse_cmd(session, env, root->command);
 		print_command_elements(command);
 	}

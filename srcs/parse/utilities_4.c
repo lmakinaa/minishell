@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 20:54:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 22:15:42 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,40 @@ char *get_exec(char *value)
 	}
 	if (!*res)
 		return (NULL);
+	return (res);
+}
+
+char	*get_env(t_lenv *env, char *name)
+{
+	t_env	*f_env;
+
+	if (!env->head)
+		return (NULL);
+	f_env = env->head;
+	while (f_env)
+	{
+		if (!ft_strcmp(f_env->name, name))
+			return (f_env->value);
+		f_env = f_env->next;
+	}
+	return (NULL);
+}
+
+char	*get_exit_status(t_memsession *session, t_lenv *env)
+{
+	char	*res;
+	int		code;
+	int		i;
+	
+	res = session_malloc(session, 4 * sizeof(char), 0);
+	code = env->exit_status;
+	i = 0;
+	while (code / 10)
+	{
+		res[i++] = (code % 10) + '0';
+		code /= 10;
+	}
+	res[i] = code + '0';
+	res[i+1] = '\0';
 	return (res);
 }

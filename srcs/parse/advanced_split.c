@@ -6,11 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 20:30:04 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 20:54:41 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/minishell.h"
+#include "./../../includes/minishell.h"
 
 int	check_syntax(t_token *tok, int t, t_token *next)
 {

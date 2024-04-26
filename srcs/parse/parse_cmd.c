@@ -6,11 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 20:47:46 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 20:54:41 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/minishell.h"
+#include "./../../includes/minishell.h"
 
 char	**append_arg(t_memsession *session, char **args, char *value, int cmd)
 {

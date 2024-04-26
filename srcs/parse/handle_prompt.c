@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./../includes/minishell.h"
+#include "./../../includes/minishell.h"
 
 void	handle_prompt(t_memsession *heap_session, t_lenv *env, char *prompt)
 {

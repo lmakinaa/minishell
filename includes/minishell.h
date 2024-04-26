@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 17:37:59 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 20:49:42 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,6 +110,10 @@ void		end_sessions(t_memsession **s1, t_memsession **s2);
 int			is_sep(char c, char *seps);
 char		*expand_2(t_memsession *session, char *str);
 int			handle_heredoc(t_memsession *session, t_token *tok);
+char		*no_quotes(t_memsession *session, char *str);
+int			tokenize_part2(t_token **cmd);
+void 		print_command_elements(t_command *command);
+char		*expand_wildcard(t_memsession *session, char *str);
 
 //	tree control
 

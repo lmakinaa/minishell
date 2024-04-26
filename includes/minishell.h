@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 20:49:42 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/26 20:53:20 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ typedef struct s_mscommand
 	int					std_input;	// the here-doc entry (<<)
 }			t_command;
 
+//	execution
+
+//	parse
 void		handle_prompt(t_memsession *heap_session, t_lenv *env, char *command);
 t_token		**tokenization(t_memsession *session, t_splitdata *splited_cmd);
 void		print_tokens(t_token **tokens);
@@ -92,7 +95,6 @@ int			expander(t_memsession *session, t_lenv *env, t_token **cmd);
 t_command 	*parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd);
 
 //	utilities
-
 int			what_ops(char *str);
 int			is_builtin(char *str);
 int			get_token_type(char *str);
@@ -116,7 +118,6 @@ void 		print_command_elements(t_command *command);
 char		*expand_wildcard(t_memsession *session, char *str);
 
 //	tree control
-
 t_tnode		*create_node(t_memsession *session, int op,
 				t_token *token, t_token ***tokens);
 t_tnode		*build_tree(t_memsession *session, t_token ***tokens,

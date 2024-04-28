@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 13:48:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/28 14:57:46 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/28 15:02:12 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ char	*get_name(t_memsession *session, char *str)
 	while (str[i])
 	{
 		if (str[i] == '=')
-			return (ft_strdup(session, str, i));
+			return (ft_strdup(session, str, i - 1));
 		i++;
 	}
 	return (ft_strdup(session, str, ft_strlen(str)));

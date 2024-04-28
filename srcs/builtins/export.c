@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 13:48:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/28 14:40:59 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/28 14:57:46 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	dump_list(t_lenv *env)
 		if (list->value != NULL && (ft_strcmp(list->name, "_") != 0))
 		{
 			write(1, "declare -x ", 11) && write(1, list->name, ft_strlen(list->name))
-				&& write(1, "=\"", 1);
+				&& write(1, "=\"", 2);
 			i = 0;
 			while ((list->value)[i])
 			{
@@ -96,7 +96,7 @@ char	*get_value(t_memsession *session, char *str)
 	return (NULL);
 }
 
-int	b_export(t_memsession *env_session, t_lenv *env, char **argv)
+int	b_export(t_lenv *env, char **argv)
 {
 	int		i;
 	int		exit_s;
@@ -112,8 +112,8 @@ int	b_export(t_memsession *env_session, t_lenv *env, char **argv)
 			exit_s = dump_err(argv[i]);
 		else
 		{
-			key = get_name(env_session, argv[i]);
-			add_env(env_session, env, key, get_value(env_session, argv[i]));
+			key = get_name(env->session, argv[i]);
+			add_env(env->session, env, key, get_value(env->session, argv[i]));
 		}
 		i++;
 	}

@@ -1,54 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   echo.c                                             :+:      :+:    :+:   */
+/*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/26 22:18:50 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/28 14:53:30 by ijaija           ###   ########.fr       */
+/*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
+/*   Updated: 2024/04/28 14:52:20 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-static int	check_option(char *s)
+void	exec_builtin(t_command *command)
 {
-	int	i;
-
-	i = 0;
-	if (s[0] != '-')
-		return (0);
-	i++;
-	while (s[i])
-	{
-		if (s[i] != 'n')
-			return (0);
-		i++;
-	}
-	return (1);
+	if (!ft_strcmp(command->args[0], "echo"))
+		b_echo(command->args);
+	else if (!ft_strcmp(command->args[0], "pwd"))
+		b_pwd();
+	else if (!ft_strcmp(command->args[0], "export"))
+		b_export(command->env, command->args);
 }
 
-int	b_echo(char **args)
+int	execute_command(t_command *command)
 {
-	int	i;
-	int	option;
-
-	i = 1;
-	option = 0;
-	while (args[i] && check_option(args[i]) == 1)
-	{
-		option = 1;
-		i++;
-	}
-	while (args[i])
-	{
-		write(1, args[i], ft_strlen(args[i]));
-		if (args[i + 1])
-			write(1, " ", 1);
-		i++;
-	}
-	if (option == 0)
-		write(1, "\n", 1);
+	if (is_builtin(command->args[0]))
+		exec_builtin(command);
 	return (0);
 }

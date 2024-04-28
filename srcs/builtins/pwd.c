@@ -6,13 +6,13 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 22:19:01 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/27 00:32:04 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/28 14:49:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-int	pwd(void)
+int	b_pwd(void)
 {
 	char	*cwd;
 

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/28 14:42:51 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/28 14:51:25 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,11 +87,12 @@ typedef struct s_mscommand
 
 //	execution
 int			execute_tree(t_memsession *session, t_lenv *env, t_tnode *root);
+int			execute_command(t_command *command);
 
 //	builtins
-int			b_export(t_memsession *env_session, t_lenv *env, char **argv);
+int			b_export(t_lenv *env, char **argv);
 int			b_echo(char **args);
-int			pwd(void);
+int			b_pwd(void);
 
 
 //	parse

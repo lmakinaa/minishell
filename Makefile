@@ -16,6 +16,11 @@ EXEC_DIR=$(SRC_DIR)/execution
 EXEC_C=$(EXEC_DIR)/execute_tree.c
 EXEC_O=$(patsubst %.c, %.o, $(EXEC_C))
 
+# Builtins pack
+BUILTINS_DIR=$(SRC_DIR)/builtins
+BUILTINS_C=$(BUILTINS_DIR)/echo.c $(BUILTINS_DIR)/export.c $(BUILTINS_DIR)/pwd.c
+BUILTINS_O=$(patsubst %.c, %.o, $(BUILTINS_C))
+
 # Allocation manager pack
 ALLOC_MANAGER_DIR=$(SRC_DIR)/allocation_manager
 ALLOC_MANAGER_C=$(ALLOC_MANAGER_DIR)/exit_on_error.c $(ALLOC_MANAGER_DIR)/reset_session.c $(ALLOC_MANAGER_DIR)/add_to_session.c\

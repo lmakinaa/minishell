@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:23:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 22:15:28 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/28 14:32:23 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ t_lenv	*envs_init(t_memsession *session, char **envp)
 	return (res);
 }
 
-t_env *create_env(t_memsession *session, char *name, char *value)
+t_env *create_env(t_memsession *session, t_lenv *env, char *name, char *value)
 {
 	t_env *res;
 
@@ -42,22 +42,33 @@ t_env *create_env(t_memsession *session, char *name, char *value)
 	res->name = name;
 	res->value = value;
 	res->next = NULL;
+	if (!env->head)
+	{
+		env->head = res;
+		env->tail = res;
+		return (res);
+	}
+	env->tail->next = res;
+	env->tail = res;
 	return (res);
 }
 
 void add_env(t_memsession *session, t_lenv *envs, char *name, char *value)
 {
-	t_env	*node;
-	
-	node = create_env(session, name, value);
-	if (!envs->head)
+	t_env	*head;
+
+	head = envs->head;
+	while (head)
 	{
-		envs->head = node;
-		envs->tail = node;
-		return ;
+		if (!ft_strcmp(name, head->name))
+		{
+			if (value)
+				head->value = value;
+			return ;
+		}
+		head = head->next;	
 	}
-	envs->tail->next = node;
-	envs->tail = node;
+	create_env(session, envs, name, value);
 }
 
 static void	del_node(t_memsession *session, t_env *node)

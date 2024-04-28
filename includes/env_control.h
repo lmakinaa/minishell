@@ -18,7 +18,7 @@ typedef struct	s_list{
 }				t_lenv;
 
 t_lenv	*envs_init(t_memsession *session, char **envp);
-t_env 	*create_env(t_memsession *session, char *name, char *value);
+t_env 	*create_env(t_memsession *session, t_lenv *env, char *name, char *value);
 void 	add_env(t_memsession *session, t_lenv *envs, char *name, char *value);
 void 	remove_env(t_memsession *session, t_lenv *envs, char *name);
 char	*get_env(t_lenv *env, char *name);

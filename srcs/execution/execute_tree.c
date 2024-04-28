@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 21:05:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/04/28 14:43:45 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 		if (expander(session, env, root->command) == -1)
 			return (-1);
 		command = parse_cmd(session, env, root->command);
-		//execute_command(command);
-		print_command_elements(command);
+		execute_command(command);
+		//print_command_elements(command);
 	}
 	return (0);
 }

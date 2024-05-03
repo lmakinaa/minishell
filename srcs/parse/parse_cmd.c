@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_cmd.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmakina <lmakina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 22:47:56 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/03 23:07:05 by lmakina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,7 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 	res->env = env;
 	res->session = session;
 	res->args = NULL;
+	res->argc = 0;
 	i = -1;
 	while (cmd[++i])
 		if (cmd[i]->type == T_UNKNOWN)
@@ -88,7 +89,7 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 			d = ft_split(session, cmd[i]->value, SEPERATORS);
 			words = d->words;
 			j = -1;
-			while (*words)
+			while (*words && res->argc++)
 				res->args = append_arg(session, res->args,
 					no_quotes(session, *(words++), 0), 0);
 		}

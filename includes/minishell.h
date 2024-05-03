@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmakina <lmakina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/28 14:51:25 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/03 23:13:38 by lmakina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ typedef struct s_mscommand
 {
 	//char				*cmd;
 	char				**args;
+	int					argc;
 	char				**output_files; // after parsing the redirectors in order
 	int					output_redir_type; // is it replace (>) or append (>>), don't mind if output_files == NULL
 	char				*input_file; // after parsing the input redir (<)

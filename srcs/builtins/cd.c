@@ -3,46 +3,46 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmakina <lmakina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 22:18:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/28 15:12:49 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/03 23:18:34 by lmakina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-static int	ft_cd_home(void)
+static int	go_home(t_lenv *env)
 {
 	char	*home;
 
-	ft_update_envlst("OLDPWD", ft_get_envlst_val("PWD"), false);
-	home = ft_get_envlst_val("HOME");
+	add_env(env->session, env, "OLDPWD", get_env(env, "PWD"));
+	home = get_env(env, "HOME");
 	if (!home)
-		return (ft_putstr_fd("minishell: cd: HOME not set\n", 2), 1);
-	if (chdir(home) == ENO_SUCCESS)
-		return (ft_update_envlst("PWD", home, false), 0);
+		return (throw_error("cd: HOME not set", 16), 1);
+	if (chdir(home) == 0)
+		return (add_env(env->session, env, "PWD", home), 0);
 	return (1);
 }
 
-static int	ft_cd_err_msg(char *err_msg)
+static int	dump_err(char *arg)
 {
-	ft_putstr_fd("minishell: cd: `", 2);
-	ft_putstr_fd(err_msg, 2);
-	ft_putstr_fd("': No such file or directory\n", 2);
+	write(2, "minishell: cd: `", 16);
+	write(2, arg, ft_strlen(p));
+	write(2, "': No such file or directory\n", 29);
 	return (1);
 }
 
-int	ft_cd(char *path)
+int	ft_cd(t_command *command)
 {
 	char	*cwd;
-	
+
 	cwd = getcwd(NULL, 0);
-	if (!path)
-		return (ft_cd_home());
-	if (chdir(path) != 0)
-		return (ft_cd_err_msg(path));
-	ft_update_envlst("OLDPWD", ft_get_envlst_val("PWD"), false);
+	if (argc != 2)
+		return (go_home(command->env));
+	if (chdir(command->args[1]) != 0)
+		return (dump_err(command->args[1]));
+	add_env(command->env->session, command->env, "OLDPWD", get_env(command->env, "PWD"));
 	add_env(command->env->session, command->env, "PWD", cwd);
 	return (0);
 }

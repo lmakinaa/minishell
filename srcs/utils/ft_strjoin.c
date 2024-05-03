@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmakina <lmakina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:28:10 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/22 13:40:59 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/03 23:20:19 by lmakina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,10 @@ char	*ft_joinchar(t_memsession *session, char *s1, char c)
 	size_t	size;
 	char	*res;
 	size_t	i;
-	size_t	j;
 
 	size = ft_strlen(s1) + 1;
 	res = session_malloc(session, (size + 1) * sizeof(char), 0);
 	i = 0;
-	j = 0;
 	while (i < size && s1[i])
 	{
 		res[i] = s1[i];

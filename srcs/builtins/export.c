@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmakina <lmakina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 13:48:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/28 15:02:12 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/03 23:17:00 by lmakina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	dump_err(char *name)
 {
 	write(2, "minishell: export: `", 20);
-	write(2, name,ft_strlen(name));
+	write(2, name, ft_strlen(name));
 	write(2, "': not a valid env name\n", 24);
 	return (1);
 }

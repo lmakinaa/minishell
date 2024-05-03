@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmakina <lmakina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 20:57:01 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/03 22:50:43 by lmakina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv, char **envp)
 
 	env = ft_initialise(&main_session, &env_session, argc, argv, envp);
 	//envs_display(env);
-	// 79 -- 8:45
+	// 36 -- 10:50
 	while (1)
 	{
 		command = readline(PROMPT_TEXT);

@@ -6,7 +6,7 @@
 /*   By: lmakina <lmakina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/03 23:07:05 by lmakina          ###   ########.fr       */
+/*   Updated: 2024/05/03 23:19:59 by lmakina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,6 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 	t_splitdata	*d;
 	char		**words;
 	int			i;
-	int			j;
 
 	res = session_malloc(session, sizeof(t_command), 0);
 	res->env = env;
@@ -88,7 +87,6 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 		{
 			d = ft_split(session, cmd[i]->value, SEPERATORS);
 			words = d->words;
-			j = -1;
 			while (*words && res->argc++)
 				res->args = append_arg(session, res->args,
 					no_quotes(session, *(words++), 0), 0);

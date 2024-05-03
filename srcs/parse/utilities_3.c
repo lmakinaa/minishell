@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities_3.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmakina <lmakina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:52:57 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 20:54:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/03 23:19:40 by lmakina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,17 +38,13 @@ int	are_parenthesis_closed(char *s)
 int	are_quotes_closed(char *s)
 {
 	int		i;
-	int		open;
 	char	tmp;
 
 	i = -1;
-	open = 0;
 	while (s[++i])
 	{
-		open = 0;
 		if (s[i] == '\'' || s[i] == '"')
 		{
-			open = 1;
 			tmp = s[i++];
 			while (s[i] && s[i] != tmp)
 				i++;

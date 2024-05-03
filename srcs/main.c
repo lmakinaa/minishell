@@ -26,6 +26,7 @@ int	main(int argc, char **argv, char **envp)
 
 	env = ft_initialise(&main_session, &env_session, argc, argv, envp);
 	//envs_display(env);
+	// 79 -- 8:45
 	while (1)
 	{
 		command = readline(PROMPT_TEXT);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lmakina <lmakina@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 22:18:50 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/28 14:53:30 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/03 21:23:51 by lmakina          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,9 @@ static int	check_option(char *s)
 	i = 0;
 	if (s[0] != '-')
 		return (0);
-	i++;
-	while (s[i])
-	{
+	while (s[++i])
 		if (s[i] != 'n')
 			return (0);
-		i++;
-	}
 	return (1);
 }
 

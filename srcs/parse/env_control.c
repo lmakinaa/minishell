@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:23:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/28 14:47:01 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 18:39:31 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_lenv	*envs_init(t_memsession *session, char **envp)
 	res = session_malloc(session, sizeof(t_lenv), 0);
 	res->head = NULL;
 	res->tail = NULL;
+	res->count = 0;
 	res->session = session;
 	res->exit_status = 0;
 	i = -1;
@@ -31,6 +32,7 @@ t_lenv	*envs_init(t_memsession *session, char **envp)
 		(envp[i])++;
 		value = z_strdup(session, &envp[i], "\0");
 		add_env(session, res, name, value);
+		res->count++;
 	}
 	return (res);
 }
@@ -92,7 +94,7 @@ void remove_env(t_memsession *session, t_lenv *envs, char *name)
 		if (!envs->head->next)
 			envs->tail = NULL;
 		envs->head = NULL;
-		return(del_node(session, f_env));
+		return(envs->count--, del_node(session, f_env));
 	}
 	while (f_env->next)
 	{
@@ -100,45 +102,10 @@ void remove_env(t_memsession *session, t_lenv *envs, char *name)
 		{
 			tmp = f_env->next->next;
 			del_node(session, f_env->next);
+			envs->count--;
 			f_env->next = tmp;
 			return ;
 		}
 		f_env = f_env->next;
 	}
-}
-
-// to remove
-void envs_display(t_lenv *list)
-{
-	t_env	*after_head;
-	int		i;
-
-	if (!list)
-	{
-		printf("The list is empty!\n");
-		return ;
-	}
-	if (!list->head)
-	{
-		printf("The list have no head!\n");
-		return ;
-	}
-	if (!list->tail)
-	{
-		printf("The list have no tail!\n");
-		return ;
-	}
-	printf("The head's content-->[%s=%s]\n", list->head->name, list->head->value);
-	after_head = list->head->next;
-	i = 2;
-	if (after_head)
-	{
-		while (after_head->next)
-		{
-			printf("[%d]-->[%s=%s]\n", i, after_head->name, after_head->value);
-			after_head = after_head->next;
-			i++;
-		}
-	}
-	printf("The tail's content-->[%s=%s]\n", list->tail->name, list->tail->value);
 }

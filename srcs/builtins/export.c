@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 13:48:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 11:10:04 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 18:52:28 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,42 +25,33 @@ static void	dump_list(t_lenv *env)
 	t_env	*list;
 	size_t	i;
 
-	list = env->head;
-	while (list)
+	sort_env(env);
+	int		j = -1;
+	while (++j < env->count)
 	{
-		if (list->value != NULL && (ft_strcmp(list->name, "_") != 0))
+		list = env->head;
+		while (list)
 		{
-			(void) (write(1, "declare -x ", 11)
-				&& write(1, list->name, ft_strlen(list->name)) && write(1, "=\"", 2));
-			i = 0;
-			while ((list->value)[i])
+			if (list->index == j && list->value && ft_strcmp(list->name, "_"))
 			{
-				if ((list->value[i] == '$' || list->value[i] == '"') && write(1, "\\", 1))
-					write(1, &list->value[i++], 1);
-				else
-					write(1, &list->value[i++], 1);
+				(void) (write(1, "declare -x ", 11)
+					&& write(1, list->name, ft_strlen(list->name)) && write(1, "=\"", 2));
+				i = 0;
+				while ((list->value)[i])
+				{
+					if ((list->value[i] == '$' || list->value[i] == '"') && write(1, "\\", 1))
+						write(1, &list->value[i++], 1);
+					else
+						write(1, &list->value[i++], 1);
+				}
+				write(1, "\"\n", 2);
 			}
-			 write(1, "\"\n", 2);
+			else if (list->index == j && !list->value && ft_strcmp(list->name, "_"))
+				(void) (write(1, "declare -x ", 11) && write(1, list->name, ft_strlen(list->name))
+					&& write(1, "\n", 1));
+			list = list->next;
 		}
-		else if (list->value == NULL && (ft_strcmp(list->name, "_") != 0))
-			(void) (write(1, "declare -x ", 11) && write(1, list->name, ft_strlen(list->name))
-				&& write(1, "\n", 1));
-		list = list->next;
 	}
-}
-
-char	*get_name(t_memsession *session, char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '=')
-			return (ft_strdup(session, str, i - 1));
-		i++;
-	}
-	return (ft_strdup(session, str, ft_strlen(str)));
 }
 
 int	check_identifier(char *str)
@@ -77,23 +68,6 @@ int	check_identifier(char *str)
 		i++;
 	}
 	return (1);
-}
-
-char	*get_value(t_memsession *session, char *str)
-{
-	size_t	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '=')
-		{
-			i++;
-			return (ft_strdup(session, str + i, ft_strlen(str) - i));
-		}
-		i++;
-	}
-	return (NULL);
 }
 
 int	b_export(t_lenv *env, char **argv)

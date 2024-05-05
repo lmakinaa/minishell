@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:11 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 17:23:39 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 17:54:34 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,5 @@ int	ft_strcmp(char *str, char *compared_to)
 	i = 0;
 	while (str[i] && compared_to[i] && str[i] == compared_to[i])
 		i++;
-	if (str[i] == compared_to[i])
-		return (0);
-	return (1);
+	return (str[i] - compared_to[i]);
 }

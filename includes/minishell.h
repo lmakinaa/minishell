@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 10:59:22 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 11:01:11 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ int			execute_command(t_command *command);
 int			b_export(t_lenv *env, char **argv);
 int			b_echo(char **args);
 int			b_pwd(void);
+int			b_cd(t_command *command);
 
 
 //	parse

@@ -18,7 +18,7 @@ EXEC_O=$(patsubst %.c, %.o, $(EXEC_C))
 
 # Builtins pack
 BUILTINS_DIR=$(SRC_DIR)/builtins
-BUILTINS_C=$(BUILTINS_DIR)/echo.c $(BUILTINS_DIR)/export.c $(BUILTINS_DIR)/pwd.c
+BUILTINS_C=$(BUILTINS_DIR)/echo.c $(BUILTINS_DIR)/export.c $(BUILTINS_DIR)/pwd.c $(BUILTINS_DIR)/cd.c
 BUILTINS_O=$(patsubst %.c, %.o, $(BUILTINS_C))
 
 # Allocation manager pack

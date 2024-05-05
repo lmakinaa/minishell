@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 22:18:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 11:00:12 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 11:01:03 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	dump_err(char *arg)
 	return (1);
 }
 
-int	ft_cd(t_command *command)
+int	b_cd(t_command *command)
 {
 	char	*cwd;
 

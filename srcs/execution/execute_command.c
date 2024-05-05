@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 11:05:42 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 11:09:24 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	exec_builtin(t_command *command)
 
 int	execute_command(t_command *command)
 {
-	//printf("%p\n", command->args);
 	if (is_builtin(command->args[0]))
 		exec_builtin(command);
 	return (0);

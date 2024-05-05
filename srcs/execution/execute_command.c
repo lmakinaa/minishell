@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 11:09:24 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 11:14:37 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ void	exec_builtin(t_command *command)
 		b_export(command->env, command->args);
 	else if (!ft_strcmp(command->args[0], "cd"))
 		b_cd(command);
+	else if (!ft_strcmp(command->args[0], "env"))
+		b_env(command);
 }
 
 int	execute_command(t_command *command)

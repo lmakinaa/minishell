@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:19:49 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 18:31:49 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 19:04:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,5 @@ void	sort_env(t_lenv *env)
 	i = -1;
 	while (arr[++i])
 		arr[i]->index = i;
+	del_from_session(env->session, arr);
 }

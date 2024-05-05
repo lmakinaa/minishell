@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:19:49 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 19:04:54 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 19:23:46 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,13 @@ t_env	**to_arr(t_lenv *env)
 	
 	res = session_malloc(env->session,
 		(env->count + 1) * sizeof(t_env *), 0);
-	i = -1;
+	i = 0;
 	head = env->head;
-	while (++i < env->count)
+	while (head)
 	{
 		res[i] = head;
 		head = head->next;
+		i++;
 	}
 	res[i] = NULL;
 	return (res);

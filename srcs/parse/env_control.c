@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:23:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 19:18:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 19:27:27 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ t_env *create_env(t_memsession *session, t_lenv *env, char *name, char *value)
 	}
 	env->tail->next = res;
 	env->tail = res;
-	env->count++;
 	return (res);
 }
 
@@ -73,6 +72,7 @@ void add_env(t_memsession *session, t_lenv *envs, char *name, char *value)
 		head = head->next;	
 	}
 	create_env(session, envs, name, value);
+	envs->count++;
 }
 
 static void	del_node(t_memsession *session, t_env *node)

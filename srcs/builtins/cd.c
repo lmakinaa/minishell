@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lmakina <lmakina@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 22:18:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/03 23:18:34 by lmakina          ###   ########.fr       */
+/*   Updated: 2024/05/05 11:00:12 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	go_home(t_lenv *env)
 	add_env(env->session, env, "OLDPWD", get_env(env, "PWD"));
 	home = get_env(env, "HOME");
 	if (!home)
-		return (throw_error("cd: HOME not set", 16), 1);
+		return (throw_error("cd: HOME not set", 16, 0), 1);
 	if (chdir(home) == 0)
 		return (add_env(env->session, env, "PWD", home), 0);
 	return (1);
@@ -28,7 +28,7 @@ static int	go_home(t_lenv *env)
 static int	dump_err(char *arg)
 {
 	write(2, "minishell: cd: `", 16);
-	write(2, arg, ft_strlen(p));
+	write(2, arg, ft_strlen(arg));
 	write(2, "': No such file or directory\n", 29);
 	return (1);
 }
@@ -38,7 +38,7 @@ int	ft_cd(t_command *command)
 	char	*cwd;
 
 	cwd = getcwd(NULL, 0);
-	if (argc != 2)
+	if (command->argc != 2)
 		return (go_home(command->env));
 	if (chdir(command->args[1]) != 0)
 		return (dump_err(command->args[1]));

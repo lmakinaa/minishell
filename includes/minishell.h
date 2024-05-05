@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 11:14:46 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 12:51:51 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,7 @@ int			b_echo(char **args);
 int			b_pwd(void);
 int			b_cd(t_command *command);
 int			b_env(t_command *command);
+int			b_unset(t_command *command);
 
 
 //	parse
@@ -107,6 +108,8 @@ int			expander(t_memsession *session, t_lenv *env, t_token **cmd);
 t_command 	*parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd);
 
 //	utilities
+int			check_identifier(char *str);
+char		*get_name(t_memsession *session, char *str);
 int			what_ops(char *str);
 int			is_builtin(char *str);
 int			get_token_type(char *str);

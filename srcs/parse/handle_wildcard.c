@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:15:11 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 22:57:15 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/05 23:45:53 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,7 @@ char	*no_quotes(t_memsession *session, char *str, int flag)
 				res = ft_strjoin(session, res, z_strdup(session, &str, "'"));
 			else if (*str && *str == '"' && str++)
 				res = ft_strjoin(session, res, z_strdup(session, &str, "\""));
+			str++;
 		}
 		else if (*str == '*' && flag && str++)
 			res = ft_joinchar(session, res, 127);

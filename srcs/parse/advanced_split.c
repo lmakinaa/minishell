@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 19:03:52 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 19:28:36 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	check_syntax(t_token *tok, int t, t_token *next)
 {
 	if (t == T_AND || t == T_OR || t == T_PIPE)
 	{
-		if (!next || (next->type != T_PARENTHESIS_COMMAND
+		if (!tok->order || !next || (next->type != T_PARENTHESIS_COMMAND
 			&& next->type != T_UNKNOWN && !is_redirector(*next)))
 			return (throw_error(SYNTAX_ERR, tok->value, SYNTAX_ERR_LEN, 1), -1);
 	}
@@ -73,6 +73,7 @@ t_token	**tokenization(t_memsession *session, t_splitdata *splited_cmd)
 	while (++i < splited_cmd->word_count)
 	{
 		toks[i] = session_malloc(session, sizeof(t_token), 0);
+		toks[i]->order = i;
 		toks[i]->tokens_nbr = splited_cmd->word_count;
 		toks[i]->type = get_token_type(splited_cmd->words[i]);
 		toks[i]->value = splited_cmd->words[i];

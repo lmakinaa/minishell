@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 18:47:13 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:52:20 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@
 # define PROMPT_TEXT "\033[0;32m$> \033[0m"
 # define SEPERATORS " \t\n"
 # define BUFFER_SIZE 10
+# define SYNTAX_ERR "near unexpected token"
+# define SYNTAX_ERR_LEN 21
 
 // Token types
 // todo: change this shit into enum

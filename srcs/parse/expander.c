@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 18:32:00 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:44:05 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 		}
 		if (cmd[i]->type == T_INPUT_FILE || cmd[i]->type == T_OUTPUT_FILE)
 			if (ft_countword(cmd[i]->value, SEPERATORS) > 1)
-				return (throw_error("ambiguous redirect", 18, 0), -1);
+				return (throw_error("ambiguous redirect", 0, 18, 0), -1);
 	}
 	return (0);
 }

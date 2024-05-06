@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:43:23 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 11:10:28 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:47:01 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,14 @@ int	new_sep_check(char *c, char *seps)
 	return (0);
 }
 
-void	throw_error(char *error, int len, int syntax)
+void	throw_error(char *error, char *arg, int len, int syntax)
 {
 	write(2, "minishell: ", 11);
 	if (syntax)
 		write(2, "syntax error ", 13);
 	write(2, error, len);
+	if (arg)
+		(1) && (write(2, " ", 1), write(2, arg, ft_strlen(arg)));
 	write(2, "\n", 1);
 }
 

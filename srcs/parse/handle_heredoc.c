@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:32:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 20:54:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 19:36:46 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ int	handle_heredoc(t_memsession *session, t_token *tok)
 		line = readline("# ");
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
-		if (!ft_strcmp(line, eol) && free_line(line))
+		if (!ft_strcmp(line, no_quotes(session, eol, 0)) && free_line(line))
 			break;
 		free(line);
 	}

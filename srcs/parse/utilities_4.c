@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 18:45:37 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 19:13:12 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ int	tokenize_part2(t_token **cmd)
 		if (cmd[i]->type == T_OUT_REDIR || cmd[i]->type == T_APPEND_REDIR)
 		{
 			if (!cmd[i + 1] || !is_word(cmd[i + 1]))
-				return (throw_error("near > or >>", 0, 12, 1), -1);
+				return (throw_error(SYNTAX_ERR, cmd[i]->value, 21, 1), -1);
 			cmd[i + 1]->type = T_OUTPUT_FILE;
 		}
 		else if (cmd[i]->type == T_INPUT_REDIRECTOR)
 		{
 			if (!cmd[i + 1] || !is_word(cmd[i + 1]))
-				return (throw_error("near <", 0, 6, 1), -1);
+				return (throw_error(SYNTAX_ERR, "<", 21, 1), -1);
 			cmd[i + 1]->type = T_INPUT_FILE;
 		}
 	}

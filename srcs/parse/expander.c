@@ -6,13 +6,13 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 23:28:18 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 17:59:32 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-char	*var_expansion(t_memsession *session, t_lenv *env, char **str)
+char	*var_expansion(t_memsession *session, t_lenv *env, char **str, int f)
 {
 	char	*new_value;
 	char	*var;
@@ -29,6 +29,8 @@ char	*var_expansion(t_memsession *session, t_lenv *env, char **str)
 			else if (*((*str) + 1) && *((*str) + 1) != '$' && (*str)++)
 			{
 				var = get_env(env, var_name_strdup(session, str));
+				if (f && !var)
+					new_value = ft_joinchar(session, new_value, '$');
 				new_value = ft_strjoin(session, new_value, var);
 			}
 			else if (**str && **str != '"')
@@ -82,11 +84,11 @@ char	*expand_1(t_memsession *session, t_lenv *env, char *str)
 		else if (*str == '"')
 		{
 			res = ft_joinchar(session, res, *(str++));
-			res = ft_strjoin(session, res, var_expansion(session, env, &str));
+			res = ft_strjoin(session, res, var_expansion(session, env, &str, 1));
 			res = ft_joinchar(session, res, *(str++));
 		}
 		else if (*str)
-			res = ft_strjoin(session, res, var_expansion(session, env, &str));
+			res = ft_strjoin(session, res, var_expansion(session, env, &str, 0));
 	return (del_from_session(session, tmp), res);
 }
 

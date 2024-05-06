@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 18:52:20 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 19:27:16 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 typedef struct s_mstoken
 {
 	char				*value;
+	int					order;
 	int					type;
 	int					tokens_nbr;
 	int					command;

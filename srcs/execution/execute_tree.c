@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 22:09:20 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 15:23:44 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,6 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 	}
 	return (0);
 }
-// ""*""
+
 // $""PWD
 // $''PWD
-// "$""PWD"
-// "$""PWD"
-// any""''
-// "$"PWD

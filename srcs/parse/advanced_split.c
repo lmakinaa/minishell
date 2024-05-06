@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 20:54:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:43:57 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,23 +18,23 @@ int	check_syntax(t_token *tok, int t, t_token *next)
 	{
 		if (!next || (next->type != T_PARENTHESIS_COMMAND
 			&& next->type != T_UNKNOWN && !is_redirector(*next)))
-			return (throw_error("near | or || or &&", 18, 1), -1);
+			return (throw_error("near | or || or &&", 0, 18, 1), -1);
 	}
 	else if (is_redirector(*tok) && t != T_HERDOC)
 	{
 		if (!next || next->type != T_UNKNOWN)
-			return (throw_error("near > or < or >>", 17, 1), -1);
+			return (throw_error("near > or < or >>", 0, 17, 1), -1);
 	}
 	else if (t == T_PARENTHESIS_COMMAND)
 	{
 		if (next && (next->type != T_AND &&
 			next->type != T_OR && next->type != T_PIPE))
-			return (throw_error("near )", 6, 1), -1);
+			return (throw_error("near )", 0, 6, 1), -1);
 	}
 	else if (t != T_AND || t != T_OR || t != T_PIPE)
 	{
 		if (next && next->type == T_PARENTHESIS_COMMAND)
-			return (throw_error("near (", 6, 1), -1);
+			return (throw_error("near (", 0, 6, 1), -1);
 	}
 	return (0);
 }

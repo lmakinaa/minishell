@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:52:57 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 11:15:31 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:45:29 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,10 @@ int	are_parenthesis_closed(char *s)
 		else if (s[i] == ')')
 			close++;
 		if (close > open)
-			return (throw_error("related to parenthesis", 22, 1), 1);
+			return (throw_error("related to parenthesis", 0, 22, 1), 1);
 	}
 	if (close != open)
-		return (throw_error("related to parenthesis", 22, 1), 1);
+		return (throw_error("related to parenthesis", 0, 22, 1), 1);
 	return (0);
 }
 
@@ -49,7 +49,7 @@ int	are_quotes_closed(char *s)
 			while (s[i] && s[i] != tmp)
 				i++;
 			if (!s[i])
-				return (throw_error("related to quotes", 17, 1), 1);
+				return (throw_error("related to quotes", 0, 17, 1), 1);
 		}
 	}
 	return (0);

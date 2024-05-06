@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 18:14:58 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:47:13 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int			is_redirector(t_token tok);
 int			get_precedence(t_token *token);
 void		void_return(void);
 int			is_word(t_token	*tok);
-void		throw_error(char *error, int len, int syntax);
+void		throw_error(char *error, char *arg, int len, int syntax);
 int			are_quotes_closed(char *s);
 int			are_parenthesis_closed(char *s);
 char		*z_strdup(t_memsession *session, char **str, char *seps);

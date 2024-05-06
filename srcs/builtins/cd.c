@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 22:18:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 11:01:03 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:43:28 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static int	go_home(t_lenv *env)
 	add_env(env->session, env, "OLDPWD", get_env(env, "PWD"));
 	home = get_env(env, "HOME");
 	if (!home)
-		return (throw_error("cd: HOME not set", 16, 0), 1);
+		return (throw_error("cd: HOME not set", 0, 16, 0), 1);
 	if (chdir(home) == 0)
 		return (add_env(env->session, env, "PWD", home), 0);
 	return (1);

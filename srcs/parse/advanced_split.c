@@ -6,17 +6,17 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 19:28:36 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 19:30:48 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-int	check_syntax(t_token *tok, int t, t_token *next)
+int	check_syntax(t_token *tok, int t, t_token *next, int order)
 {
 	if (t == T_AND || t == T_OR || t == T_PIPE)
 	{
-		if (!tok->order || !next || (next->type != T_PARENTHESIS_COMMAND
+		if (!order || !next || (next->type != T_PARENTHESIS_COMMAND
 			&& next->type != T_UNKNOWN && !is_redirector(*next)))
 			return (throw_error(SYNTAX_ERR, tok->value, SYNTAX_ERR_LEN, 1), -1);
 	}
@@ -52,7 +52,7 @@ int	more_tokenization(t_memsession *session, t_token **toks, int i)
 				return (-1);
 			res = handle_heredoc(session, toks[i + 1]);
 		}
-		res = check_syntax(toks[i], toks[i]->type, toks[i + 1]);
+		res = check_syntax(toks[i], toks[i]->type, toks[i + 1], i);
 		if (res == -1)
 			return (-1);
 	}
@@ -73,7 +73,6 @@ t_token	**tokenization(t_memsession *session, t_splitdata *splited_cmd)
 	while (++i < splited_cmd->word_count)
 	{
 		toks[i] = session_malloc(session, sizeof(t_token), 0);
-		toks[i]->order = i;
 		toks[i]->tokens_nbr = splited_cmd->word_count;
 		toks[i]->type = get_token_type(splited_cmd->words[i]);
 		toks[i]->value = splited_cmd->words[i];

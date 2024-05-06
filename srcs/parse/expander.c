@@ -6,10 +6,10 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 18:13:04 by ijaija           ###   ########.fr       */
-/*   Updated: 2024/05/06 15:17:15 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/06 18:32:00 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "./../../includes/minishell.h"
 
@@ -28,7 +28,6 @@ char	*var_expansion(t_memsession *session, t_lenv *env, char **str, int f)
 			if (*((*str) + 1) && *((*str) + 1) == '?' && (*str)++ && (*str)++)
 				new_value = ft_strjoin(session, new_value, get_exit_status(session, env));
 			else if (f && *((*str) + 1) && *((*str) + 1) == '"')
-			else if (*((*str) + 1) && *((*str) + 1) == '"')
 				new_value = ft_joinchar(session, new_value, *((*str)++));
 			else if (*((*str) + 1) && *((*str) + 1) != '$' && (*str)++)
 			{

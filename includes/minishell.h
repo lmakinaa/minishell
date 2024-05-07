@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 19:12:22 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/07 20:19:34 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ typedef struct s_tree_node
 
 typedef struct s_mscommand
 {
-	//char				*cmd;
+	char				*path;
 	char				**args;
 	int					argc;
 	char				**output_files; // after parsing the redirectors in order
@@ -111,6 +111,7 @@ void		print_tokens(t_token **tokens);
 t_token		**advanced_split(t_memsession *session, char *str, char *seps);
 int			expander(t_memsession *session, t_lenv *env, t_token **cmd);
 t_command 	*parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd);
+int			get_path(t_command *command);
 
 //	utilities
 int			check_identifier(char *str);

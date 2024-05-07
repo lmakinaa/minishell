@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 19:11:56 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/07 20:52:43 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ void print_command_elements(t_command *command)
 	int     bytes_read;
 
 	//printf("Command: %s\n", command->cmd);
-		printf("Arguments:\n");
+	printf("Arguments:\n");
 	if (command->args)
 	{
 		for (int i = 0; command->args[i] != NULL; i++)
 			printf("%s\n", command->args[i]);
 	}
+	printf("Path: %s\n", command->path);
 	printf("Output Files:\n");
 	if (command->output_files != NULL)
 	{

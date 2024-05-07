@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:43:23 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 19:00:19 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/07 16:39:59 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,28 @@ int	new_sep_check(char *c, char *seps)
 	return (0);
 }
 
-void	throw_error(char *error, char *arg, int len, int syntax)
+/*
+* if 2 is passed in the perror will print the error and
+* the two args (len and arg) will be ignored
+*/
+void	throw_error(char *error, char *arg, int len, int type)
 {
-	write(2, "minishell: ", 11);
-	if (syntax)
-		write(2, "syntax error ", 13);
-	write(2, error, len);
-	if (arg)
-		(1) && (write(2, " `", 2), write(2, arg, ft_strlen(arg)),
-			write(2, "'", 1));
-	write(2, "\n", 1);
+	if (type != 2)
+	{
+		write(2, "minishell: ", 11);
+		if (type == 1)
+			write(2, "syntax error ", 13);
+		write(2, error, len);
+		if (arg)
+			(1) && (write(2, " `", 2), write(2, arg, ft_strlen(arg)),
+				write(2, "'", 1));
+		write(2, "\n", 1);
+	}
+	else if (type == 2)
+	{
+		write(2, "minishell: ", 11);
+		perror(error);
+	}
 }
 
 int	is_word(t_token	*tok)

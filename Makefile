@@ -1,5 +1,5 @@
 CC=cc
-CFLAGS=-Wextra -Werror -Wall
+CFLAGS=-Wextra -Werror -Wall -g -fsanitize=address
 NAME=minishell
 SRC_DIR=./srcs
 

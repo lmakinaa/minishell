@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 15:31:24 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/07 15:51:40 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,18 +27,19 @@ char	*var_expansion(t_memsession *session, t_lenv *env, char **str, int f)
 		{
 			if (*((*str) + 1) && *((*str) + 1) == '?' && (*str)++ && (*str)++)
 				new_value = ft_strjoin(session, new_value, get_exit_status(session, env));
-			else if (f && *((*str) + 1) && *((*str) + 1) == '"')
+			else if (f && *((*str) + 1) && (*((*str) + 1) == '"' || *((*str) + 1) == '\''))
 				new_value = ft_joinchar(session, new_value, *((*str)++));
 			else if (*((*str) + 1) && *((*str) + 1) != '$' && (*str)++)
 			{
 				var = get_env(env, var_name_strdup(session, str));
+				puts(*str);
 				new_value = ft_strjoin(session, new_value, var);
 			}
 			else if (**str && **str != '"')
 				new_value = ft_joinchar(session, new_value, *((*str)++));
 		}
 	}
-	puts(new_value);
+	//puts(new_value);
 	return (new_value);
 }
 
@@ -62,6 +63,10 @@ char	*expand_1(t_memsession *session, t_lenv *env, char *str)
 			res = ft_strjoin(session, res, var_expansion(session, env, &str, 1));
 			res = ft_joinchar(session, res, *(str++));
 		}
+		else if (*str == '$' && *(str + 1) == '\'')
+			str++;
+		else if (*str == '$' && !is_identif(*(str + 1)))
+			res = ft_joinchar(session, res, *(str++));
 		else if (*str)
 			res = ft_strjoin(session, res, var_expansion(session, env, &str, 0));
 	return (del_from_session(session, tmp), res);

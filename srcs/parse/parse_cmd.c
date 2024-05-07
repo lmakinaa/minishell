@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 19:09:07 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/07 20:45:26 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	parse_cmd_2(t_memsession *session, t_command *res, t_token **cmd)
 	res->output_redir_type = out_type;
 	res->output_files = out_files;
 	res->std_input = std_input;
+	res->path = NULL;
 }
 
 t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
@@ -92,5 +93,8 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 					no_quotes(session, *(words++), 0), 0);
 		}
 	parse_cmd_2(session, res, cmd);
+	if (res->args)
+		if (get_path(res) == -1)
+			return (NULL);
 	return (res);
 }

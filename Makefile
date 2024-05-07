@@ -6,7 +6,7 @@ SRC_DIR=./srcs
 # Parse files pack
 PARSE_DIR=$(SRC_DIR)/parse
 PARSE_C=$(PARSE_DIR)/handle_prompt.c $(PARSE_DIR)/print_tokens.c $(PARSE_DIR)/utilities.c $(PARSE_DIR)/utilities_2.c $(PARSE_DIR)/utilities_3.c\
-	$(PARSE_DIR)/expander.c $(PARSE_DIR)/env_control.c $(PARSE_DIR)/parse_cmd.c $(PARSE_DIR)/handle_wildcard.c\
+	$(PARSE_DIR)/expander.c $(PARSE_DIR)/env_control.c $(PARSE_DIR)/parse_cmd.c $(PARSE_DIR)/handle_wildcard.c $(PARSE_DIR)/get_path.c\
 	$(PARSE_DIR)/advanced_split.c $(PARSE_DIR)/shave_parenthesis.c $(PARSE_DIR)/handle_heredoc.c $(PARSE_DIR)/sort_env.c \
 	$(PARSE_DIR)/build_tree.c $(PARSE_DIR)/print_tree.c $(PARSE_DIR)/utilities_4.c $(PARSE_DIR)/env_control_2.c
 PARSE_O=$(patsubst %.c, %.o, $(PARSE_C))

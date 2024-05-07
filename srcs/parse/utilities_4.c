@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 01:01:30 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/07 19:11:56 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void print_command_elements(t_command *command)
 		for (int i = 0; command->output_files[i] != NULL; i++)
 			printf("%s\n", command->output_files[i]);
 	}
-	printf("Output Redirection Type: %d\n", command->output_redir_type);
+	//printf("Output Redirection Type: %s\n", command->output_redir_type);
 	printf("Input File: %s\n", command->input_file);
 	printf("Standard Input:\n");
 	if (command->std_input == -1)

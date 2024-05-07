@@ -13,7 +13,7 @@ PARSE_O=$(patsubst %.c, %.o, $(PARSE_C))
 
 # Execution pack
 EXEC_DIR=$(SRC_DIR)/execution
-EXEC_C=$(EXEC_DIR)/execute_tree.c $(EXEC_DIR)/execute_command.c
+EXEC_C=$(EXEC_DIR)/execute_tree.c $(EXEC_DIR)/execute_command.c $(EXEC_DIR)/redirect.c $(EXEC_DIR)/utilities.c
 EXEC_O=$(patsubst %.c, %.o, $(EXEC_C))
 
 # Builtins pack

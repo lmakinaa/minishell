@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 11:05:28 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/07 19:09:07 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,19 +44,19 @@ char	**append_arg(t_memsession *session, char **args, char *value, int cmd)
 void	parse_cmd_2(t_memsession *session, t_command *res, t_token **cmd)
 {
 	int		i;
-	int 	out_type;
+	char 	*out_type;
 	char	**out_files;
 	char	*input_file;
 	int		std_input;
 	
 	i = -1;
-	out_type = -1;
+	out_type = ft_strdup(session, "", 0);
 	input_file = NULL;
 	out_files = NULL;
 	std_input = -1;
 	while (cmd[++i])
 		if (cmd[i]->type == T_OUT_REDIR || cmd[i]->type == T_APPEND_REDIR)
-			out_type = cmd[i]->type;
+			out_type = ft_joinchar(session, out_type, cmd[i]->type);
 		else if (cmd[i]->type == T_OUTPUT_FILE)
 			out_files = append_arg(session, out_files, cmd[i]->value, 0);
 		else if (cmd[i]->type == T_INPUT_FILE)

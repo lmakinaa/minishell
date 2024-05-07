@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 01:01:33 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/07 19:12:22 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@
 # define BUFFER_SIZE 10
 # define SYNTAX_ERR "near unexpected token"
 # define SYNTAX_ERR_LEN 21
+# define THROW_PERROR 2
 
 // Token types
 // todo: change this shit into enum
@@ -81,7 +82,7 @@ typedef struct s_mscommand
 	char				**args;
 	int					argc;
 	char				**output_files; // after parsing the redirectors in order
-	int					output_redir_type; // is it replace (>) or append (>>), don't mind if output_files == NULL
+	char				*output_redir_type; // is it replace (>) or append (>>), don't mind if output_files == NULL
 	char				*input_file; // after parsing the input redir (<)
 	int					std_input;	// the here-doc entry (<<)
 	t_lenv				*env;
@@ -91,6 +92,8 @@ typedef struct s_mscommand
 //	execution
 int			execute_tree(t_memsession *session, t_lenv *env, t_tnode *root);
 int			execute_command(t_command *command);
+int			reset_fds(int backup_fds[]);
+int			out_redirect(char **out, char *types);
 
 //	builtins
 int			b_export(t_lenv *env, char **argv);
@@ -118,7 +121,7 @@ int			is_redirector(t_token tok);
 int			get_precedence(t_token *token);
 void		void_return(void);
 int			is_word(t_token	*tok);
-void		throw_error(char *error, char *arg, int len, int syntax);
+void		throw_error(char *error, char *arg, int len, int type);
 int			are_quotes_closed(char *s);
 int			are_parenthesis_closed(char *s);
 char		*z_strdup(t_memsession *session, char **str, char *seps);

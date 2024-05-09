@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 15:51:40 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/09 22:12:58 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*var_expansion(t_memsession *session, t_lenv *env, char **str, int f)
 	char	*var;
 
 	new_value = ft_strdup(session, "", 0);
-	while (**str && **str != '"')
+	while (**str && **str != '"' && !(!f && **str == '\''))
 	{
 		if (**str && **str != '$')
 			new_value = ft_joinchar(session, new_value, *((*str)++));
@@ -32,14 +32,13 @@ char	*var_expansion(t_memsession *session, t_lenv *env, char **str, int f)
 			else if (*((*str) + 1) && *((*str) + 1) != '$' && (*str)++)
 			{
 				var = get_env(env, var_name_strdup(session, str));
-				puts(*str);
 				new_value = ft_strjoin(session, new_value, var);
 			}
 			else if (**str && **str != '"')
 				new_value = ft_joinchar(session, new_value, *((*str)++));
 		}
 	}
-	//puts(new_value);
+	//puts(*str);
 	return (new_value);
 }
 
@@ -56,6 +55,7 @@ char	*expand_1(t_memsession *session, t_lenv *env, char *str)
 			res = ft_joinchar(session, res, *(str++));
 			res = ft_strjoin(session, res, z_strdup(session, &str, "'"));
 			res = ft_joinchar(session, res, *(str++));
+			//puts(str);
 		}
 		else if (*str == '"')
 		{

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 20:19:34 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/11 05:57:13 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ t_command 	*parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd);
 int			get_path(t_command *command);
 
 //	utilities
-int			check_identifier(char *str);
+int			check_identifier(char *str, int *append);
 int			what_ops(char *str);
 int			is_builtin(char *str);
 int			get_token_type(char *str);

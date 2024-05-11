@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:28:38 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 18:20:39 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/11 05:55:29 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ char	*get_name(t_memsession *session, char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == '=')
+		if (str[i] == '+' || str[i] == '=')
 			return (ft_strdup(session, str, i - 1));
 		i++;
 	}
@@ -77,4 +77,24 @@ void envs_display(t_lenv *list)
 		}
 	}
 	printf("The tail's content-->[%s=%s]\n", list->tail->name, list->tail->value);
+}
+
+void append_env(t_memsession *session, t_lenv *envs, char *name, char *value)
+{
+	t_env	*head;
+
+	head = envs->head;
+	while (head)
+	{
+		if (!ft_strcmp(name, head->name))
+		{
+			head->value = ft_strjoin(session, head->value, value);
+			return ;
+		}
+		head = head->next;	
+	}
+	if (!value)
+		value = ft_strdup(session, "", 0);
+	create_env(session, envs, name, value);
+	envs->count++;
 }

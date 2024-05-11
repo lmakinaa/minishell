@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 11:24:49 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 12:52:49 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/11 05:56:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	b_unset(t_command *command)
 {
 	int	i;
 	int	err;
+	int	nothing;
 
 	if (command->argc == 1)
 		return (0);
@@ -31,7 +32,7 @@ int	b_unset(t_command *command)
 	i = 1;
 	while (command->args[i])
 	{
-		if (!check_identifier(command->args[i]))
+		if (!check_identifier(command->args[i], &nothing))
 		{
 			dump_err(command->args[i]);
 			err = 1;

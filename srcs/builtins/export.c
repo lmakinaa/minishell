@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 13:48:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 19:26:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/11 05:49:02 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,16 +54,19 @@ static void	dump_list(t_lenv *env)
 	}
 }
 
-int	check_identifier(char *str)
+int	check_identifier(char *str, int *append)
 {
 	int	i;
 
 	i = 1;
+	*append = 0;
 	if (!ft_isalpha(*str) && *str != '_')
 		return (0);
 	while (str[i] && str[i] != '=')
 	{
-		if (!ft_isalnum(str[i]) && str[i] != '_')
+		if (str[i] == '+' && str[i + 1] == '=')
+			*append = 1;
+		else if (!ft_isalnum(str[i]) && str[i] != '_')
 			return (0);
 		i++;
 	}
@@ -75,6 +78,7 @@ int	b_export(t_lenv *env, char **argv)
 	int		i;
 	int		exit_s;
 	char	*key;
+	int		append;
 
 	exit_s = 0;
 	i = 1;
@@ -82,12 +86,15 @@ int	b_export(t_lenv *env, char **argv)
 		return (dump_list(env), 0);
 	while (argv[i])
 	{
-		if (check_identifier(argv[i]) == 0)
+		if (check_identifier(argv[i], &append) == 0)
 			exit_s = dump_err(argv[i]);
 		else
 		{
 			key = get_name(env->session, argv[i]);
-			add_env(env->session, env, key, get_value(env->session, argv[i]));
+			if (append)
+				append_env(env->session, env, key, get_value(env->session, argv[i]));
+			else
+				add_env(env->session, env, key, get_value(env->session, argv[i]));
 		}
 		i++;
 	}

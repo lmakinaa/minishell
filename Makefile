@@ -44,31 +44,34 @@ MINISHELL_H=$(INCLUDES)/minishell.h
 all: $(NAME)
 
 $(NAME): $(PARSE_O) $(ALLOC_MANAGER_O) $(UTILS_O) $(TREE_CONTROL_O) $(EXEC_O) $(BUILTINS_O) $(SRC_DIR)/main.c
-	$(CC) $(CFLAGS) $^ -I/Users/ijaija/.brew/opt/readline/include -lreadline -L/Users/ijaija/.brew/opt/readline/lib/ -o $@
+	@$(CC) $(CFLAGS) $^ -I/Users/ijaija/.brew/opt/readline/include -lreadline -L/Users/ijaija/.brew/opt/readline/lib/ -o $@
+	@echo -e "\033[0;32mDone making minishell!\033[0m"
 
 $(PARSE_DIR)/%.o : $(PARSE_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(EXEC_DIR)/%.o : $(EXEC_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(BUILTINS_DIR)/%.o : $(BUILTINS_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(ALLOC_MANAGER_DIR)/%.o : $(ALLOC_MANAGER_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(UTILS_DIR)/%.o : $(UTILS_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 $(TREE_CONTROL_DIR)/%.o : $(TREE_CONTROL_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(UTILS_O) $(ALLOC_MANAGER_O) $(PARSE_O) $(EXEC_O) $(BUILTINS_O) $(TREE_CONTROL_O)
+	@rm -f $(UTILS_O) $(ALLOC_MANAGER_O) $(PARSE_O) $(EXEC_O) $(BUILTINS_O) $(TREE_CONTROL_O)
+	@echo -e '\033[0;31mDone removing object files.\033[0m'
 
 fclean: clean
-	rm -f $(NAME)
+	@rm -f $(NAME)
+	@echo -e '\033[0;31mDone removing minishell program.\033[0m'
 
 re: fclean all
 

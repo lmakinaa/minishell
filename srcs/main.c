@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/08 18:06:24 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/11 05:36:11 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,18 @@
 void	f()
 {
 	system("leaks minishell");
+}
+
+void	ft_addhistory(char *command)
+{
+	int	i;
+	
+	i = -1;
+	while (command[++i] && is_sep(command[i], SEPERATORS))
+		;
+	if (!command[i])
+		return ;
+	add_history(command);
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -32,7 +44,7 @@ int	main(int argc, char **argv, char **envp)
 		if (!command)
 			break ;
 		add_to_session(main_session, command);
-		add_history(command);
+		ft_addhistory(command);
 		handle_prompt(main_session, env, command);
 		reset_session(&main_session);
 	}

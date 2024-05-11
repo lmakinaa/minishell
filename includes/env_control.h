@@ -29,5 +29,6 @@ void 	envs_display(t_lenv *list);
 char	*get_name(t_memsession *session, char *str);
 char	*get_value(t_memsession *session, char *str);
 void	sort_env(t_lenv *env);
+void 	append_env(t_memsession *session, t_lenv *envs, char *name, char *value);
 
 #endif

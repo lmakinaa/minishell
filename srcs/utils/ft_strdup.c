@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:30:46 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/21 22:38:15 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/11 05:31:28 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,14 @@ char	*ft_strdup(t_memsession *session, char *s1, size_t len)
 	size_t	i;
 
 	i = 0;
-	res = session_malloc(session, (len + 1) * sizeof(char), 0);
+	res = session_malloc(session, (len + 2) * sizeof(char), 0);
 	while (s1[i] && i < len)
 	{
 		res[i] = s1[i];
 		i++;
 	}
 	res[i] = s1[i];
+	if (res[i])
+		(i++, res[i] = '\0');
 	return (res);
 }

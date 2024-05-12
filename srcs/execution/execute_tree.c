@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/12 18:07:34 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/12 18:28:00 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 		return (-1);
 	if (execute_tree(session, env, root->right) == -1)
 		return (-1);
+	//if (root->operator)
+	//	printf("%d\n", root->operator->type);
 	if (root->command)
 	{
 		command = expand_n_generate_cmd(session, env, root->command);
@@ -42,3 +44,25 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 	}
 	return (0);
 }
+
+//int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
+//{
+//	t_command	*command;
+
+//	if (!root)
+//		return (0);
+//	if (root->)
+//	if (execute_tree(session, env, root->left) == -1)
+//		return (-1);
+//	if (execute_tree(session, env, root->right) == -1)
+//		return (-1);
+//	if (root->command)
+//	{
+//		command = expand_n_generate_cmd(session, env, root->command);
+//		if (!command)
+//			return (-1);
+//		execute_command(command);
+//		//print_command_elements(command);
+//	}
+//	return (0);
+//}

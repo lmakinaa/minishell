@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/11 05:57:13 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/12 03:47:17 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int			b_pwd(void);
 int			b_cd(t_command *command);
 int			b_env(t_command *command);
 int			b_unset(t_command *command);
+int			b_exit(t_command *cmd);
 
 
 //	parse

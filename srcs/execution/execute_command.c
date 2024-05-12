@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 19:22:36 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/12 03:47:46 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ void	exec_builtin(t_command *command)
 		b_env(command);
 	else if (!ft_strcmp(command->args[0], "unset"))
 		b_unset(command);
+	else if (!ft_strcmp(command->args[0], "exit"))
+		b_exit(command);
 }
 
 int	execute_command(t_command *command)

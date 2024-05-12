@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 02:49:45 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/12 03:50:12 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/12 03:56:22 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ int	ft_atoi(char *str, int *buff)
 	
 	sign = 1;
 	(*buff) = 0;
+	while (*str && is_sep(*str, " \t\n"))
+		str++;
 	if ((*str == '+' || *str == '-') && str++)
 		(*(str - 1) == '-') && (sign = -1);
 	if (!*str)

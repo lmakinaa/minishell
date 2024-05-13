@@ -6,13 +6,13 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:19:49 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/05 19:27:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/13 10:43:01 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-t_env	**to_arr(t_lenv *env)
+static t_env	**to_arr(t_lenv *env)
 {
 	int		i;
 	t_env	*head;

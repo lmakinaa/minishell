@@ -6,11 +6,29 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:56:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/11 06:16:04 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/13 10:48:10 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
+
+char	**generate_env_array(t_memsession *session, t_lenv *env)
+{
+	char	**res;
+	t_env	*head;
+	int		i;
+
+	res = session_malloc(session, (env->count + 1) * sizeof(char *), 0);
+	i = -1;
+	head = env->head;
+	while (++i < env->count)
+	{
+		res[i] = ft_joinchar(session, head->name, '=');
+		res[i] = ft_strjoin(session, res[i], head->value);
+	}
+	res[i] = NULL;
+	return (res);
+}
 
 int	reset_fds(int backup_fds[])
 {

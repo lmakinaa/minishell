@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 02:49:45 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/12 03:56:22 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/13 01:52:52 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,15 +55,27 @@ static void	dump_output(int t_err, char *arg)
 
 int	b_exit(t_command *cmd)
 {
-	int	status;
+	int				status;
+	t_memsession 	*env_session;
+	t_memsession 	*sess;
 	
 	if (cmd->argc == 1)
-		return (dump_output(0, NULL), exit(cmd->env->exit_status), 0);
-	if (cmd->argc > 2)
+	{
+		status = cmd->env->exit_status;
+		dump_output(0, NULL);
+	}
+	else if (ft_atoi(cmd->args[1], &status) == -1)
+	{
+		status = 255;
+		dump_output(2, cmd->args[1]);
+	}
+	else if (cmd->argc > 2)
 		return (dump_output(1, NULL), 1);
-	if (ft_atoi(cmd->args[1], &status) == -1)
-		return (dump_output(2, cmd->args[1]), exit(255), 1);
-	dump_output(0, NULL);
+	else
+		dump_output(0, NULL);
+	env_session = cmd->env->session;
+	sess = cmd->session;
+	end_sessions(&env_session, &sess);
 	exit((unsigned char) status);
 	return (0);
 }

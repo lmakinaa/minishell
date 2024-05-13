@@ -21,7 +21,7 @@ void	handle_prompt(t_memsession *heap_session, t_lenv *env, char *prompt)
 		return ;
 	tokens = advanced_split(heap_session, prompt, SEPERATORS);
 	root = build_tree(heap_session, &tokens, 0);
-	if (execute_tree(heap_session, env, root) == -1)
+	if (execute_tree(heap_session, env, root, 0) == -1)
 		return ;
 	//print_tree(root, 0);
 }

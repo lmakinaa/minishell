@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 22:18:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 18:43:28 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/13 01:55:23 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ int	b_cd(t_command *command)
 	char	*cwd;
 
 	cwd = getcwd(NULL, 0);
+	add_to_session(command->env->session, cwd);
 	if (command->argc != 2)
 		return (go_home(command->env));
 	if (chdir(command->args[1]) != 0)

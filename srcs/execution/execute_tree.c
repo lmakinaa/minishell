@@ -6,44 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/12 18:28:00 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/13 01:20:49 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
-
-t_command	*expand_n_generate_cmd(t_memsession *session, t_lenv *env,
-	t_token **node)
-{
-	if (tokenize_part2(node) == -1)
-		return (NULL);
-	if (expander(session, env, node) == -1)
-		return (NULL);
-	return(parse_cmd(session, env, node));
-}
-
-int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
-{
-	t_command	*command;
-
-	if (!root)
-		return (0);
-	if (execute_tree(session, env, root->left) == -1)
-		return (-1);
-	if (execute_tree(session, env, root->right) == -1)
-		return (-1);
-	//if (root->operator)
-	//	printf("%d\n", root->operator->type);
-	if (root->command)
-	{
-		command = expand_n_generate_cmd(session, env, root->command);
-		if (!command)
-			return (-1);
-		execute_command(command);
-		//print_command_elements(command);
-	}
-	return (0);
-}
 
 //int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 //{
@@ -51,7 +18,6 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 
 //	if (!root)
 //		return (0);
-//	if (root->)
 //	if (execute_tree(session, env, root->left) == -1)
 //		return (-1);
 //	if (execute_tree(session, env, root->right) == -1)
@@ -66,3 +32,30 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root)
 //	}
 //	return (0);
 //}
+
+int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root, int pip)
+{
+	if (!root)
+		return (0);
+	//if (root->operator->type == T_PIPE)
+	//	return (exec_pipes(), 0);
+	if (root->operator)
+	{
+		if (root->operator->type == T_AND)
+		{
+			execute_tree(session, env, root->left, 0);
+			if (env->exit_status == 0)
+				return (execute_tree(session, env, root->right, 0));
+		}
+		else if (root->operator->type == T_OR)
+		{
+			execute_tree(session, env, root->left, 0);
+			if (env->exit_status == 0)
+				return (0);
+			return (execute_tree(session, env, root->right, 0));
+		}
+	}
+	else if (root->command)
+		execute_command(session, env, root->command, pip);
+	return (0);
+}

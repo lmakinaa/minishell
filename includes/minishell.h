@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/12 03:47:17 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/13 01:32:57 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,9 @@ typedef struct s_mscommand
 }			t_command;
 
 //	execution
-int			execute_tree(t_memsession *session, t_lenv *env, t_tnode *root);
-int			execute_command(t_command *command);
+int			execute_command(t_memsession *session, t_lenv *env,
+				t_token **tokens, int pip);
+int			execute_tree(t_memsession *session, t_lenv *env, t_tnode *root, int pip);
 int			reset_fds(int backup_fds[]);
 int			out_redirect(char **out, char *types);
 

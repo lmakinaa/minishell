@@ -46,7 +46,7 @@ all: $(NAME)
 
 $(NAME): $(PARSE_O) $(ALLOC_MANAGER_O) $(UTILS_O) $(TREE_CONTROL_O) $(EXEC_O) $(BUILTINS_O) $(SRC_DIR)/main.c
 	@$(CC) $(CFLAGS) $^ -I/Users/ijaija/.brew/opt/readline/include -lreadline -L/Users/ijaija/.brew/opt/readline/lib/ -o $@
-	@echo -e "\033[0;32mDone making minishell!\033[0m"
+	@echo "\033[0;32mDone making minishell!\033[0m"
 
 $(PARSE_DIR)/%.o : $(PARSE_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
 	@$(CC) $(CFLAGS) -c $< -o $@
@@ -68,11 +68,11 @@ $(TREE_CONTROL_DIR)/%.o : $(TREE_CONTROL_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER
 
 clean:
 	@rm -f $(UTILS_O) $(ALLOC_MANAGER_O) $(PARSE_O) $(EXEC_O) $(BUILTINS_O) $(TREE_CONTROL_O)
-	@echo -e '\033[0;31mDone removing object files.\033[0m'
+	@echo "\033[0;31mDone removing object files.\033[0m"
 
 fclean: clean
 	@rm -f $(NAME)
-	@echo -e '\033[0;31mDone removing minishell program.\033[0m'
+	@echo "\033[0;31mDone removing inishell program.\033[0m"
 
 re: fclean all
 

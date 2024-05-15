@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 20:45:26 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 15:26:52 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,10 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 	while (cmd[++i])
 		if (cmd[i]->type == T_UNKNOWN)
 		{
-			d = ft_split(session, cmd[i]->value, SEPERATORS);
+			if (i > 0 && !ft_strcmp(cmd[0]->value, "export"))
+				d = ft_split(session, cmd[i]->value, "");
+			else
+				d = ft_split(session, cmd[i]->value, SEPERATORS);
 			words = d->words;
 			while (*words && ++res->argc)
 				res->args = append_arg(session, res->args,

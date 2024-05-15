@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 22:18:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 14:57:46 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 21:40:30 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,8 @@ int	b_cd(t_command *command)
 		return (dump_err(command->args[1]));
 	dest = getcwd(NULL, 0);
 	add_env(command->env->session, command->env, "OLDPWD", get_env(command->env, "PWD"));
+	if (!dest)
+		perror("getcwd");
 	add_env(command->env->session, command->env, "PWD",
 		ft_strdup(command->env->session, dest, ft_strlen(dest)));
 	return (0);

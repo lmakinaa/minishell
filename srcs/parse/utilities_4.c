@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 17:35:42 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 19:20:18 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,15 @@ void print_command_elements(t_command *command)
     }
 	//close(command->std_input);
 }
+
+void	sig_handle(int num)
+{
+	g_sig = num;
+	if (num == SIGINT)
+		write(1, "\n", 1);
+}
+
+// rl
 
 /*
 * it focuses on redirections

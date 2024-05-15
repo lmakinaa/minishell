@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 11:20:45 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 17:35:42 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,20 +105,23 @@ char	*get_env(t_lenv *env, char *name)
 
 char	*get_exit_status(t_memsession *session, t_lenv *env)
 {
-	char	*res;
-	int		code;
-	int		i;
+	char		*res;
+	int			code;
+	int			i;
 	
 	res = session_malloc(session, 4 * sizeof(char), 0);
 	code = env->exit_status;
 	i = 0;
 	while (code / 10)
+		(1) && (code /= 10, i++);
+	code = env->exit_status;
+	res[i + 1] = '\0';
+	while (code / 10)
 	{
-		res[i++] = (code % 10) + '0';
+		res[i--] = (code % 10) + '0';
 		code /= 10;
 	}
-	res[i] = code + '0';
-	res[i+1] = '\0';
+	res[i] = (code % 10) + '0';
 	return (res);
 }
 

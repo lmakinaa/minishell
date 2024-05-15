@@ -6,11 +6,13 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 17:36:06 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 18:18:02 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../includes/minishell.h"
+
+int	g_sig;
 
 char	*generate_prompt(t_memsession *session, t_lenv *env)
 {

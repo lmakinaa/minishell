@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 19:24:28 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 16:11:18 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 16:32:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	get_path(t_command *command)
 				throw_error(cmd, 0, 0, THROW_PERROR), -1);
 	dirs = ft_split(command->session, p, ":")->words;
 	p = check_path(command->session, dirs, cmd);
-	if (!p && (command->path && access(command->path, F_OK) == -1))
+	if (!((command->path && !access(command->path, F_OK)) || p))
 		return (set_status(command->env, 1),
 			throw_error(cmd, 0, 0, THROW_PERROR), -1);
 	if (p)

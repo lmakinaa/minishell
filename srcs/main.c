@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 16:14:43 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 17:36:06 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ char	*generate_prompt(t_memsession *session, t_lenv *env)
 	else
 		buffer = ft_strjoin(session, buffer, cwd);
 	buffer = ft_strjoin(session, buffer, " \e[1;30m> \033[0m");
-	//puts(cwd);
 	return (buffer);
 }
 

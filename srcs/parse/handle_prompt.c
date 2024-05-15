@@ -18,7 +18,10 @@ void	handle_prompt(t_memsession *heap_session, t_lenv *env, char *prompt)
 	t_tnode	*root;
 
 	if (are_parenthesis_closed(prompt) || are_quotes_closed(prompt))
+	{
+		env->exit_status = 258;
 		return ;
+	}
 	tokens = advanced_split(heap_session, prompt, SEPERATORS);
 	root = build_tree(heap_session, &tokens, 0);
 	if (execute_tree(heap_session, env, root, 0) == -1)

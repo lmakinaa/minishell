@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 22:18:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/13 01:55:23 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 11:21:37 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	dump_err(char *arg)
 	write(2, "minishell: cd: `", 16);
 	write(2, arg, ft_strlen(arg));
 	write(2, "': No such file or directory\n", 29);
-	return (1);
+	return (127);
 }
 
 int	b_cd(t_command *command)

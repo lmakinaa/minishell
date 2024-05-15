@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 19:30:48 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 11:10:06 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	more_tokenization(t_memsession *session, t_token **toks, int i)
 		if (toks[i]->type == T_HERDOC)
 		{
 			if (!toks[i + 1] || toks[i + 1]->type != T_UNKNOWN)
-				return (-1);
+				return (throw_error(SYNTAX_ERR, "newline", SYNTAX_ERR_LEN, 1), -1);
 			res = handle_heredoc(session, toks[i + 1]);
 		}
 		res = check_syntax(toks[i], toks[i]->type, toks[i + 1], i);
@@ -78,14 +78,16 @@ t_token	**tokenization(t_memsession *session, t_splitdata *splited_cmd)
 		toks[i]->value = splited_cmd->words[i];
 		toks[i]->command = 1;
 	}
-	toks[i] = NULL;
-	i = -1;
+	(1) && (toks[i] = NULL, i = -1);
 	while (++i < toks[0]->tokens_nbr)
 		if (toks[i]->type != T_WORD && !is_redirector(*(toks[i]))
 			&& toks[i]->type != T_PARENTHESIS_COMMAND && new_is_ops(toks[i]->value))
 			toks[i]->command = 0;
 	if (more_tokenization(session, toks, -1) == -1)
+	{
+		session->envs->exit_status = 1;
 		return (NULL);
+	}
 	return (toks);
 }
 

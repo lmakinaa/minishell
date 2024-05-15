@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/13 01:35:43 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 11:12:51 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,11 @@
 t_command	*expand_n_generate_cmd(t_memsession *session, t_lenv *env,
 	t_token **node)
 {
-	if (tokenize_part2(node) == -1)
+	if (tokenize_part2(node) == -1 || expander(session, env, node) == -1)
+	{
+		env->exit_status = 1;
 		return (NULL);
-	if (expander(session, env, node) == -1)
-		return (NULL);
+	}
 	return(parse_cmd(session, env, node));
 }
 
@@ -44,6 +45,7 @@ int	execute_command(t_memsession *session, t_lenv *env,
 	t_token **tokens, int pip)
 {
 	int			backup_fds[2];
+	int			s;
 	t_command	*command;
 
 	(void) pip;
@@ -52,7 +54,9 @@ int	execute_command(t_memsession *session, t_lenv *env,
 			return (-1);
 	backup_fds[0] = dup(0);
 	backup_fds[1] = dup(1);
-	out_redirect(command->output_files, command->output_redir_type);
+	s = out_redirect(command->output_files, command->output_redir_type);
+	if (s)
+		env->exit_status = s;
 	if (!command->args)
 		return (reset_fds(backup_fds), 0);
 	if (is_builtin(command->args[0]))

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/11 11:27:54 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/24 18:43:22 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 11:09:14 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef struct s_heapslots
 {
 	struct s_heapaddr	*first;
 	struct s_heapaddr	*last;
+	struct	s_list		*envs;
 	int					count;
 }			t_memsession;
 

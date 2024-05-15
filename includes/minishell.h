@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/13 10:48:52 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 11:16:35 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ void 		print_command_elements(t_command *command);
 char		*expand_wildcard(t_memsession *session, char *str);
 char		*get_exit_status(t_memsession *session, t_lenv *env);
 int			is_identif(char c);
+void		set_status(t_lenv *env, int status);
 
 //	tree control
 t_tnode		*create_node(t_memsession *session, int op,

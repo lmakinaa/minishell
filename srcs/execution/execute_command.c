@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 15:16:26 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 16:33:08 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,11 @@ void	exec_binary(t_command *cmd)
 
 	pid = fork();
 	if (!pid)
-		execve(cmd->path, cmd->args, generate_env_array(cmd->session, cmd->env));
+	{
+		if (execve(cmd->path, cmd->args, generate_env_array(cmd->session, cmd->env)) == -1)
+			return (set_status(cmd->env, 1),
+			throw_error(cmd->path, 0, 0, THROW_PERROR));
+	}
 	//else if (pid == -1)
 	else
 	{

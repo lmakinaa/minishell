@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 12:51:33 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 15:16:26 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,15 @@ void	exec_binary(t_command *cmd)
 t_command	*expand_n_generate_cmd(t_memsession *session, t_lenv *env,
 	t_token **node)
 {
+	t_command	*cmd;
+
 	if (tokenize_part2(node) == -1 || expander(session, env, node) == -1)
 	{
 		env->exit_status = 1;
 		return (NULL);
 	}
-	return(parse_cmd(session, env, node));
+	cmd = parse_cmd(session, env, node);
+	return(cmd);
 }
 
 void	exec_builtin(t_command *command)

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 22:18:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 11:21:37 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 14:57:46 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ static int	go_home(t_lenv *env)
 	if (!home)
 		return (throw_error("cd: HOME not set", 0, 16, 0), 1);
 	if (chdir(home) == 0)
+	{
+		add_env(env->session, env, "OLDPWD", get_env(env, "PWD"));
 		return (add_env(env->session, env, "PWD", home), 0);
+	}
 	return (1);
 }
 
@@ -36,6 +39,7 @@ static int	dump_err(char *arg)
 int	b_cd(t_command *command)
 {
 	char	*cwd;
+	char	*dest;
 
 	cwd = getcwd(NULL, 0);
 	add_to_session(command->env->session, cwd);
@@ -43,7 +47,9 @@ int	b_cd(t_command *command)
 		return (go_home(command->env));
 	if (chdir(command->args[1]) != 0)
 		return (dump_err(command->args[1]));
+	dest = getcwd(NULL, 0);
 	add_env(command->env->session, command->env, "OLDPWD", get_env(command->env, "PWD"));
-	add_env(command->env->session, command->env, "PWD", cwd);
+	add_env(command->env->session, command->env, "PWD",
+		ft_strdup(command->env->session, dest, ft_strlen(dest)));
 	return (0);
 }

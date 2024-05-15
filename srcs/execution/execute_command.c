@@ -6,11 +6,28 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 11:12:51 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 12:51:33 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
+
+void	exec_binary(t_command *cmd)
+{
+	pid_t	pid;
+	int		s;
+
+	pid = fork();
+	if (!pid)
+		execve(cmd->path, cmd->args, generate_env_array(cmd->session, cmd->env));
+	//else if (pid == -1)
+	else
+	{
+		waitpid(pid, &s, 0);
+		cmd->env->exit_status = s;
+	}
+	// this is just for test
+}
 
 t_command	*expand_n_generate_cmd(t_memsession *session, t_lenv *env,
 	t_token **node)
@@ -61,7 +78,7 @@ int	execute_command(t_memsession *session, t_lenv *env,
 		return (reset_fds(backup_fds), 0);
 	if (is_builtin(command->args[0]))
 		exec_builtin(command);
-	//else
-	//	exec_binary(command);
+	else
+		exec_binary(command);
 	return (reset_fds(backup_fds));
 }

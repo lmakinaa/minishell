@@ -32,6 +32,7 @@
 		"types.h": "c",
 		"unistd.h": "c",
 		"dirent.h": "c",
-		"env_control.h": "c"
+		"env_control.h": "c",
+		"fcntl.h": "c"
 	}
 }

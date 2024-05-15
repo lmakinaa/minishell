@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 11:16:35 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 13:17:40 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 # include "./utils.h"
 # include "./env_control.h"
 
-# define PROMPT_TEXT "\033[0;32m$> \033[0m"
 # define SEPERATORS " \t\n"
 # define BUFFER_SIZE 10
 # define SYNTAX_ERR "near unexpected token"
@@ -142,6 +141,7 @@ char		*expand_wildcard(t_memsession *session, char *str);
 char		*get_exit_status(t_memsession *session, t_lenv *env);
 int			is_identif(char c);
 void		set_status(t_lenv *env, int status);
+char		*ft_strnstr(char *haystack, char *needle, size_t len);
 
 //	tree control
 t_tnode		*create_node(t_memsession *session, int op,

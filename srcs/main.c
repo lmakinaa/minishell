@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 13:30:24 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 16:14:43 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ char	*generate_prompt(t_memsession *session, t_lenv *env)
 	else
 		buffer = ft_strjoin(session, buffer, cwd);
 	buffer = ft_strjoin(session, buffer, " \e[1;30m> \033[0m");
+	//puts(cwd);
 	return (buffer);
 }
 
@@ -57,7 +58,6 @@ int	main(int argc, char **argv, char **envp)
 	char			*command;
 
 	env = ft_initialise(&main_session, &env_session, argc, argv, envp);
-	//envs_display(env);
 	while (1)
 	{
 		command = readline(generate_prompt(main_session, env));
@@ -72,6 +72,3 @@ int	main(int argc, char **argv, char **envp)
 	end_sessions(&main_session, &env_session);
 	return (0);
 }
-
-//export A="   ls   "
-//export B=$A

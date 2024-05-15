@@ -6,11 +6,16 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 19:24:28 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 20:51:54 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 11:16:05 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
+
+void	set_status(t_lenv *env, int status)
+{
+	env->exit_status = status;
+}
 
 static char	*check_path(t_memsession *session, char **dirs, char *cmd)
 {
@@ -41,11 +46,13 @@ int	get_path(t_command *command)
 	p = get_env(command->env, "PATH");
 	if (!p)
 		if (access(cmd, F_OK) == -1)
-			return (throw_error(cmd, 0, 0, THROW_PERROR), -1);
+			return (set_status(command->env, 1),
+				throw_error(cmd, 0, 0, THROW_PERROR), -1);
 	dirs = ft_split(command->session, p, ":")->words;
 	p = check_path(command->session, dirs, cmd);
 	if (!p || (command->path && access(command->path, F_OK) == -1))
-		return (throw_error(cmd, 0, 0, THROW_PERROR), -1);
+		return (set_status(command->env, 1),
+			throw_error(cmd, 0, 0, THROW_PERROR), -1);
 	command->path = p;
 	p = ft_strchr(p, '/');
 	while (p && p++)

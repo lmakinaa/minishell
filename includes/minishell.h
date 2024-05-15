@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 13:17:40 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 18:24:16 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@
 # define T_INPUT_FILE 17
 # define T_STD_INPUT 18
 # define T_ARG 19
+
+extern int	g_sig;
 
 // These 2 structs are for the initial parsing part
 

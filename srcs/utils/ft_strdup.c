@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/21 14:30:46 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/11 05:31:28 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 20:22:40 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ char	*ft_strdup(t_memsession *session, char *s1, size_t len)
 {
 	char	*res;
 	size_t	i;
-
+	if (!s1)
+		return (NULL);
 	i = 0;
 	res = session_malloc(session, (len + 2) * sizeof(char), 0);
 	while (s1[i] && i < len)

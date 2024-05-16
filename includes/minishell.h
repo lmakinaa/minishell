@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 23:17:02 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 15:53:01 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,8 @@ typedef struct s_tree_node
 	struct s_mscommand	*parsed_cmd;
 	struct s_tree_node	*left;
 	struct s_tree_node	*right;
+	t_lenv				*env;
+	t_memsession		*session;
 }		t_tnode;
 
 // The final parsing part struct

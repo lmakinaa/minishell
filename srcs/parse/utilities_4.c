@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 11:36:37 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 15:57:10 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	tokenize_part2(t_token **cmd)
 	int	i;
 
 	i = -1;
-	while (cmd[++i])
+	while (cmd && cmd[++i])
 	{
 		if (cmd[i]->type == T_OUT_REDIR || cmd[i]->type == T_APPEND_REDIR)
 		{

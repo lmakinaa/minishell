@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 10:31:20 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 11:30:46 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ int	main(int argc, char **argv, char **envp)
 	}
 	rl_clear_history();
 	end_sessions(&main_session, &env_session);
+	tcsetattr(STDIN_FILENO, TCSANOW, &env->initial_termios);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:52:57 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 10:15:49 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 11:31:36 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ t_lenv	*ft_initialise(t_memsession **session1, t_memsession **session2,
 	int argc, char **argv, char **envp)
 {
 	t_lenv			*env;
+	struct termios	termios;
 
 	(void) argv;
 	(void) argc;
@@ -66,6 +67,9 @@ t_lenv	*ft_initialise(t_memsession **session1, t_memsession **session2,
 	session_init(session2);
 	env = envs_init(*session2, envp);
 	(*session1)->envs = env;
+	termios = env->initial_termios;
+	termios.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &termios);
 	signal(SIGINT, sig_handle);
 	signal(SIGQUIT, SIG_IGN);
 	return (env);

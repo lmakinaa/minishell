@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 16:03:12 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 16:28:23 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 static void	ft_exec_pipe_child(t_tnode *node, int pfds[2], int direction)
 {
-	if (direction == 0)
+	if (direction == LEFT_C)
 	{
 		close(pfds[0]);
 		dup2(pfds[1], STDOUT_FILENO);
 		close(pfds[1]);
 	}
-	else if (direction == 1)
+	else if (direction == RIGHT_C)
 	{
 		close(pfds[1]);
 		dup2(pfds[0], STDIN_FILENO);
 		close(pfds[0]);
 	}
-	execute_command(node->session, node->env, node->command, 1);
+	execute_tree(node->session, node->env, node, 1);
 	// 5asni nfree child process
 	exit(node->env->exit_status);
 }
@@ -41,12 +41,12 @@ static int	exec_pipes(t_tnode *tree)
 	pipe(fds);
 	p_left = fork();
 	if (!p_left)
-		ft_exec_pipe_child(tree->left, fds, 0);
+		ft_exec_pipe_child(tree->left, fds, LEFT_C);
 	else
 	{
 		p_right = fork();
 		if (!p_right)
-			ft_exec_pipe_child(tree->right, fds, 1);
+			ft_exec_pipe_child(tree->right, fds, RIGHT_C);
 		else
 		{
 			close(fds[0]);

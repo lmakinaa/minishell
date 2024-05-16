@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 10:39:11 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 11:36:37 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ char	*get_env(t_lenv *env, char *name)
 {
 	t_env	*f_env;
 
-	if (!env->head)
+	if (!env || !env->head)
 		return (NULL);
 	f_env = env->head;
 	while (f_env)

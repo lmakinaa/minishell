@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 19:03:01 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 23:17:02 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <fcntl.h>
 # include <sys/types.h>
 # include <dirent.h>
+# include <termios.h>
 # include "./allocation_manager.h"
 # include "./utils.h"
 # include "./env_control.h"

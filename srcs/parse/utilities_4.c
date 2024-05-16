@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 19:20:18 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/15 22:08:38 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,13 @@ void	sig_handle(int num)
 {
 	g_sig = num;
 	if (num == SIGINT)
+	{
 		write(1, "\n", 1);
+		rl_replace_line("", 0);
+		rl_on_new_line();
+		rl_redisplay();
+	}
 }
-
-// rl
 
 /*
 * it focuses on redirections

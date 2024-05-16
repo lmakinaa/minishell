@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:23:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 11:17:47 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 11:53:13 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 t_lenv	*envs_init(t_memsession *session, char **envp)
 {
 	t_lenv	*res;
-	char	*name;
-	char	*value;
 	int		i;
 
 	res = session_malloc(session, sizeof(t_lenv), 0);
@@ -27,12 +25,8 @@ t_lenv	*envs_init(t_memsession *session, char **envp)
 	tcgetattr(STDIN_FILENO, &res->initial_termios);
 	i = -1;
 	while (envp[++i])
-	{
-		name = z_strdup(session, &envp[i], "=");
-		(envp[i])++;
-		value = z_strdup(session, &envp[i], "\0");
-		add_env(session, res, name, value);
-	}
+		add_env(session, res, get_name(session, envp[i]),
+			get_value(session, envp[i]));
 	res->count = i;
 	return (res);
 }

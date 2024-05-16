@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 18:19:49 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/13 10:43:01 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:39:11 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	sort_env(t_lenv *env)
 	{
 		j = -1;
 		while (arr[i + (++j)])
-			if (ft_strcmp(arr[i]->name, arr[i + j]->name) > 0)
+			if (ft_strcmp(1, arr[i]->name, arr[i + j]->name) > 0)
 			{
 				tmp = arr[i];
 				arr[i] = arr[i + j];

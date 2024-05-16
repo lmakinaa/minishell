@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 17:57:16 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:40:02 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ typedef struct s_splitted
 	int		word_count;
 }		t_splitdata;
 
-int			ft_strcmp(char *str, char *compared_to);
+int			ft_strcmp(int case_sensitive, char *str, char *compared_to);
 int			ft_strlen(char *str);
 char		*ft_strchr(char *s, int c);
 int			ft_count_words(char *str, char *seps);

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 17:25:36 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:48:55 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,19 +49,19 @@ t_command	*expand_n_generate_cmd(t_memsession *session, t_lenv *env,
 
 void	exec_builtin(t_command *command)
 {
-	if (!ft_strcmp(command->args[0], "echo"))
+	if (!ft_strcmp(0, command->args[0], "echo"))
 		command->env->exit_status = b_echo(command->args);
-	else if (!ft_strcmp(command->args[0], "pwd"))
+	else if (!ft_strcmp(0, command->args[0], "pwd"))
 		command->env->exit_status = b_pwd();
-	else if (!ft_strcmp(command->args[0], "export"))
+	else if (!ft_strcmp(0, command->args[0], "export"))
 		command->env->exit_status = b_export(command->env, command->args);
-	else if (!ft_strcmp(command->args[0], "cd"))
+	else if (!ft_strcmp(0, command->args[0], "cd"))
 		command->env->exit_status = b_cd(command);
-	else if (!ft_strcmp(command->args[0], "env"))
+	else if (!ft_strcmp(0, command->args[0], "env"))
 		command->env->exit_status = b_env(command);
-	else if (!ft_strcmp(command->args[0], "unset"))
+	else if (!ft_strcmp(0, command->args[0], "unset"))
 		command->env->exit_status = b_unset(command);
-	else if (!ft_strcmp(command->args[0], "exit"))
+	else if (!ft_strcmp(0, command->args[0], "exit"))
 		command->env->exit_status = b_exit(command);
 }
 

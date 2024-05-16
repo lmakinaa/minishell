@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:23:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 16:24:15 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:39:11 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void add_env(t_memsession *session, t_lenv *envs, char *name, char *value)
 	head = envs->head;
 	while (head)
 	{
-		if (!ft_strcmp(name, head->name))
+		if (!ft_strcmp(1, name, head->name))
 		{
 			if (value)
 				head->value = value;
@@ -89,7 +89,7 @@ void remove_env(t_memsession *session, t_lenv *envs, char *name)
 	if (!envs->head)
 		return ;
 	f_env = envs->head;
-	if (!ft_strcmp(envs->head->name, name))
+	if (!ft_strcmp(1, envs->head->name, name))
 	{
 		if (!envs->head->next)
 			envs->tail = NULL;
@@ -98,7 +98,7 @@ void remove_env(t_memsession *session, t_lenv *envs, char *name)
 	}
 	while (f_env->next)
 	{
-		if (!ft_strcmp(f_env->next->name, name))
+		if (!ft_strcmp(1, f_env->next->name, name))
 		{
 			tmp = f_env->next->next;
 			del_node(session, f_env->next);

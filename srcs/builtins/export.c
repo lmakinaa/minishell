@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 13:48:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/11 05:49:02 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:39:11 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	dump_list(t_lenv *env)
 		list = env->head;
 		while (list)
 		{
-			if (list->index == j && list->value && ft_strcmp(list->name, "_"))
+			if (list->index == j && list->value && ft_strcmp(1, list->name, "_"))
 			{
 				(void) (write(1, "declare -x ", 11)
 					&& write(1, list->name, ft_strlen(list->name)) && write(1, "=\"", 2));
@@ -46,7 +46,7 @@ static void	dump_list(t_lenv *env)
 				}
 				write(1, "\"\n", 2);
 			}
-			else if (list->index == j && !list->value && ft_strcmp(list->name, "_"))
+			else if (list->index == j && !list->value && ft_strcmp(1, list->name, "_"))
 				(void) (write(1, "declare -x ", 11) && write(1, list->name, ft_strlen(list->name))
 					&& write(1, "\n", 1));
 			list = list->next;

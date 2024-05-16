@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:28:38 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/11 05:55:29 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:39:11 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void append_env(t_memsession *session, t_lenv *envs, char *name, char *value)
 	head = envs->head;
 	while (head)
 	{
-		if (!ft_strcmp(name, head->name))
+		if (!ft_strcmp(1, name, head->name))
 		{
 			head->value = ft_strjoin(session, head->value, value);
 			return ;

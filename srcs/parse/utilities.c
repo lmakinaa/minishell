@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 21:08:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 20:54:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:47:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,30 +14,30 @@
 
 int	what_ops(char *str)
 {
-	if (!ft_strcmp(str, "||"))
+	if (!ft_strcmp(1, str, "||"))
 		return (T_OR);
-	if (!ft_strcmp(str, "&&"))
+	if (!ft_strcmp(1, str, "&&"))
 		return (T_AND);
-	if (!ft_strcmp(str, ">>"))
+	if (!ft_strcmp(1, str, ">>"))
 		return (T_APPEND_REDIR);
-	if (!ft_strcmp(str, "<<"))
+	if (!ft_strcmp(1, str, "<<"))
 		return (T_HERDOC);
-	if (!ft_strcmp(str, "<"))
+	if (!ft_strcmp(1, str, "<"))
 		return (T_INPUT_REDIRECTOR);
-	if (!ft_strcmp(str, ">"))
+	if (!ft_strcmp(1, str, ">"))
 		return (T_OUT_REDIR);
-	if (!ft_strcmp(str, "|"))
+	if (!ft_strcmp(1, str, "|"))
 		return (T_PIPE);
 	return (-1);
 }
 
 int	is_builtin(char *str)
 {
-	if (!ft_strcmp(str, "echo") || !ft_strcmp(str, "cd")
-		|| !ft_strcmp(str, "pwd") || !ft_strcmp(str, "export"))
+	if (!ft_strcmp(0, str, "echo") || !ft_strcmp(0, str, "cd")
+		|| !ft_strcmp(0, str, "pwd") || !ft_strcmp(0, str, "export"))
 		return (1);
-	if (!ft_strcmp(str, "unset") || !ft_strcmp(str, "env")
-		|| !ft_strcmp(str, "exit"))
+	if (!ft_strcmp(0, str, "unset") || !ft_strcmp(0, str, "env")
+		|| !ft_strcmp(0, str, "exit"))
 		return (1);
 	return (0);
 }

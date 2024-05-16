@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 19:24:28 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 17:27:12 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:25:11 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,14 @@ void	set_status(t_lenv *env, int status)
 	env->exit_status = status;
 }
 
-static char	*check_path(t_memsession *session, char **dirs, char *cmd)
+static char	*check_path(t_memsession *session, t_splitdata *d, char *cmd)
 {
 	char	*s;
+	char	**dirs;
 
+	if (!d || !d->words)
+		return (NULL);
+	dirs = d->words;
 	while (*dirs)
 	{
 		s = ft_joinchar(session, *dirs, '/');
@@ -36,7 +40,7 @@ int	get_path(t_command *command)
 {
 	char		*p;
 	char		*cmd;
-	char		**dirs;
+	t_splitdata	*dirs;
 
 	cmd = command->args[0];
 	if (is_builtin(cmd))
@@ -48,7 +52,7 @@ int	get_path(t_command *command)
 		if (access(cmd, F_OK) == -1)
 			return (set_status(command->env, 1),
 				throw_error(cmd, 0, 0, THROW_PERROR), -1);
-	dirs = ft_split(command->session, p, ":")->words;
+	dirs = ft_split(command->session, p, ":");
 	p = check_path(command->session, dirs, cmd);
 	if (!((command->path && !access(command->path, F_OK)) || p))
 		return (set_status(command->env, 1),

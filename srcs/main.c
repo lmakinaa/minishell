@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 19:25:22 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 10:31:20 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ char	*generate_prompt(t_memsession *session, t_lenv *env)
 	char	*tmp;
 	char	*cwd;
 
-	cwd = get_env(env, "PWD");
+	cwd = getcwd(NULL, 0);
 	tmp = ft_strnstr(cwd, get_env(env, "HOME"), ft_strlen(cwd));
 	buffer = ft_strdup(session, "\e[0;33m", 7);
 	if (tmp)
@@ -31,6 +31,7 @@ char	*generate_prompt(t_memsession *session, t_lenv *env)
 	else
 		buffer = ft_strjoin(session, buffer, cwd);
 	buffer = ft_strjoin(session, buffer, " \e[1;30m> \033[0m");
+	free(cwd);
 	return (buffer);
 }
 

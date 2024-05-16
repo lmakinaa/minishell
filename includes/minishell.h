@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 15:53:01 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 16:28:08 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,9 @@
 # define SYNTAX_ERR "near unexpected token"
 # define SYNTAX_ERR_LEN 21
 # define THROW_PERROR 2
+
+# define LEFT_C 0
+# define RIGHT_C 1
 
 // Token types
 // todo: change this shit into enum

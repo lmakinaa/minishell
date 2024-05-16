@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 15:20:38 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 15:57:38 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 	int		i;
 
 	i = -1;
-	while (cmd[++i])
+	while (cmd && cmd[++i])
 	{
 		if (cmd[i]->type == T_UNKNOWN || cmd[i]->type == T_INPUT_FILE
 			|| cmd[i]->type == T_OUTPUT_FILE)

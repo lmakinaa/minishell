@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 17:33:37 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 15:53:55 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 16:45:16 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,8 @@ t_tnode	*build_tree(t_memsession *session, t_token ***tokens,
 	{
 		op = **tokens;
 		(*tokens)++;
-		if (!(*tokens))
-			exit_on_error("Syntax error\n", 13);
-		right = build_tree(session, tokens, get_precedence(op) + 1);
+		//right = build_tree(session, tokens, get_precedence(op) + 1);
+		right = build_tree(session, tokens, get_precedence(op));
 		if (!right)
 			return (left);
 		new_node = create_node(session, 1, op, tokens);

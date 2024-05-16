@@ -18,6 +18,7 @@ typedef struct	s_list{
 	int				count;
 	t_memsession	*session;
 	int				exit_status;
+	struct termios	initial_termios;
 }				t_lenv;
 
 t_lenv	*envs_init(t_memsession *session, char **envp);

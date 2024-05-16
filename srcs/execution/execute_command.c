@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 16:02:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 22:08:00 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	exec_binary(t_command *cmd)
 			return (set_status(cmd->env, 126),
 			throw_error(cmd->path, 0, 0, THROW_PERROR));
 	}
-	//else if (pid == -1)
+	else if (pid == -1)
+		exit_on_error("fork() failed\n", 14);
 	else
 	{
 		waitpid(pid, &s, 0);

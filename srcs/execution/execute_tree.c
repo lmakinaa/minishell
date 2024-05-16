@@ -6,21 +6,21 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 16:28:23 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 20:35:09 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-static void	ft_exec_pipe_child(t_tnode *node, int pfds[2], int direction)
+static void	ft_exec_pipe_child(t_tnode *node, int pfds[2], int what_child)
 {
-	if (direction == LEFT_C)
+	if (what_child == LEFT_C)
 	{
 		close(pfds[0]);
 		dup2(pfds[1], STDOUT_FILENO);
 		close(pfds[1]);
 	}
-	else if (direction == RIGHT_C)
+	else if (what_child == RIGHT_C)
 	{
 		close(pfds[1]);
 		dup2(pfds[0], STDIN_FILENO);

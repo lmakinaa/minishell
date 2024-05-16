@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 19:24:28 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 10:25:11 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/16 22:08:28 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,19 @@ static char	*check_path(t_memsession *session, t_splitdata *d, char *cmd)
 	return (NULL);
 }
 
+static int	handle_no_path(t_command *cmd)
+{
+	if (!cmd->path)
+	{
+		cmd->path = ft_strdup(cmd->session, "./", 2);
+		cmd->path = ft_strjoin(cmd->session, cmd->path, cmd->args[0]);
+	}
+	if (access(cmd->path, F_OK) == -1)
+		return (set_status(cmd->env, 126),
+				throw_error(cmd->args[0], 0, 0, THROW_PERROR), -1);
+	return (0);
+}
+
 int	get_path(t_command *command)
 {
 	char		*p;
@@ -49,13 +62,12 @@ int	get_path(t_command *command)
 		command->path = cmd;
 	p = get_env(command->env, "PATH");
 	if (!p)
-		if (access(cmd, F_OK) == -1)
-			return (set_status(command->env, 1),
-				throw_error(cmd, 0, 0, THROW_PERROR), -1);
+		if (handle_no_path(command) == -1)
+			return (-1);
 	dirs = ft_split(command->session, p, ":");
 	p = check_path(command->session, dirs, cmd);
 	if (!((command->path && !access(command->path, F_OK)) || p))
-		return (set_status(command->env, 1),
+		return (set_status(command->env, 127),
 			throw_error(cmd, 0, 0, THROW_PERROR), -1);
 	if (p)
 		command->path = p;

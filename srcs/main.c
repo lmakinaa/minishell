@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 23:33:21 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 16:09:00 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ int	main(int argc, char **argv, char **envp)
 	t_lenv			*env;
 	char			*command;
 
-	env = ft_initialise(&main_session, &env_session, argc, argv, envp);
+	(void) argc;
+	env = ft_initialise(&main_session, &env_session, argv, envp);
 	while (1)
 	{
 		command = readline(generate_prompt(main_session, env));

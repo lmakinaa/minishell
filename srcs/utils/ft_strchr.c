@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 14:45:49 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 20:34:25 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:39:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*custom_strjoin(t_memsession *session, char *s1, char *s2)
 		s1[0] = '\0';
 	}
 	res = session_malloc(session,
-		(ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char), 0);
+			(ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char), 0);
 	i = 0;
 	while (s1[i])
 	{

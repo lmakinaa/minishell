@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:15:11 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 14:05:29 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 15:55:50 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,11 @@ int	pattern_check_2(char *str, char *pattern, int s_len, int *j)
 	pat_index = -1;
 	i = 0;
 	while (i < s_len)
+	{
 		if (str[i] == pattern[*j] && ++i && ++(*j))
 			;
 		else if (pattern[*j] == 127)
-		{
-			str_index = i;
-			pat_index = *j;
-			(*j)++;
-		}
+			(1) && (str_index = i, pat_index = *j, (*j)++);
 		else if (pat_index != -1)
 		{
 			i = str_index + 1;
@@ -38,6 +35,7 @@ int	pattern_check_2(char *str, char *pattern, int s_len, int *j)
 		}
 		else
 			return (0);
+	}
 	return (1);
 }
 
@@ -64,7 +62,7 @@ char	*expand_wildcard(t_memsession *session, char *str)
 	DIR				*dir;
 	struct dirent	*entry;
 	char			*res;
-	
+
 	dir = opendir(".");
 	if (!dir)
 		return (exit_on_error("opendir failed\n", 15), NULL);

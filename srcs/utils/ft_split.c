@@ -6,18 +6,16 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:09:35 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 14:24:30 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:39:36 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-int	ft_countword(char *str, char *seps)
+int	ft_countword(char *str, char *seps, int count)
 {
 	char	tmp;
-	int		count;
 
-	count = 0;
 	if (*str == '\0')
 		return (0);
 	while (*str)
@@ -25,6 +23,7 @@ int	ft_countword(char *str, char *seps)
 		if (!is_sep(*str, seps) && ++count)
 		{
 			while (*str && !is_sep(*str, seps))
+			{
 				if (*str == '"' || *str == '\'')
 				{
 					tmp = *(str++);
@@ -34,9 +33,9 @@ int	ft_countword(char *str, char *seps)
 				}
 				else
 					str++;
+			}
 		}
-		if (*str)
-			str++;
+		(*str) && (str++);
 	}
 	return (count);
 }
@@ -64,20 +63,21 @@ char	*split_strdup(t_memsession *session, char *s, char *seps)
 	return (resaddr);
 }
 
-static	void	split_process(t_memsession *session, t_splitdata *data, char *s, char *seps)
+static void	split_process(t_memsession *session, t_splitdata *data,
+	char *s, char *seps)
 {
 	int		i;
 	char	tmp;
 	char	**res;
 
-	res = data->words;
-	i = 0;
+	(1) && (res = data->words, i = 0);
 	while (i < data->word_count && *s)
 	{
 		if (!is_sep(*s, seps))
 		{
 			res[i++] = custom_strdup(session, s, seps);
 			while (*s && !is_sep(*s, seps))
+			{
 				if (*s == '"' || *s == '\'')
 				{
 					tmp = *s;
@@ -86,9 +86,9 @@ static	void	split_process(t_memsession *session, t_splitdata *data, char *s, cha
 				}
 				else
 					s++;
+			}
 		}
-		if (*s)
-			s++;
+		(*s) && (s++);
 	}
 	res[i] = NULL;
 }
@@ -100,7 +100,7 @@ t_splitdata	*ft_split(t_memsession *session, char *s, char *seps)
 
 	if (!s)
 		return (NULL);
-	size = ft_countword(s, seps);
+	size = ft_countword(s, seps, 0);
 	data = session_malloc(session, sizeof(t_splitdata), 0);
 	data->word_count = size;
 	data->words = session_malloc(session, (size + 1) * sizeof(char *), 0);

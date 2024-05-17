@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:32:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 10:39:11 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 15:53:06 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	create_random_file(t_memsession *session, t_token *tok, char *base)
 	int		readed;
 	char	*random;
 	int		i;
-	
+
 	fd = open("/dev/urandom", O_RDONLY);
 	if (fd == -1)
 		exit_on_error("open() failed\n", 14);
@@ -59,7 +59,7 @@ int	handle_heredoc(t_memsession *session, t_token *tok)
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
 		if (!ft_strcmp(1, line, no_quotes(session, eol, 0)) && free_line(line))
-			break;
+			break ;
 		free(line);
 	}
 	tok->type = T_STD_INPUT;

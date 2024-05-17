@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:17:46 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/21 22:18:29 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:34:19 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	ft_count_words(char *str, char *seps)
 		if (*str && !new_sep_check(str, seps) && ++res)
 		{
 			while (*str && !new_sep_check(str, seps))
+			{
 				if (*str == '"' || *str == '\'')
 				{
 					tmp = *(str++);
@@ -82,9 +83,9 @@ int	ft_count_words(char *str, char *seps)
 				}
 				else
 					str++;
+			}
 		}
-		if (*str && !new_is_ops(str))
-			str++;
+		(*str && !new_is_ops(str)) && (str++);
 	}
 	return (res);
 }

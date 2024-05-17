@@ -6,11 +6,22 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 16:03:39 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:22:14 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
+
+static char	*add_var_quotes(t_memsession *s, char *str)
+{
+	char	*res;
+
+	res = ft_strdup(s, "\"", 0);
+	res = ft_strjoin(s, res, str);
+	res = ft_joinchar(s, res, '\"');
+	del_from_session(s, str);
+	return (res);
+}
 
 char	**append_arg(t_memsession *session, char **args, char *value, int cmd)
 {
@@ -84,7 +95,7 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 	res->args = NULL;
 	i = -1;
 	while (cmd && cmd[++i])
-		if (cmd[i]->type == T_UNKNOWN)
+		if (cmd[i]->type == T_UNKNOWN || cmd[i]->type == T_VAR)
 		{
 			if (i > 0 && !ft_strcmp(1, cmd[0]->value, "export"))
 				d = ft_split(session, cmd[i]->value, "");
@@ -92,8 +103,11 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 				d = ft_split(session, cmd[i]->value, SEPERATORS);
 			words = d->words;
 			while (*words && ++res->argc)
+			{
+				((cmd[i]->type == T_VAR) && (*words = add_var_quotes(session, *words)));
 				res->args = append_arg(session, res->args,
 					no_quotes(session, *(words++), 0), 0);
+			}
 		}
 	parse_cmd_2(session, res, cmd);
 	if (res->args)

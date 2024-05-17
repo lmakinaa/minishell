@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 14:22:14 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:30:50 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,15 @@ void	parse_cmd_2(t_memsession *session, t_command *res, t_token **cmd)
 	res->path = NULL;
 }
 
+static int	ft_part2(t_memsession *session, t_command *res, t_token **cmd)
+{
+	parse_cmd_2(session, res, cmd);
+	if (res->args)
+		if (get_path(res) == -1)
+			return (-1);
+	return (0);
+}
+
 t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 {
 	t_command	*res;
@@ -88,12 +97,8 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 	char		**words;
 	int			i;
 
-	res = session_malloc(session, sizeof(t_command), 0);
-	res->env = env;
-	res->session = session;
-	res->argc = 0;
-	res->args = NULL;
-	i = -1;
+	(1) && (res = session_malloc(session, sizeof(t_command), 0), res->env = env,
+		res->session = session, res->argc = 0, res->args = NULL, i = -1);
 	while (cmd && cmd[++i])
 		if (cmd[i]->type == T_UNKNOWN || cmd[i]->type == T_VAR)
 		{
@@ -109,9 +114,7 @@ t_command *parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd)
 					no_quotes(session, *(words++), 0), 0);
 			}
 		}
-	parse_cmd_2(session, res, cmd);
-	if (res->args)
-		if (get_path(res) == -1)
-			return (NULL);
+	if (ft_part2(session, res, cmd) == -1)
+		return (NULL);
 	return (res);
 }

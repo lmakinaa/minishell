@@ -6,12 +6,13 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 20:35:09 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 16:13:23 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
+// 5asni nfree child process
 static void	ft_exec_pipe_child(t_tnode *node, int pfds[2], int what_child)
 {
 	if (what_child == LEFT_C)
@@ -27,7 +28,6 @@ static void	ft_exec_pipe_child(t_tnode *node, int pfds[2], int what_child)
 		close(pfds[0]);
 	}
 	execute_tree(node->session, node->env, node, 1);
-	// 5asni nfree child process
 	exit(node->env->exit_status);
 }
 

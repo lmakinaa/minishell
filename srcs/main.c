@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:09:00 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 16:26:24 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ char	*generate_prompt(t_memsession *session, t_lenv *env)
 	return (buffer);
 }
 
-void	f()
-{
-	system("leaks minishell");
-}
+//void	f(void)
+//{
+//	system("leaks minishell");
+//}
 
 void	ft_addhistory(char *command)
 {
 	int	i;
-	
+
 	i = -1;
 	while (command[++i] && is_sep(command[i], SEPERATORS))
 		;

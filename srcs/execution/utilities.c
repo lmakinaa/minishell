@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:56:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 16:25:57 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 16:13:37 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ char	**generate_env_array(t_memsession *session, t_lenv *env)
 
 	res = session_malloc(session, (env->count + 1) * sizeof(char *), 0);
 	i = -1;
-	//printf("%d\n", env->count);
 	head = env->head;
 	while (++i < env->count)
 	{
@@ -29,8 +28,6 @@ char	**generate_env_array(t_memsession *session, t_lenv *env)
 		head = head->next;
 	}
 	res[i] = NULL;
-	//for (i = 0; res[i]; i++)
-	//	puts(res[i]);
 	return (res);
 }
 

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 15:57:38 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 13:33:47 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,22 +99,39 @@ char	*expand_2(t_memsession *session, char *str)
 	return (res);
 }
 
+static char	*add_var_quotes(t_memsession *s, char *str)
+{
+	char	*res;
+
+	res = ft_strdup(s, "\"", 0);
+	res = ft_strjoin(s, res, str);
+	res = ft_joinchar(s, res, '\"');
+	del_from_session(s, str);
+	return (res);
+}
+
 /*
 * Expand Vars and whats inside quotes and remove quotes
 */
 int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 {
 	int		i;
+	int		f;
 
 	i = -1;
+	f = 0;
 	while (cmd && cmd[++i])
 	{
 		if (cmd[i]->type == T_UNKNOWN || cmd[i]->type == T_INPUT_FILE
 			|| cmd[i]->type == T_OUTPUT_FILE)
 		{
+			if (cmd[i]->value[0] == '$' && cmd[i]->value[1] && cmd[i]->value[1] != '?')
+				f = 1;
 			cmd[i]->value = expand_1(session, env, cmd[i]->value);
-			//puts(cmd[i]->value);
 			cmd[i]->value = expand_2(session, cmd[i]->value);
+			if (f)
+				cmd[i]->value = add_var_quotes(session, cmd[i]->value);
+			//puts(cmd[i]->value);
 		}
 		if (cmd[i]->type == T_INPUT_FILE || cmd[i]->type == T_OUTPUT_FILE)
 			if (ft_countword(cmd[i]->value, SEPERATORS) > 1)

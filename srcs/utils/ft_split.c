@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/25 17:09:35 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/26 16:28:25 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:24:30 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_countword(char *str, char *seps)
 					tmp = *(str++);
 					while (*(str) && *str != tmp)
 						str++;
-					str++;
+					(*str) && (str++);
 				}
 				else
 					str++;

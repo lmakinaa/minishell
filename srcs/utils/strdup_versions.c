@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:12:22 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/06 17:57:22 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:25:03 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ static	int	custom_strlen(char *s, char *seps)
 			tmp = s[i++];
 			while (s[i] && s[i] != tmp)
 				i++;
-			i++;
+			if (s[i])
+				i++;
 		}
 		else
 			i++;

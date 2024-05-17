@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:08:44 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 16:25:35 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,10 +88,10 @@ typedef struct s_mscommand
 	char				*path;
 	char				**args;
 	int					argc;
-	char				**output_files; // after parsing the redirectors in order
-	char				*output_redir_type; // is it replace (>) or append (>>), don't mind if output_files == NULL
-	char				*input_file; // after parsing the input redir (<)
-	int					std_input;	// the here-doc entry (<<)
+	char				**output_files;
+	char				*output_redir_type;
+	char				*input_file;
+	int					std_input;
 	t_lenv				*env;
 	t_memsession		*session;
 }			t_command;
@@ -99,7 +99,8 @@ typedef struct s_mscommand
 //	execution
 int			execute_command(t_memsession *session, t_lenv *env,
 				t_token **tokens, int pip);
-int			execute_tree(t_memsession *session, t_lenv *env, t_tnode *root, int pip);
+int			execute_tree(t_memsession *session, t_lenv *env,
+				t_tnode *root, int pip);
 int			reset_fds(int backup_fds[]);
 int			out_redirect(char **out, char *types);
 char		**generate_env_array(t_memsession *session, t_lenv *env);
@@ -113,14 +114,15 @@ int			b_env(t_command *command);
 int			b_unset(t_command *command);
 int			b_exit(t_command *cmd);
 
-
 //	parse
-void		handle_prompt(t_memsession *heap_session, t_lenv *env, char *command);
+void		handle_prompt(t_memsession *heap_session, t_lenv *env,
+				char *command);
 t_token		**tokenization(t_memsession *session, t_splitdata *splited_cmd);
-void		print_tokens(t_token **tokens);
+//void		print_tokens(t_token **tokens);
 t_token		**advanced_split(t_memsession *session, char *str, char *seps);
 int			expander(t_memsession *session, t_lenv *env, t_token **cmd);
-t_command 	*parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd, int i);
+t_command	*parse_cmd(t_memsession *session, t_lenv *env,
+				t_token **cmd, int i);
 int			get_path(t_command *command);
 
 //	utilities
@@ -144,7 +146,7 @@ char		*expand_2(t_memsession *session, char *str);
 int			handle_heredoc(t_memsession *session, t_token *tok);
 char		*no_quotes(t_memsession *session, char *str, int flag);
 int			tokenize_part2(t_token **cmd);
-void 		print_command_elements(t_command *command);
+//void 		print_command_elements(t_command *command);
 char		*expand_wildcard(t_memsession *session, char *str);
 char		*get_exit_status(t_memsession *session, t_lenv *env);
 int			is_identif(char c);
@@ -157,7 +159,7 @@ t_tnode		*create_node(t_memsession *session, int op,
 				t_token *token, t_token ***tokens);
 t_tnode		*build_tree(t_memsession *session, t_token ***tokens,
 				int min_precedence);
-void		print_tree(t_tnode *node, int space);
+//void		print_tree(t_tnode *node, int space);
 t_tnode		*nested_tree(t_memsession *session, t_token ***tokens);
 
 #endif

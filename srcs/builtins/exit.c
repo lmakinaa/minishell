@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 02:49:45 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/13 01:52:52 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 16:14:27 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_atoi(char *str, int *buff)
 {
 	int	sign;
-	
+
 	sign = 1;
 	(*buff) = 0;
 	while (*str && is_sep(*str, " \t\n"))
@@ -56,9 +56,9 @@ static void	dump_output(int t_err, char *arg)
 int	b_exit(t_command *cmd)
 {
 	int				status;
-	t_memsession 	*env_session;
-	t_memsession 	*sess;
-	
+	t_memsession	*env_session;
+	t_memsession	*sess;
+
 	if (cmd->argc == 1)
 	{
 		status = cmd->env->exit_status;

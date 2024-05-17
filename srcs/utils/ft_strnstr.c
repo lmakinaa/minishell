@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/15 13:02:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 10:30:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:41:33 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	*ft_strnstr(char *haystack, char *needle, size_t len)
 	size_t	j;
 
 	i = 0;
-	if (!needle || (!haystack  && len == 0))
+	if (!needle || (!haystack && len == 0))
 		return (NULL);
 	if (needle[0] == '\0')
 		return ((char *) haystack);

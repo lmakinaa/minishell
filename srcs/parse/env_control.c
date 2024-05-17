@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:23:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 11:53:13 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 15:44:48 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ t_lenv	*envs_init(t_memsession *session, char **envp)
 	return (res);
 }
 
-t_env *create_env(t_memsession *session, t_lenv *env, char *name, char *value)
+t_env	*create_env(t_memsession *session, t_lenv *env, char *name, char *value)
 {
-	t_env *res;
+	t_env	*res;
 
 	res = session_malloc(session, sizeof(t_env), 0);
 	res->name = name;
@@ -50,7 +50,7 @@ t_env *create_env(t_memsession *session, t_lenv *env, char *name, char *value)
 	return (res);
 }
 
-void add_env(t_memsession *session, t_lenv *envs, char *name, char *value)
+void	add_env(t_memsession *session, t_lenv *envs, char *name, char *value)
 {
 	t_env	*head;
 
@@ -63,7 +63,7 @@ void add_env(t_memsession *session, t_lenv *envs, char *name, char *value)
 				head->value = value;
 			return ;
 		}
-		head = head->next;	
+		head = head->next;
 	}
 	create_env(session, envs, name, value);
 	envs->count++;
@@ -76,11 +76,11 @@ static void	del_node(t_memsession *session, t_env *node)
 	del_from_session(session, node);
 }
 
-void remove_env(t_memsession *session, t_lenv *envs, char *name)
+void	remove_env(t_memsession *session, t_lenv *envs, char *name)
 {
 	t_env	*tmp;
 	t_env	*f_env;
-	
+
 	if (!envs->head)
 		return ;
 	f_env = envs->head;
@@ -89,7 +89,7 @@ void remove_env(t_memsession *session, t_lenv *envs, char *name)
 		if (!envs->head->next)
 			envs->tail = NULL;
 		envs->head = NULL;
-		return(envs->count--, del_node(session, f_env));
+		return (envs->count--, del_node(session, f_env));
 	}
 	while (f_env->next)
 	{

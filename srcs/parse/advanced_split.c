@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/15 11:10:06 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:49:21 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	check_syntax(t_token *tok, int t, t_token *next, int order)
 	if (t == T_AND || t == T_OR || t == T_PIPE)
 	{
 		if (!order || !next || (next->type != T_PARENTHESIS_COMMAND
-			&& next->type != T_UNKNOWN && !is_redirector(*next)))
+				&& next->type != T_UNKNOWN && !is_redirector(*next)))
 			return (throw_error(SYNTAX_ERR, tok->value, SYNTAX_ERR_LEN, 1), -1);
 	}
 	else if (is_redirector(*tok) && t != T_HERDOC)
@@ -27,8 +27,8 @@ int	check_syntax(t_token *tok, int t, t_token *next, int order)
 	}
 	else if (t == T_PARENTHESIS_COMMAND)
 	{
-		if (next && (next->type != T_AND &&
-			next->type != T_OR && next->type != T_PIPE))
+		if (next && (next->type != T_AND
+				&& next->type != T_OR && next->type != T_PIPE))
 			return (throw_error(SYNTAX_ERR, ")", SYNTAX_ERR_LEN, 1), -1);
 	}
 	else if (t != T_AND || t != T_OR || t != T_PIPE)
@@ -49,7 +49,8 @@ int	more_tokenization(t_memsession *session, t_token **toks, int i)
 		if (toks[i]->type == T_HERDOC)
 		{
 			if (!toks[i + 1] || toks[i + 1]->type != T_UNKNOWN)
-				return (throw_error(SYNTAX_ERR, "newline", SYNTAX_ERR_LEN, 1), -1);
+				return (throw_error(SYNTAX_ERR, "newline",
+						SYNTAX_ERR_LEN, 1), -1);
 			res = handle_heredoc(session, toks[i + 1]);
 		}
 		res = check_syntax(toks[i], toks[i]->type, toks[i + 1], i);
@@ -71,17 +72,15 @@ t_token	**tokenization(t_memsession *session, t_splitdata *splited_cmd)
 			(splited_cmd->word_count + 1) * sizeof(t_token *), 0);
 	i = -1;
 	while (++i < splited_cmd->word_count)
-	{
-		toks[i] = session_malloc(session, sizeof(t_token), 0);
-		toks[i]->tokens_nbr = splited_cmd->word_count;
-		toks[i]->type = get_token_type(splited_cmd->words[i]);
-		toks[i]->value = splited_cmd->words[i];
-		toks[i]->command = 1;
-	}
+		(1) && (toks[i] = session_malloc(session, sizeof(t_token), 0),
+			toks[i]->tokens_nbr = splited_cmd->word_count,
+				toks[i]->value = splited_cmd->words[i], toks[i]->command = 1,
+					toks[i]->type = get_token_type(splited_cmd->words[i]));
 	(1) && (toks[i] = NULL, i = -1);
 	while (++i < toks[0]->tokens_nbr)
 		if (toks[i]->type != T_WORD && !is_redirector(*(toks[i]))
-			&& toks[i]->type != T_PARENTHESIS_COMMAND && new_is_ops(toks[i]->value))
+			&& toks[i]->type != T_PARENTHESIS_COMMAND
+			&& new_is_ops(toks[i]->value))
 			toks[i]->command = 0;
 	if (more_tokenization(session, toks, -1) == -1)
 	{
@@ -106,6 +105,7 @@ void	spliting_process(t_memsession *session,
 		{
 			result->words[i++] = custom_strdup(session, str, seps);
 			while (*str && !new_sep_check(str, seps))
+			{
 				if (*str == '"' || *str == '\'')
 				{
 					tmp = *(str++);
@@ -114,6 +114,7 @@ void	spliting_process(t_memsession *session,
 				}
 				else
 					str++;
+			}
 		}
 		if (*str && !new_is_ops(str))
 			str++;

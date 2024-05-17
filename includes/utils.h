@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 10:40:02 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:38:23 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char		*custom_strjoin(t_memsession *session, char *s1, char *s2);
 char		*ft_strdup(t_memsession *session, char *s1, size_t len);
 char		*ft_strjoin(t_memsession *session, char *s1, char *s2);
 char		*ft_joinchar(t_memsession *session, char *s1, char c);
-int			ft_countword(char *str, char *seps);
+int			ft_countword(char *str, char *seps, int count);
 t_splitdata	*ft_split(t_memsession *session, char *s, char *seps);
 int			ft_isalpha(int c);
 int			ft_isdigit(int c);

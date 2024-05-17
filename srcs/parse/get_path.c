@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 19:24:28 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 22:08:28 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 15:52:46 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static int	handle_no_path(t_command *cmd)
 	}
 	if (access(cmd->path, F_OK) == -1)
 		return (set_status(cmd->env, 126),
-				throw_error(cmd->args[0], 0, 0, THROW_PERROR), -1);
+			throw_error(cmd->args[0], 0, 0, THROW_PERROR), -1);
 	return (0);
 }
 

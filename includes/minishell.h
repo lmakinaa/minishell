@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 16:28:08 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 16:08:44 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,7 +120,7 @@ t_token		**tokenization(t_memsession *session, t_splitdata *splited_cmd);
 void		print_tokens(t_token **tokens);
 t_token		**advanced_split(t_memsession *session, char *str, char *seps);
 int			expander(t_memsession *session, t_lenv *env, t_token **cmd);
-t_command 	*parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd);
+t_command 	*parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd, int i);
 int			get_path(t_command *command);
 
 //	utilities
@@ -137,7 +137,7 @@ int			are_quotes_closed(char *s);
 int			are_parenthesis_closed(char *s);
 char		*z_strdup(t_memsession *session, char **str, char *seps);
 t_lenv		*ft_initialise(t_memsession **session1, t_memsession **session2,
-				int argc, char **argv, char **envp);
+				char **argv, char **envp);
 void		end_sessions(t_memsession **s1, t_memsession **s2);
 int			is_sep(char c, char *seps);
 char		*expand_2(t_memsession *session, char *str);

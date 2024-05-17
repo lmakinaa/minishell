@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:12:22 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 14:25:03 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:42:11 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,10 @@ static	int	custom_strlen(char *s, char *seps)
 {
 	int		i;
 	char	tmp;
-	
+
 	i = 0;
 	while (s[i] && !new_sep_check(&s[i], seps))
+	{
 		if (s[i] == '"' || s[i] == '\'')
 		{
 			tmp = s[i++];
@@ -79,6 +80,7 @@ static	int	custom_strlen(char *s, char *seps)
 		}
 		else
 			i++;
+	}
 	return (i);
 }
 
@@ -110,7 +112,7 @@ char	*z_strdup(t_memsession *session, char **str, char *seps)
 	char	*res;
 	char	*s;
 	char	*resaddr;
-	
+
 	i = -1;
 	s = *str;
 	while (s[++i] && !is_sep(s[i], seps))
@@ -136,7 +138,7 @@ char	*var_name_strdup(t_memsession *session, char **str)
 	char	*res;
 	char	*s;
 	char	*resaddr;
-	
+
 	i = -1;
 	s = *str;
 	while (s[++i] && ft_isalnum(s[i]))

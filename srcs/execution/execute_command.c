@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 22:08:00 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 16:04:24 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_command	*expand_n_generate_cmd(t_memsession *session, t_lenv *env,
 		env->exit_status = 1;
 		return (NULL);
 	}
-	cmd = parse_cmd(session, env, node);
+	cmd = parse_cmd(session, env, node, -1);
 	return(cmd);
 }
 

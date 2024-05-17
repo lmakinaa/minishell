@@ -6,44 +6,44 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 15:57:10 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 16:10:16 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-void print_command_elements(t_command *command)
-{
-	char	buff[50];
-	int     bytes_read;
+//void	print_command_elements(t_command *command)
+//{
+//	char	buff[50];
+//	int		bytes_read;
 
-	//printf("Command: %s\n", command->cmd);
-	printf("Arguments:\n");
-	if (command->args)
-	{
-		for (int i = 0; command->args[i] != NULL; i++)
-			printf("%s\n", command->args[i]);
-	}
-	printf("Path: %s\n", command->path);
-	printf("Output Files:\n");
-	if (command->output_files != NULL)
-	{
-		for (int i = 0; command->output_files[i] != NULL; i++)
-			printf("%s\n", command->output_files[i]);
-	}
-	//printf("Output Redirection Type: %s\n", command->output_redir_type);
-	printf("Input File: %s\n", command->input_file);
-	printf("Standard Input:\n");
-	if (command->std_input == -1)
-		return ;
-	buff[0] = '\0';
-	while ((bytes_read = read(command->std_input, buff, 49)) > 0)
-    {
-        buff[bytes_read] = '\0';
-        printf("%s", buff);
-    }
-	//close(command->std_input);
-}
+//	//printf("Command: %s\n", command->cmd);
+//	printf("Arguments:\n");
+//	if (command->args)
+//	{
+//		for (int i = 0; command->args[i] != NULL; i++)
+//			printf("%s\n", command->args[i]);
+//	}
+//	printf("Path: %s\n", command->path);
+//	printf("Output Files:\n");
+//	if (command->output_files != NULL)
+//	{
+//		for (int i = 0; command->output_files[i] != NULL; i++)
+//			printf("%s\n", command->output_files[i]);
+//	}
+//	//printf("Output Redirection Type: %s\n", command->output_redir_type);
+//	printf("Input File: %s\n", command->input_file);
+//	printf("Standard Input:\n");
+//	if (command->std_input == -1)
+//		return ;
+//	buff[0] = '\0';
+//	while ((bytes_read = read(command->std_input, buff, 49)) > 0)
+//    {
+//        buff[bytes_read] = '\0';
+//        printf("%s", buff);
+//    }
+//	//close(command->std_input);
+//}
 
 void	sig_handle(int num)
 {
@@ -83,9 +83,9 @@ int	tokenize_part2(t_token **cmd)
 	return (0);
 }
 
-char *get_exec(char *value)
+char	*get_exec(char *value)
 {
-	char *res;
+	char	*res;
 
 	res = value;
 	while (*value)
@@ -120,7 +120,7 @@ char	*get_exit_status(t_memsession *session, t_lenv *env)
 	char		*res;
 	int			code;
 	int			i;
-	
+
 	res = session_malloc(session, 4 * sizeof(char), 0);
 	code = env->exit_status;
 	i = 0;

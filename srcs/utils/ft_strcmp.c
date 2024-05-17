@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:11 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 10:47:29 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 14:40:06 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,8 @@ int	ft_strcmp(int case_sensitive, char *str, char *compared_to)
 		return (-1);
 	i = 0;
 	if (!case_sensitive)
-		while (str[i] && compared_to[i] && !compare_cases(str[i], compared_to[i]))
+		while (str[i] && compared_to[i]
+			&& !compare_cases(str[i], compared_to[i]))
 			i++;
 	else
 		while (str[i] && compared_to[i] && str[i] == compared_to[i])

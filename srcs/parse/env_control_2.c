@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:28:38 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 10:39:11 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/17 15:45:45 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ char	*get_name(t_memsession *session, char *str)
 }
 
 // to remove
-void envs_display(t_lenv *list)
+void	envs_display(t_lenv *list)
 {
 	t_env	*after_head;
 	int		i;
@@ -64,22 +64,25 @@ void envs_display(t_lenv *list)
 		printf("The list have no tail!\n");
 		return ;
 	}
-	printf("The head's content-->[%s=%s]\n", list->head->name, list->head->value);
+	printf("The head's content-->[%s=%s]\n",
+		list->head->name, list->head->value);
 	after_head = list->head->next;
 	i = 2;
 	if (after_head)
 	{
 		while (after_head->next)
 		{
-			printf("[%d]-->[%s=%s]\n", i, after_head->name, after_head->value);
+			printf("[%d]-->[%s=%s]\n", i, after_head->name,
+				after_head->value);
 			after_head = after_head->next;
 			i++;
 		}
 	}
-	printf("The tail's content-->[%s=%s]\n", list->tail->name, list->tail->value);
+	printf("The tail's content-->[%s=%s]\n", list->tail->name,
+		list->tail->value);
 }
 
-void append_env(t_memsession *session, t_lenv *envs, char *name, char *value)
+void	append_env(t_memsession *session, t_lenv *envs, char *name, char *value)
 {
 	t_env	*head;
 
@@ -91,7 +94,7 @@ void append_env(t_memsession *session, t_lenv *envs, char *name, char *value)
 			head->value = ft_strjoin(session, head->value, value);
 			return ;
 		}
-		head = head->next;	
+		head = head->next;
 	}
 	if (!value)
 		value = ft_strdup(session, "", 0);

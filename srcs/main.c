@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:26:24 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/18 15:48:18 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,5 +85,4 @@ minishell: 0: No such file or directory
 
 < redir
 
-export a="'d'"
 */

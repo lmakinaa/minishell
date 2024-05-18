@@ -6,14 +6,14 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:13:06 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/18 20:48:38 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
 // it needs more work
-void	exec_binary(t_command *cmd)
+int	exec_binary(t_command *cmd)
 {
 	pid_t	pid;
 	int		s;
@@ -23,15 +23,14 @@ void	exec_binary(t_command *cmd)
 	{
 		if (execve(cmd->path, cmd->args,
 				generate_env_array(cmd->session, cmd->env)) == -1)
-			return (set_status(cmd->env, 126),
-				throw_error(cmd->path, 0, 0, THROW_PERROR));
+			(throw_error(cmd->path, 0, 0, THROW_PERROR), exit(126));
 	}
 	else if (pid == -1)
 		exit_on_error("fork() failed\n", 14);
 	else
 	{
 		waitpid(pid, &s, 0);
-		cmd->env->exit_status = s;
+		return (ft_get_exit_status(s));
 	}
 }
 
@@ -49,7 +48,7 @@ t_command	*expand_n_generate_cmd(t_memsession *session, t_lenv *env,
 	return (cmd);
 }
 
-void	exec_builtin(t_command *command)
+int	exec_builtin(t_command *command)
 {
 	if (!ft_strcmp(0, command->args[0], "echo"))
 		command->env->exit_status = b_echo(command->args);
@@ -65,6 +64,7 @@ void	exec_builtin(t_command *command)
 		command->env->exit_status = b_unset(command);
 	else if (!ft_strcmp(0, command->args[0], "exit"))
 		command->env->exit_status = b_exit(command);
+	return (command->env->exit_status);
 }
 
 int	execute_command(t_memsession *session, t_lenv *env,
@@ -77,7 +77,7 @@ int	execute_command(t_memsession *session, t_lenv *env,
 	(void) pip;
 	command = expand_n_generate_cmd(session, env, tokens);
 	if (!command)
-		return (-1);
+		return (env->exit_status);
 	backup_fds[0] = dup(0);
 	backup_fds[1] = dup(1);
 	s = out_redirect(command->output_files, command->output_redir_type);
@@ -86,8 +86,8 @@ int	execute_command(t_memsession *session, t_lenv *env,
 	if (!command->args)
 		return (reset_fds(backup_fds), 0);
 	if (is_builtin(command->args[0]))
-		exec_builtin(command);
+		return (exec_builtin(command));
 	else
-		exec_binary(command);
+		return (exec_binary(command));
 	return (reset_fds(backup_fds));
 }

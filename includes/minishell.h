@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:25:35 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/18 18:43:34 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@
 # include <sys/types.h>
 # include <dirent.h>
 # include <termios.h>
+# include <signal.h>
+# include <sys/wait.h>
 # include "./allocation_manager.h"
 # include "./utils.h"
 # include "./env_control.h"
@@ -150,9 +152,10 @@ int			tokenize_part2(t_token **cmd);
 char		*expand_wildcard(t_memsession *session, char *str);
 char		*get_exit_status(t_memsession *session, t_lenv *env);
 int			is_identif(char c);
-void		set_status(t_lenv *env, int status);
+int			s_s(t_lenv *env, int status);
 char		*ft_strnstr(char *haystack, char *needle, size_t len);
 void		sig_handle(int num);
+int			ft_get_exit_status(int status);
 
 //	tree control
 t_tnode		*create_node(t_memsession *session, int op,

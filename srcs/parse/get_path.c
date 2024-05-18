@@ -6,15 +6,19 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 19:24:28 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 15:52:46 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/18 20:46:27 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-void	set_status(t_lenv *env, int status)
+/*
+* it sets the exit status
+*/
+int	s_s(t_lenv *env, int status)
 {
 	env->exit_status = status;
+	return (env->exit_status);
 }
 
 static char	*check_path(t_memsession *session, t_splitdata *d, char *cmd)
@@ -44,7 +48,7 @@ static int	handle_no_path(t_command *cmd)
 		cmd->path = ft_strjoin(cmd->session, cmd->path, cmd->args[0]);
 	}
 	if (access(cmd->path, F_OK) == -1)
-		return (set_status(cmd->env, 126),
+		return (s_s(cmd->env, 126),
 			throw_error(cmd->args[0], 0, 0, THROW_PERROR), -1);
 	return (0);
 }
@@ -67,7 +71,7 @@ int	get_path(t_command *command)
 	dirs = ft_split(command->session, p, ":");
 	p = check_path(command->session, dirs, cmd);
 	if (!((command->path && !access(command->path, F_OK)) || p))
-		return (set_status(command->env, 127),
+		return (s_s(command->env, 127),
 			throw_error(cmd, 0, 0, THROW_PERROR), -1);
 	if (p)
 		command->path = p;

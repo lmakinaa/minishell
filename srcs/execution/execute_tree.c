@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:13:23 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/18 18:43:34 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,14 @@ static void	ft_exec_pipe_child(t_tnode *node, int pfds[2], int what_child)
 		dup2(pfds[0], STDIN_FILENO);
 		close(pfds[0]);
 	}
-	execute_tree(node->session, node->env, node, 1);
-	exit(node->env->exit_status);
+	exit(execute_tree(node->session, node->env, node, 1));
+}
+
+int	ft_get_exit_status(int status)
+{
+	if (WIFSIGNALED(status))
+		return (128 + WTERMSIG(status));
+	return (WEXITSTATUS(status));
 }
 
 static int	exec_pipes(t_tnode *tree)
@@ -53,7 +59,7 @@ static int	exec_pipes(t_tnode *tree)
 			close(fds[1]);
 			waitpid(p_left, &status, 0);
 			waitpid(p_right, &status, 0);
-			return (status);
+			return (ft_get_exit_status(status));
 		}
 	}
 	return (1);
@@ -64,24 +70,24 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root, int pip)
 	if (!root)
 		return (0);
 	if (root->operator && root->operator->type == T_PIPE)
-		return (exec_pipes(root), 0);
-	if (root->operator)
+		return (s_s(env, exec_pipes(root)));
+	else if (root->operator)
 	{
 		if (root->operator->type == T_AND)
 		{
-			execute_tree(session, env, root->left, 0);
+			env->exit_status = execute_tree(session, env, root->left, 0);
 			if (env->exit_status == 0)
-				return (execute_tree(session, env, root->right, 0));
+				return (s_s(env, execute_tree(session, env, root->right, 0)));
 		}
 		else if (root->operator->type == T_OR)
 		{
-			execute_tree(session, env, root->left, 0);
+			env->exit_status = execute_tree(session, env, root->left, 0);
 			if (env->exit_status == 0)
 				return (0);
-			return (execute_tree(session, env, root->right, 0));
+			return (s_s(env, execute_tree(session, env, root->right, 0)));
 		}
 	}
 	else if (root->command)
-		execute_command(session, env, root->command, pip);
+		return (s_s(env, execute_command(session, env, root->command, pip)));
 	return (0);
 }

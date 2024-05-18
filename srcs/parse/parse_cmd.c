@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/18 22:38:56 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/18 23:12:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,38 +74,33 @@ char	**append_arr(t_memsession *session, char **arr1, char **arr2, int size)
 	return (res);
 }
 
-void	parse_cmd_2(t_memsession *session, t_command *res, t_token **cmd)
+void	parse_cmd_2(t_memsession *session, t_command *res, t_token **cmd, int i)
 {
-	int		i;
 	char	*out_type;
 	char	**out_files;
 	char	*input_file;
 	int		std_input;
+	int		tmp;
 
-	i = -1;
-	out_type = ft_strdup(session, "", 0);
-	input_file = NULL;
-	out_files = NULL;
-	std_input = -1;
+	(1) && (tmp = -1, out_type = ft_strdup(session, "", 0), input_file = NULL,
+		out_files = NULL, std_input = -1);
 	while (cmd && cmd[++i])
 		if (cmd[i]->type == T_OUT_REDIR || cmd[i]->type == T_APPEND_REDIR)
 			out_type = ft_joinchar(session, out_type, cmd[i]->type);
 	else if (cmd[i]->type == T_OUTPUT_FILE)
 		out_files = append_arg(session, out_files, cmd[i]->value, 0);
 	else if (cmd[i]->type == T_INPUT_FILE)
-		input_file = cmd[i]->value;
+		(1) && (input_file = cmd[i]->value, tmp = i);
 	else if (cmd[i]->type == T_STD_INPUT)
-		std_input = cmd[i]->value[0];
-	res->input_file = input_file;
-	res->output_redir_type = out_type;
-	res->output_files = out_files;
-	res->std_input = std_input;
-	res->path = NULL;
+		(i > tmp) && (input_file = cmd[i]->value);
+	(1) && (res->input_file = input_file, res->output_redir_type = out_type,
+		res->output_files = out_files, res->std_input = -1,
+		res->path = NULL);
 }
 
 static int	ft_part2(t_memsession *session, t_command *res, t_token **cmd)
 {
-	parse_cmd_2(session, res, cmd);
+	parse_cmd_2(session, res, cmd, -1);
 	if (res->args)
 		if (get_path(res) == -1)
 			return (-1);

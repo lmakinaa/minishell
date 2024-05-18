@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/18 15:48:18 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/18 22:44:50 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,5 +84,9 @@ minishell: cd: `srf': No such file or directory
 minishell: 0: No such file or directory
 
 < redir
+<< dkchi li wsto taytexpanda
+delim la drti quote --> no expand
+
+
 
 */

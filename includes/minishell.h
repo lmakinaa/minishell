@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/18 18:43:34 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/18 23:15:35 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,6 +105,7 @@ int			execute_tree(t_memsession *session, t_lenv *env,
 				t_tnode *root, int pip);
 int			reset_fds(int backup_fds[]);
 int			out_redirect(char **out, char *types);
+int			in_redirect(char *input_file);
 char		**generate_env_array(t_memsession *session, t_lenv *env);
 
 //	builtins

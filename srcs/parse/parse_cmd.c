@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:04:12 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/18 22:38:56 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,28 @@ char	**append_arg(t_memsession *session, char **args, char *value, int cmd)
 	return (res);
 }
 
+char	**append_arr(t_memsession *session, char **arr1, char **arr2, int size)
+{
+	char	**res;
+	int		i;
+	int		j;
+
+	if (!arr1)
+		return (arr2);
+	i = 0;
+	while (arr1[i])
+		i++;
+	res = session_malloc(session, (i + size + 1) * sizeof(char *), 0);
+	j = -1;
+	while (++j < i)
+		res[j] = arr1[j];
+	while (j < i + size)
+		res[j++] = *(arr2++);
+	res[j] = NULL;
+	del_from_session(session, arr1);
+	return (res);
+}
+
 void	parse_cmd_2(t_memsession *session, t_command *res, t_token **cmd)
 {
 	int		i;
@@ -90,6 +112,31 @@ static int	ft_part2(t_memsession *session, t_command *res, t_token **cmd)
 	return (0);
 }
 
+void	expand_splited(t_memsession *s, char ***w, t_splitdata *d)
+{
+	char		**words;
+	t_splitdata	*tmp;
+	char		**res;
+	int		i;
+
+	*w = d->words;
+	words = *w;
+	i = 0;
+	res = NULL;
+	while (words[i])
+	{
+		words[i] = expand_2(s, words[i]);
+		tmp = ft_split(s, words[i], SEPERATORS);
+		if (tmp->word_count > 1)
+			res = append_arr(s, res, tmp->words, tmp->word_count);
+		else
+			res = append_arg(s, res, words[i], 0);
+		i++;
+	}
+	del_from_session(s, *w);
+	*w = res;
+}
+
 t_command	*parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd, int i)
 {
 	t_command	*res;
@@ -106,7 +153,7 @@ t_command	*parse_cmd(t_memsession *session, t_lenv *env, t_token **cmd, int i)
 				d = ft_split(session, cmd[i]->value, "");
 			else
 				d = ft_split(session, cmd[i]->value, SEPERATORS);
-			words = d->words;
+			expand_splited(session, &words, d);
 			while (*words && ++res->argc)
 				(1) && (((cmd[i]->type == T_VAR)
 					&& (*words = add_var_quotes(session, *words))),

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/18 23:21:22 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/18 23:25:12 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,8 @@ int	execute_command(t_memsession *session, t_lenv *env,
 	if (!command)
 		return (env->exit_status);
 	(1) && (backup_fds[0] = dup(0), backup_fds[1] = dup(1));
-	s = in_redirect(command->input_file);
-	s = out_redirect(command->output_files, command->output_redir_type);
-	if (s)
+	if (in_redirect(command->input_file)
+		|| out_redirect(command->output_files, command->output_redir_type))
 		return (reset_fds(backup_fds), 1);
 	if (!command->args)
 		return (reset_fds(backup_fds), 0);

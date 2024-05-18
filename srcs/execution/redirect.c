@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:23:15 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 19:11:31 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/18 23:15:00 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,25 @@ int	out_redirect(char **out, char *types)
 			close(fd_out);
 		}
 		i++;
+	}
+	return (0);
+}
+
+int	in_redirect(char *input_file)
+{
+	int	fd_in;
+
+	if (!input_file)
+		return (0);
+	fd_in = open(input_file, O_RDONLY, 0644);
+	if (fd_in == -1)
+		return (throw_error(input_file, 0, 0, THROW_PERROR), 1);
+	else
+	{
+		if (dup2(fd_in, 0) == -1)
+			return (close(fd_in),
+				throw_error(input_file, 0, 0, THROW_PERROR), 1);
+		close(fd_in);
 	}
 	return (0);
 }

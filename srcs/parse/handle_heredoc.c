@@ -6,15 +6,17 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:32:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/18 23:11:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 03:22:53 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-static int	free_line(char *ptr)
+static int	free_line(int exp, char *ptr)
 {
-	return (free(ptr), 1);
+	if (!exp)
+		free(ptr);
+	return (1);
 }
 
 int	create_random_file(t_memsession *session, t_token *tok, char *base)
@@ -45,22 +47,52 @@ int	create_random_file(t_memsession *session, t_token *tok, char *base)
 	return (fd);
 }
 
+static char	*expand_var(t_memsession *s, char *str)
+{
+	char	*res;
+	char	*tmp;
+	char	*var;
+
+	tmp = str;
+	res = NULL;
+	while (*tmp)
+	{
+		res = ft_strjoin(s, res, z_strdup(s, &tmp, "$"));
+		if (*tmp && *tmp == '$')
+		{
+			tmp++;
+			if (*tmp == '?' && tmp++)
+				var = get_exit_status(s, s->envs);
+			else
+				var = get_env(s->envs, var_name_strdup(s, &tmp));
+			res = ft_strjoin(s, res, var);
+		}
+	}
+	free(str);
+	return (res);
+}
+
 int	handle_heredoc(t_memsession *session, t_token *tok)
 {
 	char	*line;
 	char	*eol;
 	int		fd;
+	int		exp;
 
-	eol = tok->value;
+	(1) && (eol = tok->value, exp = 1);
+	(ft_strchr(eol, '"') || ft_strchr(eol, '\'')) && (exp = 0);
 	fd = create_random_file(session, tok, "0123456789abcdef");
 	while (1)
 	{
 		line = readline("# ");
+		if (!line)
+			break ;
+		(exp) && (line = expand_var(session, line));
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
-		if (!ft_strcmp(1, line, no_quotes(session, eol, 0)) && free_line(line))
+		if (!ft_strcmp(1, line, no_quotes(session, eol, 0)) && free_line(exp, line))
 			break ;
-		free(line);
+		(!exp) && (free(line), 0);
 	}
 	tok->type = T_STD_INPUT;
 	close(fd);

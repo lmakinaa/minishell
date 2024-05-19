@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 15:30:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/04/06 17:23:17 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 13:20:48 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,5 @@ void	reset_session(t_memsession **session_ptr)
 	(*session_ptr)->first = NULL;
 	(*session_ptr)->last = NULL;
 	(*session_ptr)->count = 0;
+	tcsetattr(STDIN_FILENO, TCSANOW, &((*session_ptr)->envs->initial_termios));
 }

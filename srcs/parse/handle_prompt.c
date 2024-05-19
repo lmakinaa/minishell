@@ -24,7 +24,7 @@ void	handle_prompt(t_memsession *heap_session, t_lenv *env, char *prompt)
 	}
 	tokens = advanced_split(heap_session, prompt, SEPERATORS);
 	root = build_tree(heap_session, &tokens, 0);
-	tcsetattr(STDIN_FILENO, TCSANOW, &env->initial_termios);
+	tcsetattr(STDIN_FILENO, TCSANOW, &(env->initial_termios));
 	int s = execute_tree(heap_session, env, root, 0);
 	if (s == -1)
 		return ;

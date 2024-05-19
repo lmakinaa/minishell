@@ -82,6 +82,8 @@ $(NAME): $(OBJS)
 	@$(CC) $(CFLAGS) $^ -lreadline -L$(RDLINE_PATH)/lib -o $@
 	@echo "\033[0;32mDone making minishell!\033[0m"
 
+bonus: $(NAME)
+
 %.o : %.c $(INCLUDES)
 	@$(CC) $(CFLAGS) -c $< -I$(RDLINE_PATH)/include -o $@
 

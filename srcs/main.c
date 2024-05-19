@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/18 23:23:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 03:36:26 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,17 +76,3 @@ int	main(int argc, char **argv, char **envp)
 	tcsetattr(STDIN_FILENO, TCSANOW, &env->initial_termios);
 	return (0);
 }
-
-/*
-~/ms-final > ls | cd srf
-minishell: cd: `srf': No such file or directory
-~/ms-final > $?
-minishell: 0: No such file or directory
-
-
-<< dkchi li wsto taytexpanda
-delim la drti quote --> no expand
-
-
-
-*/

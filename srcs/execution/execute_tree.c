@@ -6,14 +6,14 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/18 18:43:34 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 12:55:11 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
 // 5asni nfree child process
-static void	ft_exec_pipe_child(t_tnode *node, int pfds[2], int what_child)
+static void	exec_child(t_tnode *node, int pfds[2], int what_child)
 {
 	if (what_child == LEFT_C)
 	{
@@ -47,12 +47,12 @@ static int	exec_pipes(t_tnode *tree)
 	pipe(fds);
 	p_left = fork();
 	if (!p_left)
-		ft_exec_pipe_child(tree->left, fds, LEFT_C);
+		exec_child(tree->left, fds, LEFT_C);
 	else
 	{
 		p_right = fork();
 		if (!p_right)
-			ft_exec_pipe_child(tree->right, fds, RIGHT_C);
+			exec_child(tree->right, fds, RIGHT_C);
 		else
 		{
 			close(fds[0]);

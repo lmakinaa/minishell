@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:23:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 15:44:48 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 18:12:55 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	remove_env(t_memsession *session, t_lenv *envs, char *name)
 	{
 		if (!envs->head->next)
 			envs->tail = NULL;
-		envs->head = NULL;
+		envs->head = f_env->next;
 		return (envs->count--, del_node(session, f_env));
 	}
 	while (f_env->next)

@@ -1,5 +1,5 @@
 CC=cc
-CFLAGS=-g -fsanitize=address
+CFLAGS=-g
 NAME=minishell
 RDLINE_PATH=/Users/ijaija/.brew/opt/readline
 

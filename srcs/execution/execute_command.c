@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 13:22:32 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 13:28:41 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,20 +31,6 @@ int	exec_binary(t_command *cmd)
 	return (ft_get_exit_status(s));
 }
 
-t_command	*expand_n_generate_cmd(t_memsession *session, t_lenv *env,
-	t_token **node)
-{
-	t_command	*cmd;
-
-	if (tokenize_part2(node) == -1 || expander(session, env, node) == -1)
-	{
-		env->exit_status = 1;
-		return (NULL);
-	}
-	cmd = parse_cmd(session, env, node, -1);
-	return (cmd);
-}
-
 int	exec_builtin(t_command *command)
 {
 	if (!ft_strcmp(0, command->args[0], "echo"))
@@ -64,6 +50,7 @@ int	exec_builtin(t_command *command)
 	return (command->env->exit_status);
 }
 
+// The expand_n_generate_cmd() function is the last part of parsing
 int	execute_command(t_memsession *session, t_lenv *env,
 	t_token **tokens, int pip)
 {

@@ -12,6 +12,7 @@
 
 #include "./../../includes/minishell.h"
 
+// execution starts from execute_tree
 void	handle_prompt(t_memsession *heap_session, t_lenv *env, char *prompt)
 {
 	t_token	**tokens;

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 15:52:27 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 13:28:59 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,4 +122,18 @@ int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 				return (throw_error("ambiguous redirect", 0, 18, 0), -1);
 	}
 	return (0);
+}
+
+t_command	*expand_n_generate_cmd(t_memsession *session, t_lenv *env,
+	t_token **node)
+{
+	t_command	*cmd;
+
+	if (tokenize_part2(node) == -1 || expander(session, env, node) == -1)
+	{
+		env->exit_status = 1;
+		return (NULL);
+	}
+	cmd = parse_cmd(session, env, node, -1);
+	return (cmd);
 }

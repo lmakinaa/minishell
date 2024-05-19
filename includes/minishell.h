@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 12:37:20 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 13:29:22 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,8 @@ int			expander(t_memsession *session, t_lenv *env, t_token **cmd);
 t_command	*parse_cmd(t_memsession *session, t_lenv *env,
 				t_token **cmd, int i);
 int			get_path(t_command *command);
+t_command	*expand_n_generate_cmd(t_memsession *session, t_lenv *env,
+				t_token **node);
 
 //	utilities
 int			check_identifier(char *str, int *append);

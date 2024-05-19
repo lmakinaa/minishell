@@ -1,73 +1,92 @@
 CC=cc
 CFLAGS=-Wextra -Wall -Werror -g -fsanitize=address
 NAME=minishell
-SRC_DIR=./srcs
+RDLINE_PATH=/Users/ijaija/.brew/opt/readline
 
 # Parse files pack
-PARSE_DIR=$(SRC_DIR)/parse
-PARSE_C=$(PARSE_DIR)/handle_prompt.c $(PARSE_DIR)/print_tokens.c $(PARSE_DIR)/utilities.c $(PARSE_DIR)/utilities_2.c $(PARSE_DIR)/utilities_3.c\
-	$(PARSE_DIR)/expander.c $(PARSE_DIR)/env_control.c $(PARSE_DIR)/parse_cmd.c $(PARSE_DIR)/handle_wildcard.c $(PARSE_DIR)/get_path.c\
-	$(PARSE_DIR)/advanced_split.c $(PARSE_DIR)/shave_parenthesis.c $(PARSE_DIR)/handle_heredoc.c $(PARSE_DIR)/sort_env.c \
-	$(PARSE_DIR)/build_tree.c $(PARSE_DIR)/print_tree.c $(PARSE_DIR)/utilities_4.c $(PARSE_DIR)/env_control_2.c
-PARSE_O=$(patsubst %.c, %.o, $(PARSE_C))
+PARSE =	srcs/parse/advanced_split.c\
+		srcs/parse/build_tree.c\
+		srcs/parse/env_control.c\
+		srcs/parse/env_control_2.c\
+		srcs/parse/expander.c\
+		srcs/parse/get_path.c\
+		srcs/parse/handle_heredoc.c\
+		srcs/parse/handle_prompt.c\
+		srcs/parse/handle_wildcard.c\
+		srcs/parse/parse_cmd.c\
+		srcs/parse/print_tokens.c\
+		srcs/parse/print_tree.c\
+		srcs/parse/shave_parenthesis.c\
+		srcs/parse/sort_env.c\
+		srcs/parse/utilities.c\
+		srcs/parse/utilities_2.c\
+		srcs/parse/utilities_3.c\
+		srcs/parse/utilities_4.c
 
 # Execution pack
-EXEC_DIR=$(SRC_DIR)/execution
-EXEC_C=$(EXEC_DIR)/execute_tree.c $(EXEC_DIR)/execute_command.c $(EXEC_DIR)/redirect.c $(EXEC_DIR)/utilities.c
-EXEC_O=$(patsubst %.c, %.o, $(EXEC_C))
+EXEC =	srcs/execution/execute_command.c\
+		srcs/execution/execute_tree.c\
+		srcs/execution/redirect.c\
+		srcs/execution/utilities.c
 
 # Builtins pack
-BUILTINS_DIR=$(SRC_DIR)/builtins
-BUILTINS_C=$(BUILTINS_DIR)/echo.c $(BUILTINS_DIR)/export.c $(BUILTINS_DIR)/pwd.c $(BUILTINS_DIR)/cd.c $(BUILTINS_DIR)/env.c $(BUILTINS_DIR)/unset.c\
-	$(BUILTINS_DIR)/exit.c
-BUILTINS_O=$(patsubst %.c, %.o, $(BUILTINS_C))
+BUILTINS = 	srcs/builtins/cd.c\
+			srcs/builtins/echo.c\
+			srcs/builtins/env.c\
+			srcs/builtins/exit.c\
+			srcs/builtins/export.c\
+			srcs/builtins/pwd.c\
+			srcs/builtins/unset.c
 
 # Allocation manager pack
-ALLOC_MANAGER_DIR=$(SRC_DIR)/allocation_manager
-ALLOC_MANAGER_C=$(ALLOC_MANAGER_DIR)/exit_on_error.c $(ALLOC_MANAGER_DIR)/reset_session.c $(ALLOC_MANAGER_DIR)/add_to_session.c\
-	$(ALLOC_MANAGER_DIR)/session_destroy.c $(ALLOC_MANAGER_DIR)/session_init.c $(ALLOC_MANAGER_DIR)/session_malloc.c $(ALLOC_MANAGER_DIR)/del_from_session.c
-ALLOC_MANAGER_O=$(patsubst %.c, %.o, $(ALLOC_MANAGER_C))
+ALLOC_MANAGER = srcs/allocation_manager/add_to_session.c\
+				srcs/allocation_manager/del_from_session.c\
+				srcs/allocation_manager/exit_on_error.c\
+				srcs/allocation_manager/reset_session.c\
+				srcs/allocation_manager/session_destroy.c\
+				srcs/allocation_manager/session_init.c\
+				srcs/allocation_manager/session_malloc.c
 
 # Utils pack
-UTILS_DIR=$(SRC_DIR)/utils
-UTILS_C=$(UTILS_DIR)/ft_strcmp.c $(UTILS_DIR)/ft_strlen.c $(UTILS_DIR)/ft_strchr.c $(UTILS_DIR)/ft_count_words.c\
-	$(UTILS_DIR)/ft_strncmp.c $(UTILS_DIR)/ft_strncpy.c $(UTILS_DIR)/strdup_versions.c $(UTILS_DIR)/ft_strnstr.c\
-	$(UTILS_DIR)/ft_strdup.c $(UTILS_DIR)/ft_strjoin.c $(UTILS_DIR)/ft_split.c $(UTILS_DIR)/ft_isalnum.c
-UTILS_O=$(patsubst %.c, %.o, $(UTILS_C))
+UTILS = srcs/utils/ft_count_words.c\
+		srcs/utils/ft_isalnum.c\
+		srcs/utils/ft_split.c\
+		srcs/utils/ft_strchr.c\
+		srcs/utils/ft_strcmp.c\
+		srcs/utils/ft_strdup.c\
+		srcs/utils/ft_strjoin.c\
+		srcs/utils/ft_strlen.c\
+		srcs/utils/ft_strncmp.c\
+		srcs/utils/ft_strncpy.c\
+		srcs/utils/ft_strnstr.c\
+		srcs/utils/strdup_versions.c
 
+SRCS = 	$(PARSE)\
+		$(EXEC)\
+		$(BUILTINS)\
+		$(ALLOC_MANAGER)\
+		$(UTILS)\
+		srcs/main.c
+
+OBJS=$(SRCS:.c=.o)
 
 # Includes
-INCLUDES=./includes
-UTILS_H=$(INCLUDES)/utils.h
-ALLOC_MANAGER_H=$(INCLUDES)/allocation_manager.h
-MINISHELL_H=$(INCLUDES)/minishell.h
+INCLUDES =	includes/allocation_manager.h\
+			includes/env_control.h\
+			includes/minishell.h\
+			includes/utils.h
 
 all: $(NAME)
 
-$(NAME): $(PARSE_O) $(ALLOC_MANAGER_O) $(UTILS_O) $(TREE_CONTROL_O) $(EXEC_O) $(BUILTINS_O) $(SRC_DIR)/main.c
-	@$(CC) $(CFLAGS) $^ -I/Users/ijaija/.brew/opt/readline/include -lreadline -L/Users/ijaija/.brew/opt/readline/lib/ -o $@
+$(NAME): $(OBJS)
+	@$(CC) $(CFLAGS) $^ -lreadline -L$(RDLINE_PATH)/lib -o $@
 	@echo "\033[0;32mDone making minishell!\033[0m"
 
-$(PARSE_DIR)/%.o : $(PARSE_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	@$(CC) $(CFLAGS) -c $< -I/Users/ijaija/.brew/opt/readline/include -o $@
-
-$(EXEC_DIR)/%.o : $(EXEC_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	@$(CC) $(CFLAGS) -c $< -I/Users/ijaija/.brew/opt/readline/include -o $@
-
-$(BUILTINS_DIR)/%.o : $(BUILTINS_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	@$(CC) $(CFLAGS) -c $< -I/Users/ijaija/.brew/opt/readline/include -o $@
-
-$(ALLOC_MANAGER_DIR)/%.o : $(ALLOC_MANAGER_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	@$(CC) $(CFLAGS) -c $< -I/Users/ijaija/.brew/opt/readline/include -o $@
-
-$(UTILS_DIR)/%.o : $(UTILS_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	@$(CC) $(CFLAGS) -c $< -I/Users/ijaija/.brew/opt/readline/include -o $@
-
-$(TREE_CONTROL_DIR)/%.o : $(TREE_CONTROL_DIR)/%.c $(MINISHELL_H) $(ALLOC_MANAGER_H) $(UTILS_H)
-	@$(CC) $(CFLAGS) -c $< -I/Users/ijaija/.brew/opt/readline/include -o $@
+%.o : %.c $(INCLUDES)
+	@$(CC) $(CFLAGS) -c $< -I$(RDLINE_PATH)/include -o $@
 
 clean:
-	@rm -f $(UTILS_O) $(ALLOC_MANAGER_O) $(PARSE_O) $(EXEC_O) $(BUILTINS_O) $(TREE_CONTROL_O)
+	@rm -f $(OBJS)
 	@echo "\033[0;31mDone removing object files.\033[0m"
 
 fclean: clean
@@ -76,4 +95,4 @@ fclean: clean
 
 re: fclean all
 
-.PHONY: clean fclean
+.PHONY: clean

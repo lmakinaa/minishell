@@ -6,16 +6,15 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:32:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 03:22:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 03:34:00 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-static int	free_line(int exp, char *ptr)
+static int	free_line(char *ptr)
 {
-	if (!exp)
-		free(ptr);
+	free(ptr);
 	return (1);
 }
 
@@ -47,6 +46,11 @@ int	create_random_file(t_memsession *session, t_token *tok, char *base)
 	return (fd);
 }
 
+static int	is_identif2(char c)
+{
+	return (ft_isalpha(c) || c == '?' || c == '_');
+}
+
 static char	*expand_var(t_memsession *s, char *str)
 {
 	char	*res;
@@ -58,7 +62,7 @@ static char	*expand_var(t_memsession *s, char *str)
 	while (*tmp)
 	{
 		res = ft_strjoin(s, res, z_strdup(s, &tmp, "$"));
-		if (*tmp && *tmp == '$')
+		if (*tmp && *tmp == '$' && is_identif2(*(tmp + 1)))
 		{
 			tmp++;
 			if (*tmp == '?' && tmp++)
@@ -67,6 +71,8 @@ static char	*expand_var(t_memsession *s, char *str)
 				var = get_env(s->envs, var_name_strdup(s, &tmp));
 			res = ft_strjoin(s, res, var);
 		}
+		else if (*tmp)
+			res = ft_joinchar(s, res, *(tmp++));
 	}
 	free(str);
 	return (res);
@@ -87,11 +93,11 @@ int	handle_heredoc(t_memsession *session, t_token *tok)
 		line = readline("# ");
 		if (!line)
 			break ;
+		if (!ft_strcmp(1, line, no_quotes(session, eol, 0)) && free_line(line))
+			break ;
 		(exp) && (line = expand_var(session, line));
 		write(fd, line, ft_strlen(line));
 		write(fd, "\n", 1);
-		if (!ft_strcmp(1, line, no_quotes(session, eol, 0)) && free_line(exp, line))
-			break ;
 		(!exp) && (free(line), 0);
 	}
 	tok->type = T_STD_INPUT;

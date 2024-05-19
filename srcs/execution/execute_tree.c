@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 18:14:35 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 18:29:19 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,5 @@ int	execute_tree(t_memsession *session, t_lenv *env, t_tnode *root, int pip)
 	}
 	else if (root->command)
 		return (s_s(env, execute_command(session, env, root->command, pip)));
-	return (0);
+	return (env->exit_status);
 }

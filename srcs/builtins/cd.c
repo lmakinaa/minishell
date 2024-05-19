@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 22:18:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 18:04:24 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 18:06:02 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ static int	go_home(t_lenv *env)
 		return (add_env(env->session, env, "PWD", home), 0);
 	}
 	return (1);
-}
-
-static int	dump_err(char *arg)
-{
-	write(2, "minishell: cd: `", 16);
-	write(2, arg, ft_strlen(arg));
-	write(2, "': No such file or directory\n", 29);
-	return (127);
 }
 
 int	b_cd(t_command *command)

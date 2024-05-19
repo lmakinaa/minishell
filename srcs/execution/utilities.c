@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:56:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:13:37 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 12:37:33 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,10 @@ char	**generate_env_array(t_memsession *session, t_lenv *env)
 	return (res);
 }
 
-int	reset_fds(int backup_fds[])
+int	reset_fds(int backup_fds[], int pip)
 {
+	if (pip)
+		return (0);
 	if (dup2(backup_fds[0], 0) == -1)
 		return (throw_error("dup2", 0, 0, THROW_PERROR), 1);
 	close(backup_fds[0]);

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:10:16 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 16:59:27 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,17 @@
 
 void	sig_handle(int num)
 {
-	g_sig = num;
 	if (num == SIGINT)
 	{
 		write(1, "\n", 1);
+		if (g_sig == 1)
+			return ((1) && (g_sig = 0), void_return());
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();
 	}
+	else if (num == SIGQUIT)
+		write(1, "Quit: 3\n", 8);
 }
 
 /*

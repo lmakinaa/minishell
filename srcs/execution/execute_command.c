@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 12:49:28 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 13:22:32 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,10 @@ int	exec_binary(t_command *cmd)
 				generate_env_array(cmd->session, cmd->env)) == -1)
 			(throw_error(cmd->path, 0, 0, THROW_PERROR), exit(126));
 	}
-	//else if (pid == -1)
-	//	exit_on_error("fork() failed\n", 14);
-	//else
-	//{
-		waitpid(pid, &s, 0);
-		return (ft_get_exit_status(s));
-	//}
-	return (0);
+	else if (pid == -1)
+		exit_on_error("fork() failed\n", 14);
+	waitpid(pid, &s, 0);
+	return (ft_get_exit_status(s));
 }
 
 t_command	*expand_n_generate_cmd(t_memsession *session, t_lenv *env,

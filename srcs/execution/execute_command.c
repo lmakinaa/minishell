@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 13:28:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 16:59:43 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@ int	execute_command(t_memsession *session, t_lenv *env,
 	t_command	*command;
 
 	(void) pip;
+	g_sig = 1;
 	command = expand_n_generate_cmd(session, env, tokens);
 	if (!command)
 		return (env->exit_status);

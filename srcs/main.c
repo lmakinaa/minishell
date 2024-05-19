@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 13:48:48 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 16:55:14 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,18 @@ void	ft_addhistory(char *command)
 	add_history(command);
 }
 
+void	sig_n_term_init(t_lenv *env)
+{
+	struct termios	termios;
+
+	termios = env->initial_termios;
+	termios.c_lflag &= ~ECHOCTL;
+	tcsetattr(STDIN_FILENO, TCSANOW, &termios);
+	g_sig = 0;
+	signal(SIGINT, sig_handle);
+	signal(SIGQUIT, SIG_IGN);
+}
+
 int	main(int argc, char **argv, char **envp)
 {
 	t_memsession	*main_session;
@@ -63,6 +75,7 @@ int	main(int argc, char **argv, char **envp)
 	env = ft_initialise(&main_session, &env_session, argv, envp);
 	while (1)
 	{
+		sig_n_term_init(env);
 		command = readline(generate_prompt(main_session, env));
 		if (!command)
 			break ;

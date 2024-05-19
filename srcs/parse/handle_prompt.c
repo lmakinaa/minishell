@@ -27,7 +27,6 @@ void	handle_prompt(t_memsession *heap_session, t_lenv *env, char *prompt)
 	root = build_tree(heap_session, &tokens, 0);
 	tcsetattr(STDIN_FILENO, TCSANOW, &(env->initial_termios));
 	signal(SIGQUIT, sig_handle);
-	g_sig = 1;
 	int s = execute_tree(heap_session, env, root, 0);
 	if (s == -1)
 		return ;

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 16:59:43 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/19 17:04:10 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,6 @@ int	execute_command(t_memsession *session, t_lenv *env,
 		s = exec_builtin(command);
 	else
 		s = exec_binary(command);
+	g_sig = 0;
 	return (reset_fds(backup_fds, pip), s);
 }

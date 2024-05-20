@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 18:18:04 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 21:10:22 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,12 @@ void	clear_after_prompt(t_memsession **main_session, t_lenv *env)
 {
 	int	i;
 
-	i = -1;
-	while (env->created_files[++i])
-		unlink(env->created_files[i]);
+	if (env->created_files)
+	{
+		i = -1;
+		while (env->created_files[++i])
+			unlink(env->created_files[i]);
+	}
 	env->created_files = NULL;
 	reset_session(main_session);
 }

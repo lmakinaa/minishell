@@ -1,5 +1,5 @@
 CC=cc
-CFLAGS=-Wextra -Werror -Wall # -g -fsanitize=address
+CFLAGS=-Wextra -Werror -Wall  -g -fsanitize=address
 NAME=minishell
 RDLINE_PATH=/Users/ijaija/.brew/opt/readline
 

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/17 16:20:35 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:23:13 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 18:03:39 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_list
 	t_memsession	*session;
 	int				exit_status;
 	struct termios	initial_termios;
+	char			**created_files;
 }				t_lenv;
 
 t_lenv	*envs_init(t_memsession *session, char **envp);

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 19:23:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 18:12:55 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 18:07:48 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ t_lenv	*envs_init(t_memsession *session, char **envp)
 	res->tail = NULL;
 	res->session = session;
 	res->exit_status = 0;
+	res->created_files = NULL;
 	tcgetattr(STDIN_FILENO, &res->initial_termios);
 	i = -1;
 	while (envp[++i])

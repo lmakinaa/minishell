@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 14:49:21 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 02:38:53 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,14 @@ int	more_tokenization(t_memsession *session, t_token **toks, int i)
 			if (!toks[i + 1] || toks[i + 1]->type != T_UNKNOWN)
 				return (throw_error(SYNTAX_ERR, "newline",
 						SYNTAX_ERR_LEN, 1), -1);
-			res = handle_heredoc(session, toks[i + 1]);
+			handle_heredoc(session, toks[i + 1]);
+			res = session->envs->exit_status;
 		}
+		if (res != 0)
+			return (2);
 		res = check_syntax(toks[i], toks[i]->type, toks[i + 1], i);
-		if (res == -1)
-			return (-1);
+		if (res != 0)
+			return (res);
 	}
 	return (res);
 }
@@ -82,9 +85,10 @@ t_token	**tokenization(t_memsession *session, t_splitdata *splited_cmd)
 			&& toks[i]->type != T_PARENTHESIS_COMMAND
 			&& new_is_ops(toks[i]->value))
 			toks[i]->command = 0;
-	if (more_tokenization(session, toks, -1) == -1)
+	i = more_tokenization(session, toks, -1);
+	if (i != 0)
 	{
-		session->envs->exit_status = 1;
+		(i != 2) && (session->envs->exit_status = 1);
 		return (NULL);
 	}
 	return (toks);

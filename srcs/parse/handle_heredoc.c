@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:32:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 02:24:15 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 02:35:23 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,6 +102,7 @@ int	handle_heredoc(t_memsession *session, t_token *tok)
 		(!exp) && (free(line), 0);
 	}
 	tok->type = T_STD_INPUT;
+	(g_sig == 3) && (s_s(session->envs, 128 + SIGINT));
 	(1) && (g_sig = 0, close(fd), dup2(sec_fd, 0), close(sec_fd));
 	return (0);
 }

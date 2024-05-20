@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 02:38:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 15:59:05 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,7 @@ void	spliting_process(t_memsession *session,
 	i = 0;
 	while (*str && i < result->word_count)
 	{
-		if (new_is_ops(str))
-			result->words[i++] = operators_strdup(session, &str);
+		(new_is_ops(str)) && (result->words[i++] = ops_strdup(session, &str));
 		if (*str && !new_sep_check(str, seps))
 		{
 			result->words[i++] = custom_strdup(session, str, seps);
@@ -120,8 +119,7 @@ void	spliting_process(t_memsession *session,
 					str++;
 			}
 		}
-		if (*str && !new_is_ops(str))
-			str++;
+		(*str && !new_is_ops(str)) && (str++);
 	}
 	result->words[i] = NULL;
 }

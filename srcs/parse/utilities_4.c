@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 15:40:00 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 16:05:43 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,10 +111,4 @@ char	*get_exit_status(t_memsession *session, t_lenv *env)
 	}
 	res[i] = (code % 10) + '0';
 	return (res);
-}
-
-int	is_identif(char c)
-{
-	return (ft_isalpha(c) || c == '?' || c == '_'
-		|| (c == '\'' || c == '"'));
 }

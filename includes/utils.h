@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/12 13:41:27 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 14:38:23 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 15:59:05 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int			skip_inside_parenthesis(char **s);
 int			ft_strncpy(char *dst, char *src, int n);
 char		*shave_parenthesis(t_memsession *session, char *s);
 void		parenthesis_strdup(t_memsession *session, char **s, char **r);
-char		*operators_strdup(t_memsession *session, char **str);
+char		*ops_strdup(t_memsession *session, char **str);
 char		*custom_strdup(t_memsession *session, char *s, char *seps);
 char		*custom_strjoin(t_memsession *session, char *s1, char *s2);
 char		*ft_strdup(t_memsession *session, char *s1, size_t len);

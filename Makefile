@@ -1,5 +1,5 @@
 CC=cc
-CFLAGS= -g
+CFLAGS=-Wextra -Werror -Wall -g
 NAME=minishell
 RDLINE_PATH=/Users/ijaija/.brew/opt/readline
 

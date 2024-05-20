@@ -17,6 +17,7 @@ void	handle_prompt(t_memsession *heap_session, t_lenv *env, char *prompt)
 {
 	t_token	**tokens;
 	t_tnode	*root;
+	int		s;
 
 	if (are_parenthesis_closed(prompt) || are_quotes_closed(prompt))
 	{
@@ -27,7 +28,7 @@ void	handle_prompt(t_memsession *heap_session, t_lenv *env, char *prompt)
 	root = build_tree(heap_session, &tokens, 0);
 	tcsetattr(STDIN_FILENO, TCSANOW, &(env->initial_termios));
 	signal(SIGQUIT, sig_handle);
-	int s = execute_tree(heap_session, env, root, 0);
+	s = execute_tree(heap_session, env, root, 0);
 	if (s == -1)
 		return ;
 }

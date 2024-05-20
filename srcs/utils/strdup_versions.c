@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:12:22 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/18 20:20:20 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 16:06:28 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	parenthesis_strdup(t_memsession *session, char **s, char **r)
 	(*s)++;
 }
 
-char	*operators_strdup(t_memsession *session, char **str)
+char	*ops_strdup(t_memsession *session, char **str)
 {
 	char	*res;
 
@@ -116,32 +116,6 @@ char	*z_strdup(t_memsession *session, char **str, char *seps)
 	i = -1;
 	s = *str;
 	while (s[++i] && !is_sep(s[i], seps))
-		;
-	res = session_malloc(session, (i + 1) * sizeof(char), 1);
-	resaddr = res;
-	j = 0;
-	while (j < i)
-	{
-		*res = s[j];
-		res++;
-		j++;
-	}
-	*res = '\0';
-	(*str) += j;
-	return (resaddr);
-}
-
-char	*var_name_strdup(t_memsession *session, char **str)
-{
-	int		i;
-	int		j;
-	char	*res;
-	char	*s;
-	char	*resaddr;
-
-	i = -1;
-	s = *str;
-	while (s[++i] && ft_isalnum(s[i]))
 		;
 	res = session_malloc(session, (i + 1) * sizeof(char), 1);
 	resaddr = res;

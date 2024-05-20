@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 23:43:35 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 16:06:55 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,6 +160,10 @@ int			s_s(t_lenv *env, int status);
 char		*ft_strnstr(char *haystack, char *needle, size_t len);
 void		sig_handle(int num);
 int			ft_get_exit_status(int status);
+char		**append_arg(t_memsession *session, char **args,
+				char *value, int cmd);
+char		**append_arr(t_memsession *session, char **arr1,
+				char **arr2, int size);
 
 //	tree control
 t_tnode		*create_node(t_memsession *session, int op,

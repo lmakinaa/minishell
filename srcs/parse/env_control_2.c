@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/05 16:28:38 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 15:45:45 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 16:02:29 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,45 +41,6 @@ char	*get_name(t_memsession *session, char *str)
 		i++;
 	}
 	return (ft_strdup(session, str, ft_strlen(str)));
-}
-
-// to remove
-void	envs_display(t_lenv *list)
-{
-	t_env	*after_head;
-	int		i;
-
-	if (!list)
-	{
-		printf("The list is empty!\n");
-		return ;
-	}
-	if (!list->head)
-	{
-		printf("The list have no head!\n");
-		return ;
-	}
-	if (!list->tail)
-	{
-		printf("The list have no tail!\n");
-		return ;
-	}
-	printf("The head's content-->[%s=%s]\n",
-		list->head->name, list->head->value);
-	after_head = list->head->next;
-	i = 2;
-	if (after_head)
-	{
-		while (after_head->next)
-		{
-			printf("[%d]-->[%s=%s]\n", i, after_head->name,
-				after_head->value);
-			after_head = after_head->next;
-			i++;
-		}
-	}
-	printf("The tail's content-->[%s=%s]\n", list->tail->name,
-		list->tail->value);
 }
 
 void	append_env(t_memsession *session, t_lenv *envs, char *name, char *value)

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 18:06:46 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 16:05:31 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,57 +20,6 @@ static char	*add_var_quotes(t_memsession *s, char *str)
 	res = ft_strjoin(s, res, str);
 	res = ft_joinchar(s, res, '\"');
 	del_from_session(s, str);
-	return (res);
-}
-
-char	**append_arg(t_memsession *session, char **args, char *value, int cmd)
-{
-	char	**res;
-	int		i;
-	int		j;
-
-	if (!args)
-	{
-		res = session_malloc(session, 2 * sizeof(char *), 0);
-		res[0] = value;
-		res[1] = NULL;
-		return (res);
-	}
-	i = 0;
-	while (args[i])
-		i++;
-	res = session_malloc(session, (i + 2) * sizeof(char *), 0);
-	j = -1;
-	while (++j < i)
-		res[j] = args[j];
-	if (cmd)
-		res[j++] = value;
-	else
-		res[j++] = value;
-	res[j] = NULL;
-	del_from_session(session, args);
-	return (res);
-}
-
-char	**append_arr(t_memsession *session, char **arr1, char **arr2, int size)
-{
-	char	**res;
-	int		i;
-	int		j;
-
-	if (!arr1)
-		return (arr2);
-	i = 0;
-	while (arr1[i])
-		i++;
-	res = session_malloc(session, (i + size + 1) * sizeof(char *), 0);
-	j = -1;
-	while (++j < i)
-		res[j] = arr1[j];
-	while (j < i + size)
-		res[j++] = *(arr2++);
-	res[j] = NULL;
-	del_from_session(session, arr1);
 	return (res);
 }
 
@@ -112,7 +61,7 @@ void	expand_splited(t_memsession *s, char ***w, t_splitdata *d)
 	char		**words;
 	t_splitdata	*tmp;
 	char		**res;
-	int		i;
+	int			i;
 
 	*w = d->words;
 	words = *w;

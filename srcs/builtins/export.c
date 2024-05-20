@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 13:48:24 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:19:31 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 15:53:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,32 @@ static int	dump_err(char *name)
 	return (1);
 }
 
+static void	dump_list_part2(t_env *list, int i, int j)
+{
+	while (list)
+	{
+		if (list->index == j && list->value
+			&& ft_strcmp(1, list->name, "_"))
+		{
+			(write(1, "declare -x ", 11) && write(1, list->name,
+					ft_strlen(list->name)) && write(1, "=\"", 2), i = 0);
+			while ((list->value)[i])
+			{
+				if ((list->value[i] == '$' || list->value[i] == '"'))
+					(1) && (write(1, "\\", 1), write(1, &list->value[i++], 1));
+				else
+					write(1, &list->value[i++], 1);
+			}
+			write(1, "\"\n", 2);
+		}
+		else if (list->index == j && !list->value
+			&& ft_strcmp(1, list->name, "_"))
+			(write(1, "declare -x ", 11) && write(1, list->name,
+					ft_strlen(list->name)) && write(1, "\n", 1));
+		list = list->next;
+	}
+}
+
 static void	dump_list(t_lenv *env)
 {
 	t_env	*list;
@@ -31,30 +57,8 @@ static void	dump_list(t_lenv *env)
 	while (++j < env->count)
 	{
 		list = env->head;
-		while (list)
-		{
-			if (list->index == j && list->value
-				&& ft_strcmp(1, list->name, "_"))
-			{
-				(write(1, "declare -x ", 11) && write(1, list->name,
-						ft_strlen(list->name)) && write(1, "=\"", 2));
-				i = 0;
-				while ((list->value)[i])
-				{
-					if ((list->value[i] == '$' || list->value[i] == '"')
-						&& write(1, "\\", 1))
-						write(1, &list->value[i++], 1);
-					else
-						write(1, &list->value[i++], 1);
-				}
-				write(1, "\"\n", 2);
-			}
-			else if (list->index == j && !list->value
-				&& ft_strcmp(1, list->name, "_"))
-				(write(1, "declare -x ", 11) && write(1, list->name,
-						ft_strlen(list->name)) && write(1, "\n", 1));
-			list = list->next;
-		}
+		i = 0;
+		dump_list_part2(list, i, j);
 	}
 }
 

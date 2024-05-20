@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:32:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 02:35:23 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 18:06:56 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static int	free_line(char *ptr)
 	return (1);
 }
 
-int	create_random_file(t_memsession *session, t_token *tok, char *base)
+int	create_random_file(t_memsession *s, t_token *tok, char *base)
 {
 	int		fd;
 	int		readed;
@@ -28,21 +28,22 @@ int	create_random_file(t_memsession *session, t_token *tok, char *base)
 	fd = open("/dev/urandom", O_RDONLY);
 	if (fd == -1)
 		exit_on_error("open() failed\n", 14);
-	random = session_malloc(session, 17 * sizeof(char), 0);
+	random = session_malloc(s, 17 * sizeof(char), 0);
 	readed = read(fd, random, 16);
 	if (readed < 0)
 		exit_on_error("read() failed\n", 14);
-	random[readed] = '\0';
-	i = -1;
+	(1) && (random[readed] = '\0', i = -1);
 	while (++i < readed)
 		random[i] = base[((unsigned char) random[i]) % 16];
 	if (close(fd) == -1)
 		exit_on_error("open() failed\n", 14);
-	tok->value = ft_strdup(session, "/tmp/", 5);
-	tok->value = ft_strjoin(session, tok->value, random);
+	tok->value = ft_strdup(s, "/tmp/", 5);
+	tok->value = ft_strjoin(s, tok->value, random);
 	fd = open(tok->value, O_CREAT | O_WRONLY, 0644);
 	if (fd == -1)
 		exit_on_error("open() failed\n", 14);
+	s->envs->created_files = append_arg(s, s->envs->created_files,
+			tok->value, 0);
 	return (fd);
 }
 

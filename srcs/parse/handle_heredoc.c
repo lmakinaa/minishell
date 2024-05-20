@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:32:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 03:34:00 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 02:41:31 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,12 @@ int	handle_heredoc(t_memsession *session, t_token *tok)
 	char	*eol;
 	int		fd;
 	int		exp;
+	int		sec_fd;
 
+	sec_fd = dup(0);
 	(1) && (eol = tok->value, exp = 1);
 	(ft_strchr(eol, '"') || ft_strchr(eol, '\'')) && (exp = 0);
+	g_sig = 2;
 	fd = create_random_file(session, tok, "0123456789abcdef");
 	while (1)
 	{
@@ -102,5 +105,7 @@ int	handle_heredoc(t_memsession *session, t_token *tok)
 	}
 	tok->type = T_STD_INPUT;
 	close(fd);
+	dup2(sec_fd, 0);
+	close(sec_fd);
 	return (0);
 }

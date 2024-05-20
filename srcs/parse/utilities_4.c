@@ -6,44 +6,11 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 02:26:39 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 15:40:00 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
-
-//void	print_command_elements(t_command *command)
-//{
-//	char	buff[50];
-//	int		bytes_read;
-
-//	//printf("Command: %s\n", command->cmd);
-//	printf("Arguments:\n");
-//	if (command->args)
-//	{
-//		for (int i = 0; command->args[i] != NULL; i++)
-//			printf("%s\n", command->args[i]);
-//	}
-//	printf("Path: %s\n", command->path);
-//	printf("Output Files:\n");
-//	if (command->output_files != NULL)
-//	{
-//		for (int i = 0; command->output_files[i] != NULL; i++)
-//			printf("%s\n", command->output_files[i]);
-//	}
-//	//printf("Output Redirection Type: %s\n", command->output_redir_type);
-//	printf("Input File: %s\n", command->input_file);
-//	printf("Standard Input:\n");
-//	if (command->std_input == -1)
-//		return ;
-//	buff[0] = '\0';
-//	while ((bytes_read = read(command->std_input, buff, 49)) > 0)
-//    {
-//        buff[bytes_read] = '\0';
-//        printf("%s", buff);
-//    }
-//	//close(command->std_input);
-//}
 
 void	sig_handle(int num)
 {

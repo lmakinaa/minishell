@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 16:59:27 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/20 02:39:30 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,14 @@
 
 void	sig_handle(int num)
 {
+	if (g_sig == 2)
+	{
+		//int b = dup(0);
+		close(0);
+		//dup2(b, 0);
+		//close(b);
+		return ;
+	}
 	if (num == SIGINT)
 	{
 		write(1, "\n", 1);

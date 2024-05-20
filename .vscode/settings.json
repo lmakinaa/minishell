@@ -33,6 +33,8 @@
 		"unistd.h": "c",
 		"dirent.h": "c",
 		"env_control.h": "c",
-		"fcntl.h": "c"
+		"fcntl.h": "c",
+		"ioctl.h": "c",
+		"ioctls.h": "c"
 	}
 }

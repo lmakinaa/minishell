@@ -21,7 +21,8 @@ PARSE =	srcs/parse/advanced_split.c\
 		srcs/parse/utilities.c\
 		srcs/parse/utilities_2.c\
 		srcs/parse/utilities_3.c\
-		srcs/parse/utilities_4.c
+		srcs/parse/utilities_4.c\
+		srcs/parse/utilities_5.c
 
 # Execution pack
 EXEC =	srcs/execution/execute_command.c\

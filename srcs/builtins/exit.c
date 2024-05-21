@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 02:49:45 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/21 03:02:54 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/21 03:21:31 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	dump_output(int t_err, char *arg)
 	}
 }
 
-int	b_exit(t_command *cmd)
+int	b_exit(t_command *cmd, int b_f[])
 {
 	int				status;
 	t_memsession	*env_session;
@@ -76,6 +76,7 @@ int	b_exit(t_command *cmd)
 	env_session = cmd->env->session;
 	sess = cmd->session;
 	rl_clear_history();
+	reset_fds(b_f, 0);
 	end_sessions(&env_session, &sess);
 	exit((unsigned char) status);
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 16:15:07 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/21 03:21:03 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int			b_pwd(void);
 int			b_cd(t_command *command);
 int			b_env(t_command *command);
 int			b_unset(t_command *command);
-int			b_exit(t_command *cmd);
+int			b_exit(t_command *cmd, int b_f[]);
 
 //	parse
 void		handle_prompt(t_memsession *heap_session, t_lenv *env,

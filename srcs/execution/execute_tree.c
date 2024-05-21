@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 18:29:19 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/21 12:21:10 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ static void	exec_child(t_tnode *node, int pfds[2], int what_child)
 	exit(execute_tree(node->session, node->env, node, 1));
 }
 
-int	ft_get_exit_status(int status)
+int	extract_exit_status(int status)
 {
 	if (WIFSIGNALED(status))
-		return (128 + WTERMSIG(status));
+		return (WTERMSIG(status) + 128);
 	return (WEXITSTATUS(status));
 }
 
@@ -60,7 +60,7 @@ static int	exec_pipes(t_tnode *tree)
 			close(fds[1]);
 			waitpid(p_left, &status, 0);
 			waitpid(p_right, &status, 0);
-			return (ft_get_exit_status(status));
+			return (extract_exit_status(status));
 		}
 	}
 	return (1);

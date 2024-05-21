@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/20 16:03:34 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 16:06:33 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/21 12:43:08 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,17 @@ char	*var_name_strdup(t_memsession *session, char **str)
 	*res = '\0';
 	(*str) += j;
 	return (resaddr);
+}
+
+void	reset_terminal(t_lenv *p_env)
+{
+	static t_lenv	*env;
+
+	if (!env)
+	{
+		if (p_env)
+			env = p_env;
+	}
+	else if (env)
+		tcsetattr(STDIN_FILENO, TCSANOW, &(env->initial_termios));
 }

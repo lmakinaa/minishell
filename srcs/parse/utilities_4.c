@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 16:05:43 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/21 12:48:43 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,10 @@ void	sig_handle(int num)
 		rl_redisplay();
 	}
 	else if (num == SIGQUIT)
+	{
 		write(1, "Quit: 3\n", 8);
+		reset_terminal(NULL);
+	}
 }
 
 /*

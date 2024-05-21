@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/21 12:22:13 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/21 12:36:41 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
-# include <stdio.h> // if printf not used remove it
+# include <stdio.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 # include <fcntl.h>
@@ -40,7 +40,7 @@
 # define RIGHT_C 1
 
 // Token types
-// todo: change this shit into enum
+// todo: change this shit into enum.. or not
 # define T_UNKNOWN -1
 # define T_APPEND_REDIR 1
 # define T_PARENTHESIS_COMMAND 2
@@ -64,7 +64,6 @@
 extern int	g_sig;
 
 // These 2 structs are for the initial parsing part
-
 typedef struct s_mstoken
 {
 	char				*value;
@@ -85,7 +84,6 @@ typedef struct s_tree_node
 }		t_tnode;
 
 // The final parsing part struct
-
 typedef struct s_mscommand
 {
 	char				*path;
@@ -122,7 +120,6 @@ int			b_exit(t_command *cmd, int b_f[]);
 void		handle_prompt(t_memsession *heap_session, t_lenv *env,
 				char *command);
 t_token		**tokenization(t_memsession *session, t_splitdata *splited_cmd);
-//void		print_tokens(t_token **tokens);
 t_token		**advanced_split(t_memsession *session, char *str, char *seps);
 int			expander(t_memsession *session, t_lenv *env, t_token **cmd);
 t_command	*parse_cmd(t_memsession *session, t_lenv *env,
@@ -164,6 +161,7 @@ char		**append_arg(t_memsession *session, char **args,
 				char *value, int cmd);
 char		**append_arr(t_memsession *session, char **arr1,
 				char **arr2, int size);
+void		reset_terminal(t_lenv *p_env);
 
 //	tree control
 t_tnode		*create_node(t_memsession *session, int op,

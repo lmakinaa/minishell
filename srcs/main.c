@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:03 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 21:10:22 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/21 12:49:06 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ char	*generate_prompt(t_memsession *session, t_lenv *env)
 	free(cwd);
 	return (buffer);
 }
-
-//void	f(void)
-//{
-//	system("leaks minishell");
-//}
 
 void	ft_addhistory(char *command)
 {

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/12 02:49:45 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 16:14:27 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/21 03:02:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,7 @@ int	b_exit(t_command *cmd)
 		dump_output(0, NULL);
 	env_session = cmd->env->session;
 	sess = cmd->session;
+	rl_clear_history();
 	end_sessions(&env_session, &sess);
 	exit((unsigned char) status);
 	return (0);

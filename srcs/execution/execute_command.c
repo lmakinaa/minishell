@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 18:25:08 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/21 03:20:44 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	exec_binary(t_command *cmd)
 	return (ft_get_exit_status(s));
 }
 
-int	exec_builtin(t_command *command)
+int	exec_builtin(t_command *command, int b_f[])
 {
 	if (!ft_strcmp(0, command->args[0], "echo"))
 		command->env->exit_status = b_echo(command->args);
@@ -46,7 +46,7 @@ int	exec_builtin(t_command *command)
 	else if (!ft_strcmp(0, command->args[0], "unset"))
 		command->env->exit_status = b_unset(command);
 	else if (!ft_strcmp(0, command->args[0], "exit"))
-		command->env->exit_status = b_exit(command);
+		command->env->exit_status = b_exit(command, b_f);
 	return (command->env->exit_status);
 }
 
@@ -69,7 +69,7 @@ int	execute_command(t_memsession *session, t_lenv *env,
 	if (!command->args)
 		return (reset_fds(backup_fds, pip), 0);
 	if (is_builtin(command->args[0]))
-		s = exec_builtin(command);
+		s = exec_builtin(command, backup_fds);
 	else
 		s = exec_binary(command);
 	g_sig = 0;

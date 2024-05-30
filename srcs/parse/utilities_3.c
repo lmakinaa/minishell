@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:52:57 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/21 12:43:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/30 22:01:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void	end_sessions(t_memsession **s1, t_memsession **s2)
 	t_lenv	*env;
 	int		i;
 
-	env = (*s2)->envs;
+	env = (*s1)->envs;
 	if (env->created_files)
 	{
 		i = -1;

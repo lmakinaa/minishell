@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/19 13:28:59 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/31 21:48:14 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,15 +111,16 @@ int	expander(t_memsession *session, t_lenv *env, t_token **cmd)
 		if (cmd[i]->type == T_UNKNOWN || cmd[i]->type == T_INPUT_FILE
 			|| cmd[i]->type == T_OUTPUT_FILE)
 		{
+			if ((cmd[i]->type == T_INPUT_FILE || cmd[i]->type == T_OUTPUT_FILE))
+				if (ft_countword(expand_1(session, env, cmd[i]->value),
+						SEPERATORS, 0) != 1)
+					return (throw_error("ambiguous redirect", 0, 18, 0), -1);
 			if (cmd[i]->value[0] == '$' && cmd[i]->value[1]
 				&& cmd[i]->value[1] != '?')
 				cmd[i]->type = T_VAR;
 			cmd[i]->value = expand_1(session, env, cmd[i]->value);
 			cmd[i]->value = expand_2(session, cmd[i]->value);
 		}
-		if (cmd[i]->type == T_INPUT_FILE || cmd[i]->type == T_OUTPUT_FILE)
-			if (ft_countword(cmd[i]->value, SEPERATORS, 0) > 1)
-				return (throw_error("ambiguous redirect", 0, 18, 0), -1);
 	}
 	return (0);
 }

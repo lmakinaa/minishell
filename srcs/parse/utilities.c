@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/04 21:08:51 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/16 16:32:01 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/05/31 20:39:18 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int	is_builtin(char *str)
 
 int	get_token_type(char *str)
 {
+	if (!str)
+		return (-1);
 	if (str[0] == '(')
 		return (T_PARENTHESIS_COMMAND);
 	if (new_is_ops(str))

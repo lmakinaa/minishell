@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/20 15:12:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/31 21:48:14 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/01 10:23:01 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*expand_1(t_memsession *session, t_lenv *env, char *str)
 			res = ft_strjoin(session, res,
 					var_expansion(session, env, &str, 0));
 	}
-	return (del_from_session(session, tmp), res);
+	return (res);
 }
 
 char	*expand_2(t_memsession *session, char *str)

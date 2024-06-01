@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/21 12:21:10 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/01 10:42:16 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ static int	exec_pipes(t_tnode *tree)
 			exec_child(tree->right, fds, RIGHT_C);
 		else
 		{
-			close(fds[0]);
-			close(fds[1]);
+			if (p_left == -1 || p_right == -1)
+				exit_on_error("fork() failed\n", 14);
+			(1) && (close(fds[0]), close(fds[1]));
 			waitpid(p_left, &status, 0);
 			waitpid(p_right, &status, 0);
 			return (extract_exit_status(status));

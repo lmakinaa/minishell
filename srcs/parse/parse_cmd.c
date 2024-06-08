@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 16:05:31 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/09 00:37:56 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,13 @@ void	parse_cmd_2(t_memsession *session, t_command *res, t_token **cmd, int i)
 static int	ft_part2(t_memsession *session, t_command *res, t_token **cmd)
 {
 	parse_cmd_2(session, res, cmd, -1);
-	if (res->args)
+	if (res->args && !res->args[0][0])
+	{
+		s_s(session->envs, 127);
+		throw_error(":command not found", 0, 18, 0);
+		return (-1);
+	}
+	else if (res->args)
 		if (get_path(res) == -1)
 			return (-1);
 	return (0);

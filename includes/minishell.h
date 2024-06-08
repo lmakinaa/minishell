@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/21 12:36:41 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/08 16:20:06 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,14 @@
 # define T_WORD 4
 # define T_PIPE 7
 # define T_VAR 8
-# define T_AUTOMATIC_VAR 9
 # define T_OR 10
 # define T_AND 11
 # define T_HERDOC 13
 # define T_INPUT_REDIRECTOR 14
 # define T_OUT_REDIR 15
-# define T_BUILTIN 3
-# define T_CMD 20
-# define T_EXECUTABLE 5
 # define T_OUTPUT_FILE 16
 # define T_INPUT_FILE 17
 # define T_STD_INPUT 18
-# define T_ARG 19
 
 extern int	g_sig;
 

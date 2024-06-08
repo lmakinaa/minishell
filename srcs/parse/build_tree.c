@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/06 17:33:37 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 14:50:09 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/08 17:52:50 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ t_tnode	*create_node(t_memsession *session, int op,
 	return (res);
 }
 
-int	is_binop(t_token *token)
+static int	is_binary_op(t_token *token)
 {
 	if (!token)
 		return (0);
@@ -79,7 +79,7 @@ t_tnode	*build_tree(t_memsession *session, t_token ***tokens,
 	if (*tokens == NULL || **tokens == NULL)
 		return (NULL);
 	left = create_node(session, 0, **tokens, tokens);
-	while (is_binop(**tokens) && get_precedence(**tokens) >= min_precedence)
+	while (is_binary_op(**tokens) && get_precedence(**tokens) >= min_precedence)
 	{
 		op = **tokens;
 		(*tokens)++;

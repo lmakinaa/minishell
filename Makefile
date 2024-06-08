@@ -1,7 +1,7 @@
 CC=cc
 CFLAGS=-Wextra -Wall -Werror #-g -fsanitize=address
 NAME=minishell
-RDLINE_PATH=/Users/ijaija/.brew/opt/readline
+RDLINE_PATH=$(shell brew --prefix readline)
 
 # Parse files pack
 PARSE =	srcs/parse/advanced_split.c\
@@ -86,7 +86,7 @@ $(NAME): $(OBJS)
 bonus: $(NAME)
 
 %.o : %.c $(INCLUDES)
-	@$(CC) $(CFLAGS) -c $< -I$(RDLINE_PATH)/include -o $@
+	$(CC) $(CFLAGS) -c $< -I$(RDLINE_PATH)/include -o $@
 
 clean:
 	@rm -f $(OBJS)

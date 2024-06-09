@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:12:22 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/20 16:06:28 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/09 18:23:09 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	parenthesis_strdup(t_memsession *session, char **s, char **r)
 		open--;
 	}
 	*res = '\0';
-	(*s)++;
+	(**s) && (*s)++;
 }
 
 char	*ops_strdup(t_memsession *session, char **str)
@@ -55,7 +55,7 @@ char	*ops_strdup(t_memsession *session, char **str)
 	{
 		res = session_malloc(session, 2 * sizeof(char), 0);
 		ft_strncpy(res, *str, 1);
-		(*str)++;
+		(**str) && (*str)++;
 	}
 	else if (**str == '(')
 		parenthesis_strdup(session, str, &res);

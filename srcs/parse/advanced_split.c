@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/14 14:03:09 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/31 20:47:45 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/09 18:11:17 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,10 @@ int	more_tokenization(t_memsession *session, t_token **toks, int i)
 			if (!toks[i + 1] || toks[i + 1]->type != T_UNKNOWN)
 				return (throw_error(SYNTAX_ERR, "newline",
 						SYNTAX_ERR_LEN, 1), -1);
-			handle_heredoc(session, toks[i + 1]);
-			res = session->envs->exit_status;
+			res = handle_heredoc(session, toks[i + 1]);
 		}
 		if (res != 0)
-			return (2);
+			return (s_s(session->envs, res), 2);
 		res = check_syntax(toks[i], toks[i]->type, toks[i + 1], i);
 		if (res != 0)
 			return (res);

@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 17:32:42 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/08 21:45:35 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/09 18:08:58 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,17 +93,16 @@ int	handle_heredoc(t_memsession *session, t_token *tok)
 	while (1)
 	{
 		line = readline("# ");
-		if (!line)
-			break ;
-		if (!ft_strcmp(1, line, no_quotes(session, eol, 0)) && free_line(line))
+		if (!line || (!ft_strcmp(1, line, no_quotes(session, eol, 0)) 
+			&& free_line(line)))
 			break ;
 		(exp) && (line = expand_var(session, line));
-		write(fd, line, ft_strlen(line));
-		write(fd, "\n", 1);
+		(1) && (write(fd, line, ft_strlen(line)), write(fd, "\n", 1));
 		(!exp) && (free(line), 0);
 	}
 	tok->type = T_STD_INPUT;
-	(g_sig == 3) && (s_s(session->envs, 128 + SIGINT));
+	exp = 0;
+	(g_sig == 3) && (exp = 128 + SIGINT);
 	(1) && (g_sig = 0, close(fd), dup2(sec_fd, 0), close(sec_fd));
-	return (0);
+	return (exp);
 }

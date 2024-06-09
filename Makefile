@@ -1,5 +1,5 @@
 CC=cc
-CFLAGS=#-Wextra -Wall -Werror #-g -fsanitize=address
+CFLAGS=-Wextra -Wall -Werror #-g -fsanitize=address
 NAME=minishell
 RDLINE_PATH=$(shell brew --prefix readline)
 

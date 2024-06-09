@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:52:57 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/31 20:47:53 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/09 18:02:10 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ t_lenv	*ft_initialise(t_memsession **session1, t_memsession **session2,
 	env = envs_init(*session2, envp);
 	(*session1)->envs = env;
 	reset_terminal(env);
+	set_es(env, -1);
 	return (env);
 }
 

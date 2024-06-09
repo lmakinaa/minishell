@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/26 20:43:18 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/08 21:45:33 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/09 18:02:29 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	sig_handle(int num)
 		write(1, "\n", 1);
 		if (g_sig == 1)
 			return ((1) && (g_sig = 0), void_return());
+		set_es(NULL, 1);
 		rl_replace_line("", 0);
 		rl_on_new_line();
 		rl_redisplay();

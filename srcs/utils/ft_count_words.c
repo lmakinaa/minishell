@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/01 14:17:46 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/31 20:39:46 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/09 18:24:08 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,13 @@ void	count_operators(char **s, int *res)
 		|| !ft_strncmp(str, ">>", 2) || !ft_strncmp(str, "<<", 2))
 	{
 		(*res)++;
-		(*s) += 2;
+		(**s) && (*s)++;
+		(**s) && (*s)++;
 	}
 	else if (*str == '<' || *str == '>' || *str == '|')
 	{
 		(*res)++;
-		(*s)++;
+		(**s) && (*s)++;
 	}
 	else if (*str == '(' || *str == ')')
 		return ((*res)++, skip_inside_parenthesis(s), void_return());

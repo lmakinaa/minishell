@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtalbi <mtalbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 16:56:03 by mtalbi            #+#    #+#             */
-/*   Updated: 2024/06/08 18:05:52 by mtalbi           ###   ########.fr       */
+/*   Updated: 2024/06/09 18:00:50 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,16 @@ int	reset_fds(int backup_fds[], int pip)
 		return (throw_error("dup2", 0, 0, THROW_PERROR), 1);
 	close(backup_fds[1]);
 	return (0);
+}
+
+void	set_es(t_lenv *env_p, int status)
+{
+	static t_lenv	*env;
+
+	if (!env)
+	{
+		env = env_p;
+		return ;
+	}
+	env->exit_status = status;
 }

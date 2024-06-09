@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtalbi <mtalbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/08 18:06:59 by mtalbi           ###   ########.fr       */
+/*   Updated: 2024/06/09 18:01:22 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,6 +157,7 @@ char		**append_arg(t_memsession *session, char **args,
 char		**append_arr(t_memsession *session, char **arr1,
 				char **arr2, int size);
 void		reset_terminal(t_lenv *p_env);
+void		set_es(t_lenv *env_p, int status);
 
 //	tree control
 t_tnode		*create_node(t_memsession *session, int op,

@@ -6,13 +6,14 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/10 16:20:39 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/10 16:24:49 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/10 16:47:50 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./../../includes/minishell.h"
 
-static char	*ft_substr(t_memsession *sess, char *s, unsigned int start, size_t len)
+static char	*ft_substr(t_memsession *sess, char *s, unsigned int start,
+	size_t len)
 {
 	size_t	slen;
 	char	*res;

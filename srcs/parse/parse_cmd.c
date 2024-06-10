@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/10 16:13:32 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/10 16:25:53 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	parse_cmd_2(t_memsession *s, t_command *res, t_token **cmd, int i)
 		(1) && (input_file = cmd[i]->value, tmp = i);
 	else if (cmd[i]->type == T_STD_INPUT)
 		(i > tmp) && (input_file = cmd[i]->value);
-	(1) && (res->input_file = no_quotes(s, input_file, 0),
+	(1) && (res->input_file = ft_strtrim(s, no_quotes(s, input_file, 0), " "),
 		res->output_redir_type = out_type, res->output_files = out_files,
 		res->std_input = -1, res->path = NULL);
 }

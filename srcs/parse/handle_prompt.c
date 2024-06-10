@@ -19,7 +19,7 @@ void	handle_prompt(t_memsession *heap_session, t_lenv *env, char *prompt)
 	t_tnode	*root;
 	int		s;
 
-	if (are_parenthesis_closed(prompt) || are_quotes_closed(prompt))
+	if (are_quotes_closed(prompt) || are_parenthesis_closed(prompt))
 	{
 		env->exit_status = 258;
 		return ;

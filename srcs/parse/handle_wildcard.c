@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/24 14:15:11 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/17 15:55:50 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/10 16:15:28 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,6 +87,8 @@ char	*no_quotes(t_memsession *session, char *str, int flag)
 {
 	char	*res;
 
+	if (!str)
+		return (NULL);
 	res = ft_strdup(session, "", 0);
 	while (*str)
 	{

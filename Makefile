@@ -60,7 +60,8 @@ UTILS = srcs/utils/ft_count_words.c\
 		srcs/utils/ft_strncmp.c\
 		srcs/utils/ft_strncpy.c\
 		srcs/utils/ft_strnstr.c\
-		srcs/utils/strdup_versions.c
+		srcs/utils/strdup_versions.c\
+		srcs/utils/ft_strtrim.c
 
 SRCS = 	$(PARSE)\
 		$(EXEC)\

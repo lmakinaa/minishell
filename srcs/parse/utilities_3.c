@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:52:57 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/09 18:02:10 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/10 18:42:54 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,8 @@ t_lenv	*ft_initialise(t_memsession **session1, t_memsession **session2,
 {
 	t_lenv			*env;
 
+	if (isatty(STDIN_FILENO) == 0)
+		exit_on_error("The input source is not from a valid terminal\n", 46);
 	(void) argv;
 	session_init(session1);
 	session_init(session2);

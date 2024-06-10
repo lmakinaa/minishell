@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/23 18:18:48 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/09 00:37:56 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/10 16:13:32 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static char	*add_var_quotes(t_memsession *s, char *str)
 	return (res);
 }
 
-void	parse_cmd_2(t_memsession *session, t_command *res, t_token **cmd, int i)
+void	parse_cmd_2(t_memsession *s, t_command *res, t_token **cmd, int i)
 {
 	char	*out_type;
 	char	**out_files;
@@ -31,20 +31,20 @@ void	parse_cmd_2(t_memsession *session, t_command *res, t_token **cmd, int i)
 	int		std_input;
 	int		tmp;
 
-	(1) && (tmp = -1, out_type = ft_strdup(session, "", 0), input_file = NULL,
+	(1) && (tmp = -1, out_type = ft_strdup(s, "", 0), input_file = NULL,
 		out_files = NULL, std_input = -1);
 	while (cmd && cmd[++i])
 		if (cmd[i]->type == T_OUT_REDIR || cmd[i]->type == T_APPEND_REDIR)
-			out_type = ft_joinchar(session, out_type, cmd[i]->type);
+			out_type = ft_joinchar(s, out_type, cmd[i]->type);
 	else if (cmd[i]->type == T_OUTPUT_FILE)
-		out_files = append_arg(session, out_files, cmd[i]->value, 0);
+		out_files = append_arg(s, out_files, no_quotes(s, cmd[i]->value, 0), 0);
 	else if (cmd[i]->type == T_INPUT_FILE)
 		(1) && (input_file = cmd[i]->value, tmp = i);
 	else if (cmd[i]->type == T_STD_INPUT)
 		(i > tmp) && (input_file = cmd[i]->value);
-	(1) && (res->input_file = input_file, res->output_redir_type = out_type,
-		res->output_files = out_files, res->std_input = -1,
-		res->path = NULL);
+	(1) && (res->input_file = no_quotes(s, input_file, 0),
+		res->output_redir_type = out_type, res->output_files = out_files,
+		res->std_input = -1, res->path = NULL);
 }
 
 static int	ft_part2(t_memsession *session, t_command *res, t_token **cmd)

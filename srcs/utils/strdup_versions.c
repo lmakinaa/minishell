@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 11:12:22 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/09 18:23:09 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/10 16:56:33 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	parenthesis_strdup(t_memsession *session, char **s, char **r)
 
 	tmp = *s;
 	*r = session_malloc(session,
-			(skip_inside_parenthesis(&tmp) + 2) * sizeof(char), 0);
+			(skip_inside_parenthesis(&tmp) + 3) * sizeof(char), 0);
 	res = *r;
 	open = 1;
 	*(res++) = **s;

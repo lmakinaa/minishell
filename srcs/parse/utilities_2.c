@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 15:43:23 by ijaija            #+#    #+#             */
-/*   Updated: 2024/05/07 16:39:59 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/11 16:50:51 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	new_sep_check(char *c, char *seps)
 */
 void	throw_error(char *error, char *arg, int len, int type)
 {
-	if (type != 2)
+	if (type != 2 && type != 3)
 	{
 		write(2, "minishell: ", 11);
 		if (type == 1)
@@ -44,6 +44,12 @@ void	throw_error(char *error, char *arg, int len, int type)
 	{
 		write(2, "minishell: ", 11);
 		perror(error);
+	}
+	else if (type == 3)
+	{
+		write(2, "minishell: ", 11);
+		write(2, arg, ft_strlen(arg));
+		write(2, ": command not found\n", 20);
 	}
 }
 

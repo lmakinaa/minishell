@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/07 19:24:28 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/08 18:57:26 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/11 16:50:03 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	get_path(t_command *command)
 	(command->path) && (p = NULL);
 	if (!((command->path && !access(command->path, F_OK)) || p))
 		return (s_s(command->env, 127),
-			throw_error(cmd, 0, 0, THROW_PERROR), -1);
+			throw_error(0, cmd, 0, 3), -1);
 	if (p)
 		command->path = p;
 	p = ft_strchr(p, '/');

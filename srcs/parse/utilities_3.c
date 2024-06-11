@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:52:57 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/10 19:25:30 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/06/11 16:53:12 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	are_parenthesis_closed(char *s)
 	close = 0;
 	while (s[++i])
 	{
-		if (s[i] == '"'  || s[i] == '\'')
+		if (s[i] == '"' || s[i] == '\'')
 		{
 			tmp = s[i++];
 			while (s[i] && s[i] != tmp)

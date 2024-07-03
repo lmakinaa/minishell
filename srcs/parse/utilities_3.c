@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 16:52:57 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/11 16:53:12 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/07/03 11:52:41 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@ int	are_parenthesis_closed(char *s)
 	int		close;
 	char	tmp;
 
-	i = -1;
-	open = 0;
-	close = 0;
+	(1) && (i = -1, open = 0, close = 0);
 	while (s[++i])
 	{
 		if (s[i] == '"' || s[i] == '\'')
@@ -35,6 +33,8 @@ int	are_parenthesis_closed(char *s)
 		(s[i] == ')') && (close++);
 		if (close > open)
 			return (throw_error(SYNTAX_ERR, ")", SYNTAX_ERR_LEN, 1), 1);
+		if (!s[i])
+			break ;
 	}
 	if (close != open)
 		return (throw_error("due to an unclosed parenthesis", 0, 30, 1), 1);

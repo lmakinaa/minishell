@@ -15,6 +15,7 @@
 // 5asni nfree child process
 static void	exec_child(t_tnode *node, int pfds[2], int what_child)
 {
+	signal(SIGINT, SIG_DFL);
 	tcsetattr(STDIN_FILENO, TCSANOW, &(node->env->initial_termios));
 	if (what_child == LEFT_C)
 	{
@@ -46,6 +47,7 @@ static int	exec_pipes(t_tnode *tree)
 	int	status;
 
 	pipe(fds);
+	signal(SIGINT, SIG_IGN);
 	p_left = fork();
 	if (!p_left)
 		exec_child(tree->left, fds, LEFT_C);

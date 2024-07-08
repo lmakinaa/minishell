@@ -6,7 +6,7 @@
 /*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/13 20:46:44 by ijaija            #+#    #+#             */
-/*   Updated: 2024/06/09 18:01:22 by ijaija           ###   ########.fr       */
+/*   Updated: 2024/07/08 17:48:45 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@
 # define RIGHT_C 1
 
 // Token types
-// todo: change this shit into enum.. or not
 # define T_UNKNOWN -1
 # define T_APPEND_REDIR 1
 # define T_PARENTHESIS_COMMAND 2
@@ -132,7 +131,7 @@ int			is_redirector(t_token tok);
 int			get_precedence(t_token *token);
 void		void_return(void);
 int			is_word(t_token	*tok);
-void		throw_error(char *error, char *arg, int len, int type);
+int			throw_error(char *error, char *arg, int len, int type);
 int			are_quotes_closed(char *s);
 int			are_parenthesis_closed(char *s);
 char		*z_strdup(t_memsession *session, char **str, char *seps);

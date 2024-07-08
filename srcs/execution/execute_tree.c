@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_tree.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtalbi <mtalbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/19 12:26:14 by mtalbi            #+#    #+#             */
-/*   Updated: 2024/06/08 18:05:16 by mtalbi           ###   ########.fr       */
+/*   Updated: 2024/07/08 17:39:42 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,11 +58,10 @@ static int	exec_pipes(t_tnode *tree)
 			exec_child(tree->right, fds, RIGHT_C);
 		else
 		{
-			if (p_left == -1 || p_right == -1)
-				exit_on_error("fork() failed\n", 14);
-			(1) && (close(fds[0]), close(fds[1]));
-			waitpid(p_left, &status, 0);
-			waitpid(p_right, &status, 0);
+			if ((p_left == -1 || p_right == -1))
+				exit(throw_error("fork", 0, 0, 2));
+			(1) && (close(fds[0]), close(fds[1]),
+				waitpid(p_left, &status, 0), waitpid(p_right, &status, 0));
 			return (extract_exit_status(status));
 		}
 	}

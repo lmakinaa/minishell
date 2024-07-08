@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute_command.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: mtalbi <mtalbi@student.42.fr>              +#+  +:+       +#+        */
+/*   By: ijaija <ijaija@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/28 14:43:55 by mtalbi            #+#    #+#             */
-/*   Updated: 2024/06/08 18:05:00 by mtalbi           ###   ########.fr       */
+/*   Updated: 2024/07/08 17:40:04 by ijaija           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	exec_binary(t_command *cmd)
 			(throw_error(cmd->path, 0, 0, THROW_PERROR), exit(126));
 	}
 	else if (pid == -1)
-		exit_on_error("fork() failed\n", 14);
+		exit(1);
 	waitpid(pid, &s, 0);
 	return (extract_exit_status(s));
 }

@@ -66,8 +66,8 @@ t_lenv	*ft_initialise(t_memsession **session1, t_memsession **session2,
 {
 	t_lenv			*env;
 
-	if (isatty(STDIN_FILENO) == 0)
-		exit_on_error("The input source is not from a valid terminal\n", 46);
+	//if (isatty(STDIN_FILENO) == 0)
+	//	exit_on_error("The input source is not from a valid terminal\n", 46);
 	(void) argv;
 	session_init(session1);
 	session_init(session2);
